@@ -15,6 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/tasks', function () {
+    return view('tasks');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// SNS認証へのページ遷移
+Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
+
+Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
