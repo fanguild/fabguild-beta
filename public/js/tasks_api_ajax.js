@@ -80,6 +80,29 @@ $(function () {
     // 削除する関数
     function deleteData(id) {
         //
+        // 送信先の指定
+        var url = `/api/task/${id}`;
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            url: url,
+            type: 'POST',
+            processData: false,
+            contentType: false
+        })
+            .done(function (data) {
+                console.log(data);
+                console.log('done');
+                $('#echo').html(make_dom(data));
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log('fail');
+            })
+            .always(function () {
+                console.log('post:complete');
+            });
     }
 
     // 送信ボタンクリック時に登録
@@ -95,6 +118,13 @@ $(function () {
                 $('#deadline').val(''),
                 $('#comment').val('')
         }
+    });
+
+    // 削除ボタンクリック時に削除
+    $('#echo').on('click', '.destroy', function () {
+        // 削除するタスクのidを取得
+        var id = $(this).attr('id');
+        deleteData(id);
     });
 
     // 読み込み時に実行
