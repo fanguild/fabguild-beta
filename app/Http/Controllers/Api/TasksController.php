@@ -17,7 +17,6 @@ class TasksController extends Controller
         $this->middleware('auth');
     }
 
-
     //登録処理関数
     public function store(Request $request)
     {

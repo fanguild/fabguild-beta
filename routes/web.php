@@ -27,3 +27,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
 Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
+
+Route::get('/chara_top', function () {
+    return view('chara_top');
+});
