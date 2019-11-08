@@ -28,6 +28,10 @@ Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
 Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
 
+// APIテストページ
+Route::get('/test_user', 'TestsController@test_user');
+
+
 Route::get('/chara_top', function () {
     return view('chara_top');
 });
