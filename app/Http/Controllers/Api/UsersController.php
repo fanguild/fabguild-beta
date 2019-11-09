@@ -10,7 +10,7 @@ use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
 
-class TestsController extends Controller
+class UsersController extends Controller
 {
     public function __construct()
     {
@@ -18,29 +18,29 @@ class TestsController extends Controller
     }
 
     //登録処理関数
-    public function user_store(Request $request)
+    public function store(Request $request)
     {
-        // Eloquentモデル
-        $task = new Task;
-        $task->user_id = Auth::user()->id;
-        $task->task = $request->task;
-        $task->deadline = $request->deadline;
-        $task->comment = $request->comment;
-        $task->save();
-        // 最新のDB情報を取得して返す
-        $tasks = Task::where('user_id', Auth::user()->id)
-            ->orderBy('deadline', 'asc')
-            ->get();
-        return $tasks;
+        // // Eloquentモデル
+        // $task = new Task;
+        // $task->user_id = Auth::user()->id;
+        // $task->task = $request->task;
+        // $task->deadline = $request->deadline;
+        // $task->comment = $request->comment;
+        // $task->save();
+        // // 最新のDB情報を取得して返す
+        // $tasks = Task::where('user_id', Auth::user()->id)
+        //     ->orderBy('deadline', 'asc')
+        //     ->get();
+        // return $tasks;
     }
 
     //表示処理関数
     public function index()
     {
-        $tasks = Task::where('user_id', Auth::user()->id)
+        $users = User::where('id', Auth::user()->id)
             ->orderBy('deadline', 'asc')
             ->get();
-        return $tasks;
+        return $users;
     }
 
 

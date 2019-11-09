@@ -1,30 +1,45 @@
 @extends('layouts.app')
 @section('content')
-    <script src="{{ asset('js/tasks_api_ajax.js') }}" defer></script>
+    <script src="{{ asset('js/test_user.js') }}" defer></script>
     <div class="panel-body">
         <form class="form-horizontal" id="api_form">
             {{ csrf_field() }}
             <div class="form-group">
-                <!-- タスク名 -->
+                <!-- name -->
                 <div class="col-sm-6">
-                    <label for="task" class="col-sm-3 control-label">Task</label>
-                    <input type="text" name="task" id="task" class="form-control">
+                    <label for="name" class="col-sm-3 control-label">name</label>
+                    <input type="text" name="name" id="name" class="form-control">
                 </div>
-                <!-- deadline -->
+                <!-- profile -->
                 <div class="col-sm-6">
-                    <label for="deadline" class="col-sm-3 control-label">Deadline</label>
-                    <input type="date" name="deadline" id="deadline" class="form-control">
+                    <label for="profile" class="col-sm-3 control-label">profile</label>
+                    <input type="text" name="profile" id="profile" class="form-control">
                 </div>
-                <!-- comment -->
+                <!-- position -->
                 <div class="col-sm-6">
-                    <label for="comment" class="col-sm-3 control-label">Comment</label>
-                    <input type="text" name="comment" id="comment" class="form-control">
+                    <label for="position" class="col-sm-3 control-label">position</label>
+                    <input type="text" name="position" id="position" class="form-control">
+                </div>
+                <!-- website -->
+                <div class="col-sm-6">
+                    <label for="website" class="col-sm-3 control-label">website</label>
+                    <input type="text" name="website" id="website" class="form-control">
+                </div>
+                <!-- birthday -->
+                <div class="col-sm-6">
+                    <label for="birthday" class="col-sm-3 control-label">birthday</label>
+                    <input type="date" name="birthday" id="birthday" class="form-control">
+                </div>
+                <!-- img -->
+                <div class="col-sm-6">
+                    <label for="img" class="col-sm-3 control-label">birthday</label>
+                    <input type="text" name="img" id="img" class="form-control">
                 </div>
             </div>
-            <!-- タスク登録ボタン -->
+            <!-- プロフィール登録ボタン -->
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="button" class="btn btn-default" id="submit">Save</button>
+                    <button type="button" class="btn btn-default" id="save">Save</button>
                 </div>
             </div>
         </form>
