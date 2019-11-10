@@ -1,8 +1,6 @@
 $(function () {
 
 
-
-
     $("#bg_input").on('change', function (e) {
         // 1枚だけ表示する
         var file = e.target.files[0];
@@ -167,5 +165,4 @@ $(function () {
     setTimeout(function () {
         $("#ace").append(ace);
     }, 700);
-
 });

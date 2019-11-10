@@ -46,6 +46,12 @@ Route::get('/upload', function () {
     return view('upload');
 });
 
+//検索ページ
+Route::get('/upload/search', function () {
+    return view('search_for_upload');
+});
+
+
 //セリフ投稿
 Route::get('/serif', function () {
     return view('serif');
