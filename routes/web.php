@@ -32,9 +32,24 @@ Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
 Route::get('/test_user', 'TestsController@test_user');
 
 // 画像アップロードテストページ
-Route::get('/upload', 'UploadsController@upload');
+Route::get('/uploadtest', 'UploadsController@upload');
 
-
+//キャラのトップページ
 Route::get('/chara_top', function () {
     return view('chara_top');
+});
+
+//タイムラインページ
+Route::get('/timeline', function () {
+    return view('chara_timeline');
+});
+
+//画像投稿ページ
+Route::get('/upload', function () {
+    return view('upload');
+});
+
+//セリフ投稿
+Route::get('/serif', function () {
+    return view('serif');
 });

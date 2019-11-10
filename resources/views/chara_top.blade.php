@@ -5,7 +5,7 @@
     <div class="content">
         <div class=chara_top>
             <div class=chara>
-                <img id=chara_img src="ACE.png">
+                <img id=chara_img src="/storage/chara_picture/ACE.png">
 
                 <div class="chara_name">エース(ONE PIECE)</div>
             </div>
@@ -21,12 +21,9 @@
                 </div>
             </div>
         </div>
-        <div type="button" class="join_btn" data-toggle="modal" data-target="#modal1">
+        <div class="join_btn">
             <div>ギルドに参加する</div>
         </div>
-        <!-- <div class="join_btn">
-                <div>ギルドに参加する</div>
-            </div> -->
         <div class="middle_bar">
             <div class=middle_bar_outline>
                 <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
@@ -55,7 +52,7 @@
                 <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
             </div>
             <div class=middle_bar_outline>
-                <a href="chara_timeline.html" style="text-decoration: none;color:#333333">
+                <a href="{{url('timeline')}}" style="text-decoration: none;color:#333333">
                     <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">
                         タイムライン
                     </div>
@@ -236,4 +233,5 @@
 </script>
 
 </html>
+
 @endsection
