@@ -10,6 +10,6 @@ class UploadsController extends Controller
     //api画面表示用関数
     public function upload()
     {
-        return view('upload');
+        return view('upload_test');
     }
 }
