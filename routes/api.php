@@ -27,6 +27,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/tasks', 'Api\TasksController@store');
         // 削除
         Route::post('/task/{task}', 'Api\TasksController@destroy');
+
+        // Fileのアップロードテスト
+        // 表示
+        Route::get('/uploads', 'Api\UploadsController@index');
+        // 登録
+        Route::post('/uploadsstore', 'Api\UploadsController@store');
+        // 削除
+        Route::post('/uploadsdelete/{task}', 'Api\UploadsController@destroy');
     });
 });
 
