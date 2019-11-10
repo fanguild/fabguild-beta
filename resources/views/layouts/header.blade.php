@@ -73,7 +73,7 @@
                         <img src="/storage/icon/好きなセリフ.svg" style="height:36px">
                     </div>
                     <div id=footer_menu_2 class=footer_second>
-                        <img src="/storage/icon/post.svg" style="height:24px">
+                        <a href="{{url('serif')}}"><img src="/storage/icon/post.svg" style="height:24px"></a>
                     </div>
                 </div>
                 <div>
@@ -81,7 +81,7 @@
                         <img src="/storage/icon/画像投稿.svg" style="height:36px">
                     </div>
                     <div id=footer_menu_3 class=footer_third>
-                        <img src="/storage/icon/upload.svg" style="height:24px">
+                        <a href="{{url('upload')}}"><img src="/storage/icon/upload.svg" style="height:24px"></a>
                     </div>
                 </div>
                 <div id=footer_back></div>
