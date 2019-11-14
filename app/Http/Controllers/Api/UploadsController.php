@@ -21,7 +21,7 @@ class UploadsController extends Controller
     //登録処理関数
     public function store(Request $request)
     {
-        $path = Storage::disk('s3')->putFile('/', $request->file('file'), 'public');
+        $path = Storage::disk('s3')->putFile('/', $request->file('file1'), 'public');
         $url = Storage::disk('s3')->url($path);
         // Eloquentモデル
         $uploads = new Upload;

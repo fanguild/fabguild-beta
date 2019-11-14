@@ -53,9 +53,17 @@ Route::get('/upload', function () {
 Route::get('/upload/search', function () {
     return view('search_for_upload');
 });
+Route::get('/chara/search', function () {
+    return view('search_for_chara');
+});
 
 
 //セリフ投稿
 Route::get('/serif', function () {
     return view('serif');
+});
+
+//ユーザートップ
+Route::get('/user', function () {
+    return view('user_top');
 });
