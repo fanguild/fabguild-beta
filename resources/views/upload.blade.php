@@ -18,7 +18,7 @@
                         <div><img class="thumbnail_img" src=""></div>
 
                         <div style="margin:6px 3px;">
-                            <div class="chara_name" style="color:#333333" value="1">空</div>
+                            <div class="chara_name" style="color:#333333" value="1">車谷空</div>
                             <div style="color:#969696">あひるの空</div>
                         </div>
 
@@ -30,7 +30,7 @@
                         <div><img class="thumbnail_img" src=""></div>
 
                         <div style="margin:6px 3px;">
-                            <div id="name1" style="color:#333333" value="a">車谷</div>
+                            <div class="chara_name" style="color:#333333" value="a">車谷</div>
                             <div style="color:#969696">あひるの空</div>
                         </div>
 
@@ -106,12 +106,15 @@
         $(".arrow").on("click", function() {
             $('#toggle').slideDown('300');
         })
+
         $(".listparent").on("click", function() {
             console.log(this);
-            var a = $(this).find(".chara_name").contents();
-            console.log(a[0])
+            // var a = $(this).find(".chara_name").contents()[0];
+            var a = $(this).find(".chara_name").text();
+            console.log(a)
             $('#toggle').slideUp('300');
-            $("#upload_chara_select").html(a[0])
+            $("#upload_chara_select").text(a)
+            $("#upload_chara_select").css("color", "#333333")
         })
 
         $("#img_input").on('change', function(e) {
