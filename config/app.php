@@ -176,7 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         App\Providers\FirebaseServiceProvider::class,
-
+        // TwitterOAuth
+        App\Providers\TwitterServiceProvider::class,
     ],
 
     /*
@@ -227,6 +228,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // TwitterOAuthAliases
+        'Twitter' => App\Facades\Twitter::class,
 
     ],
 

@@ -67,3 +67,10 @@ Route::get('/serif', function () {
 Route::get('/user', function () {
     return view('user_top');
 });
+
+//ユーザートップ
+Route::get('/twitter', function () {
+    return view('tweet');
+});
+
+Route::get('twitter', 'TwitterController@index');
