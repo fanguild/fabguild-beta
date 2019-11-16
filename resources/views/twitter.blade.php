@@ -1,10 +1,6 @@
  @extends('layouts.header')
  @section('content')
 
- @php
- var_dump($result)
- @endphp
-
  <div class="container">
      <!-- コントローラーで取得した$resultをforeachで回す -->
      @foreach ($result as $tweet)
@@ -15,7 +11,7 @@
                  <div class="media-body">
                      <h5 class="d-inline mr-3"><strong></strong></h5>
                      <h6 class="d-inline text-secondary"></h6>
-                     <p class="mt-3 mb-0"></p>
+                     <p class="mt-3 mb-0">{{$tweet->text}}</p>
                  </div>
              </div>
          </div>
