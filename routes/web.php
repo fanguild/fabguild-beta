@@ -63,9 +63,12 @@ Route::get('/serif', function () {
 });
 
 //ユーザートップ
-Route::get('/user', function () {
-    return view('user_top');
-});
+Route::get('user', 'UsersController@index')->name('user');;
+
+// Route::get('user', function () {
+//     return view('user_top');
+// });
+
 
 //twitter API表示用（仮）
 Route::get('twitter', 'TwitterController@index');
