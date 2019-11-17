@@ -69,3 +69,8 @@ Route::get('/user', function () {
 
 //twitter API表示用（仮）
 Route::get('twitter', 'TwitterController@index');
+
+//Twitter認証テスト用
+Route::get('auth/twitter', 'Auth\SocialAuthController@getTwitterRedirect');
+Route::get('auth/twitter/callback', 'Auth\SocialAuthController@getTwitterCallback');
+Route::get('auth/twitter/logout', 'Auth\SocialAuthController@logout');
