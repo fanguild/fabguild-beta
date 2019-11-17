@@ -48,7 +48,7 @@
                 </div>
 
             </div>
-            <div class=arrow><img src="arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
         </a>
         <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
         <div style="padding:4px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>
@@ -63,7 +63,7 @@
                     <div class=label_btn>嫁</div>
                 </div>
             </div>
-            <div class=arrow><img src="arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
         </div>
         <div class=listparent>
             <div class=list>
@@ -76,7 +76,7 @@
                     <div class=label_btn>推し</div>
                 </div>
             </div>
-            <div class=arrow><img src="arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
         </div>
         <div class=listparent>
             <div class=list>

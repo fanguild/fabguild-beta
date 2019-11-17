@@ -57,7 +57,6 @@ Route::get('/chara_search', function () {
     return view('search_for_mychara');
 });
 
-
 //セリフ投稿
 Route::get('/serif', function () {
     return view('serif');
@@ -68,9 +67,5 @@ Route::get('/user', function () {
     return view('user_top');
 });
 
-//ユーザートップ
-Route::get('/twitter', function () {
-    return view('tweet');
-});
-
+//twitter API表示用（仮）
 Route::get('twitter', 'TwitterController@index');
