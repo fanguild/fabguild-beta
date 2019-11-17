@@ -74,3 +74,8 @@ Route::get('/twitter', function () {
 });
 
 Route::get('twitter', 'TwitterController@index');
+
+//Twitter認証テスト用
+Route::get('auth/twitter', 'Auth\SocialAuthController@getTwitterRedirect');
+Route::get('auth/twitter/callback', 'Auth\SocialAuthController@getTwitterCallback');
+Route::get('auth/twitter/logout', 'Auth\SocialAuthController@logout');
