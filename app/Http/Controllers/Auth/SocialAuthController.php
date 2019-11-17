@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 class SocialAuthController extends Controller
 {
     use AuthenticatesUsers;
-    protected $redirectTo = '/';
+    protected $redirectTo = '/user';
 
     /**
      * ユーザーをTwitterの認証ページにリダイレクトする
@@ -40,7 +40,7 @@ class SocialAuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('home');
+        return redirect()->route('user');
     }
 
     private function findOrCreateUser($login_type, $user_info)
