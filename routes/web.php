@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
 
 Route::get('/tasks', function () {
@@ -53,8 +53,8 @@ Route::get('/upload', function () {
 Route::get('/upload/search', function () {
     return view('search_for_upload');
 });
-Route::get('/chara/search', function () {
-    return view('search_for_chara');
+Route::get('/chara_search', function () {
+    return view('search_for_mychara');
 });
 
 

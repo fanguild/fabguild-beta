@@ -5,14 +5,14 @@
     <div class="content">
         <div class=chara_top>
             <div class=chara>
-                <img id=chara_img src="/storage/chara_picture/ACE.png">
+                <img id=chara_img src="{{asset('storage/chara_picture/ACE.png')}}">
 
                 <div class="chara_name">エース(ONE PIECE)</div>
             </div>
             <div class=guild_status>
                 <div style="text-align:start;">ギルドランク
                 </div>
-                <img id=guild_icon src="storage/icon/盾.svg" style="height:62px">
+            <img id=guild_icon src="{{asset('storage/icon/盾.svg')}}" style="height:62px">
                 <div style="color:#FF8500">オレンジ</div>
                 <div class=chara_population>
                     <div class=pop style="color:#969696;">総ファン数</div>
