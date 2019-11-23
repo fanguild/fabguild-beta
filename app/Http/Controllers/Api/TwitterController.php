@@ -13,8 +13,8 @@ class TwitterController extends Controller
     public function index(Request $request)
     {
         //ツイートを5件取得
-        $result = \Twitter::get('statuses/home_timeline',  ['count' => '10']);
-        // $result = \Twitter::get('search/tweets',  ['q' => '#ポケモン剣盾', 'count' => '10'])->statuses;
+        // $result = \Twitter::get('statuses/home_timeline',  ['count' => '10']);
+        $result = \Twitter::get('search/tweets',  ['q' => '鬼滅 #鬼滅 filter:media exclude:nativeretweets', 'count' => '30'])->statuses;
         return $result;
     }
 }

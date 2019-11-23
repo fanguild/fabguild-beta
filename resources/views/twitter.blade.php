@@ -112,7 +112,8 @@
         var str = '';
         if (data != null) {
             for (var i = 0; i < data.length; i++) {
-                str += ` <div class="card mb-2">
+                if (data[i].entities.media) {
+                    str += ` <div class="card mb-2">
                 <div class="card-body">
                     <div class="media">
                         <img src="${data[i].user.profile_image_url}" class="rounded-circle mr-4">
@@ -120,20 +121,21 @@
                             <h5 class="d-inline mr-3"><strong>${data[i].user.name}</strong></h5>
                             <h6 class="d-inline text-secondary">${data[i].created_at}</h6>
                             <p class="mt-3 mb-0">${data[i].text}</p>`
-                if (data[i].entities.media) {
+
                     str += `<img src="${data[i].entities.media[0].media_url}" style="width:100%">`
+
+                    str += `</div>
+                            </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-flex flex-row justify-content-end">
+                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+                                </div>
+                            </div>
+                        </div>`;
                 }
-                str += `</div>
-                    </div>
-                </div>
-                <div class="card-footer bg-white border-top-0">
-                    <div class="d-flex flex-row justify-content-end">
-                        <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
-                        <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
-                        <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
-                    </div>
-                </div>
-            </div>`;
             }
         }
         return str;
