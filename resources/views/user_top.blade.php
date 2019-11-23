@@ -4,15 +4,14 @@
 <div class="main">
     <div class="content">
         <div class=chara_top>
-            <div class=chara>
-                <img id=chara_img src="img/Drstone.png"></img>
-
-                <div class=" user_name">Dr.デモ太郎</div>
+            <div class=chara id=user_left>
+                <!-- <img id=chara_img src="img/Drstone.png">
+                <div class="user_name">Dr.デモ太郎</div> -->
             </div>
             <div class=guild_status>
                 <div style="text-align:start;margin:0 24px;">職業
                 </div>
-                <img id=job_icon src="evangerist.png" style="height:62px;width:72px;margin:0 48px;"></img>
+                <img id=job_icon src="storage/icon/evan.png" style="height:62px;width:72px;margin:0 48px;">
                 <div style="color:#FF8500">エバンジェリスト</div>
                 <div class=chara_population>
                     <div class=pop style="color:#969696;"><br></div>
@@ -41,7 +40,7 @@
         <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
         <a href="{{url('/mychara/search')}}" class=listparent style="border:none;">
             <div class=list>
-                <div><img class=thumbnail_img src="mychara.svg"></div>
+                <div><img class=thumbnail_img src="storage/icon/mychara.svg"></div>
                 <div style="margin:6px 3px">
                     <div>キャラ追加</div>
                     <div style="color:#969696">マイキャラを追加してみよう</div>
@@ -67,7 +66,7 @@
         </div>
         <div class=listparent>
             <div class=list>
-                <div><img class=thumbnail_img src="img/shinobu.png"></div>
+                <div><img class=thumbnail_img src="storage/img/shinobu.png"></div>
                 <div style="margin:6px;">
                     <div>胡蝶しのぶ</div>
                     <div style="color:#969696">鬼滅の刃</div>
@@ -93,7 +92,7 @@
         </div>
         <div class=listparent>
             <div class=list>
-                <div><img class=thumbnail_img src="img/evafirst.jpg"></div>
+                <div><img class=thumbnail_img src="storage/img/evafirst.jpg"></div>
                 <div style="margin:6px 3px">
                     <div>エヴァ初号機</div>
                     <div style="color:#969696">新世紀エヴァンゲリオン</div>
@@ -184,8 +183,38 @@
         </div>
     </div>
 </div>
-
-
 </body>
+
+<script>
+    $(function() {
+        // データからhtmlを出力する関数
+        function make_dom(data) {
+            console.log(data);
+            var str = '';
+            str += `<img id=chara_img src="${data[0].avatar}">
+                    <div class="user_name">${data[0].name}</div>`;
+
+            return str;
+        }
+
+        function indexData() {
+            //
+            const url = '/api/user';
+            $.getJSON(url)
+                .done(function(data, textStatus, jqXHR) {
+                    console.log(data[0].name);
+                    $('#user_left').html(make_dom(data));
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function() {
+                    console.log('get:complete');
+                });
+        }
+        // 読み込み時に実行
+        indexData();
+    });
+</script>
 
 @endsection

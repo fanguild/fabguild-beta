@@ -64,7 +64,7 @@ $(function () {
     function indexData() {
         //
         const url = '/api';
-        $.getJSON(url)
+        $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 $('#echo').html(make_dom(data));
