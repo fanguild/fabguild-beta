@@ -7,7 +7,7 @@
     <div><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:192px"></div>
 
     <div class=login_board>
-        <h4 style="margin:0 0px 24px 0px;border-bottom:solid 1px #333333;padding:0 8px"><strong>LOGIN</strong></h4>
+        <h4 style="margin:0 0px 24px 0px;border-bottom:solid 2px #FF8500;padding:0 8px"><strong>LOGIN</strong></h4>
         <form action=" {{url('auth/twitter')}}">
             <button id=btn><strong>Twitterでログイン</strong><img src=""></button>
         </form>
@@ -50,7 +50,7 @@
         height: 240px;
         width: 300px;
         background-color: #FFFFFF;
-        border-radius: 4px;
+        border-radius: 6px;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
         display: flex;
         justify-content: center;

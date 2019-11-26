@@ -12,7 +12,7 @@
             <div class=guild_status>
                 <div style="text-align:start;">ギルドランク
                 </div>
-            <img id=guild_icon src="{{asset('storage/icon/盾.svg')}}" style="height:62px">
+                <img id=guild_icon src="{{asset('storage/icon/盾.svg')}}" style="height:62px">
                 <div style="color:#FF8500">オレンジ</div>
                 <div class=chara_population>
                     <div class=pop style="color:#969696;">総ファン数</div>
@@ -52,7 +52,7 @@
                 <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
             </div>
             <div class=middle_bar_outline>
-                <a href="{{url('timeline')}}" style="text-decoration: none;color:#333333">
+                <a href="{{url('twitter')}}" style="text-decoration: none;color:#333333">
                     <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">
                         タイムライン
                     </div>

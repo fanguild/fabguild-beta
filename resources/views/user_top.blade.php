@@ -31,14 +31,11 @@
                 <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;">投稿一覧</div>
             </div>
             <div class=middle_bar_outline>
-                <div class=middle_bar_3 style="padding:6px 6px 3px 6px ;">職業</div>
-            </div>
-            <div class=middle_bar_outline>
-                <div class=middle_bar_4 style="padding:6px 6px 3px 6px ;">フレンド</div>
+                <div class=middle_bar_4 style="padding:6px 6px 3px 6px ;">ギルドメンバー</div>
             </div>
         </div>
         <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-        <a href="{{url('/mychara/search')}}" class=listparent style="border:none;">
+        <a href="{{url('/search')}}" class=listparent style="border:none;">
             <div class=list>
                 <div><img class=thumbnail_img src="storage/icon/mychara.svg"></div>
                 <div style="margin:6px 3px">
@@ -51,7 +48,7 @@
         </a>
         <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
         <div style="padding:4px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>
-        <div class=listparent>
+        <a href="{{url('/chara_top')}}" class=listparent>
             <div class=list>
                 <div><img class=thumbnail_img src="img/ワンピースナミ画像.jpeg"></div>
                 <div style="margin:6px;">
@@ -63,7 +60,7 @@
                 </div>
             </div>
             <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-        </div>
+        </a>
         <div class=listparent>
             <div class=list>
                 <div><img class=thumbnail_img src="storage/img/shinobu.png"></div>
@@ -187,6 +184,7 @@
 
 <script>
     $(function() {
+        $(".middle_bar_1").addClass("middle_bar_add");
         // データからhtmlを出力する関数
         function make_dom(data) {
             console.log(data);

@@ -106,6 +106,14 @@
 
 
 <script>
+    $(".middle_bar").scrollLeft(410);
+    $(".middle_bar_2").addClass("middle_bar_add");
+    setTimeout(function() {
+        $(".middle_bar").animate({
+            scrollLeft: 500
+        });
+
+    }, 200);
     // データからhtmlを出力する関数
     function make_dom(data) {
 
