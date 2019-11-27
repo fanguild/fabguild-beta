@@ -51,10 +51,10 @@ Route::get('/upload', function () {
 
 //検索ページ
 Route::get('/upload/search', function () {
-    return view('search_for_upload');
+    return view('search_upload');
 });
-Route::get('/chara_search', function () {
-    return view('search_for_mychara');
+Route::get('/search', function () {
+    return view('search_mychara');
 });
 
 //セリフ投稿

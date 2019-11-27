@@ -125,5 +125,71 @@
 </div>
 
 
+<<<<<<< HEAD
+=======
+<script>
+    $(".middle_bar").scrollLeft(410);
+    $(".middle_bar_2").addClass("middle_bar_add");
+    setTimeout(function() {
+        $(".middle_bar").animate({
+            scrollLeft: 500
+        });
+
+    }, 200);
+    // データからhtmlを出力する関数
+    function make_dom(data) {
+
+        var str = '';
+        if (data != null) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].entities.media) {
+                    str += ` <div class="card mb-2">
+                <div class="card-body">
+                    <div class="media">
+                        <img src="${data[i].user.profile_image_url}" class="rounded-circle mr-4">
+                        <div class="media-body">
+                            <h5 class="d-inline mr-3"><strong>${data[i].user.name}</strong></h5>
+                            <h6 class="d-inline text-secondary">${data[i].created_at}</h6>
+                            <p class="mt-3 mb-0">${data[i].text}</p>`
+
+                    str += `<img src="${data[i].entities.media[0].media_url}" style="width:100%">`
+
+                    str += `</div>
+                            </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-flex flex-row justify-content-end">
+                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+            }
+        }
+        return str;
+    }
+
+    function indexData() {
+        //
+        const url = '/api/twitter';
+        $.ajax(url)
+            .done(function(data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom(data));
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log(errorThrown);
+            })
+            .always(function() {
+                console.log('get:complete');
+            });
+    }
+
+    // 読み込み時に実行
+    indexData();
+</script>
+>>>>>>> 517d6f7b953d417947eceb1bb43ae52bec6f27e0
 
 @endsection
