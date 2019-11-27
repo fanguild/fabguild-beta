@@ -41,6 +41,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/uploadsstore', 'Api\UploadsController@store');
         // 削除
         Route::post('/uploadsdelete/{task}', 'Api\UploadsController@destroy');
+
+        // Twitterへ投稿する。
+        Route::post('/tweet', 'Api\TwitterController@tweet');
     });
 });
 
