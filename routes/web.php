@@ -11,6 +11,8 @@
 |
 */
 
+use App\Chara;
+
 Route::get('/', function () {
     return view('top');
 });
@@ -35,8 +37,10 @@ Route::get('/test_user', 'TestsController@test_user');
 Route::get('/uploadtest', 'UploadsController@upload');
 
 //キャラのトップページ
-Route::get('/chara_top', function () {
-    return view('chara_top');
+Route::get('/chara_top/{chara}', function (Chara $chara) {
+    return view('chara_top', [
+        "chara" => $chara
+    ]);
 });
 
 //タイムラインページ

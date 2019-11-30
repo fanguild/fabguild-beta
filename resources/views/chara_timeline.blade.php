@@ -5,7 +5,7 @@
     <div class="content">
         <div class=chara_top>
             <div class=chara>
-                <img id=chara_img src="ACE.png"></img>
+                <img id=chara_img src="ACE.png">
 
                 <div class="chara_name">エース(ONE PIECE)</div>
             </div>

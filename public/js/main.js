@@ -1,43 +1,5 @@
 $(function () {
 
-
-    $("#bg_input").on('change', function (e) {
-        // 1枚だけ表示する
-        var file = e.target.files[0];
-        console.log(file);
-
-        // ファイルのブラウザ上でのURLを取得する
-        var blobUrl = window.URL.createObjectURL(file);
-
-        // img要素に表示
-        $('#bg_img').attr('src', blobUrl);
-    });
-
-    $("#ft_input").on('change', function (e) {
-        // 1枚だけ表示する
-        var file = e.target.files[0];
-
-        // ファイルのブラウザ上でのURLを取得する
-        var blobUrl = window.URL.createObjectURL(file);
-
-        // img要素に表示
-        $('#ft_img').attr('src', blobUrl);
-    })
-    $('#hidden').hide()
-    $("#post").on('click', function () {
-
-        $('#hidden').show()
-    })
-
-    $('.label_btn_').on('click', function () {
-        var selected_chara = $(this).val();
-        console.log(selected_chara)
-        $('#chara_id_selected').remove();
-        var add = "<input id='chara_id_selected' type=hidden name='chara_id' value=" + selected_chara + ">"
-        $('#mychara').append(add);
-
-    })
-
     var removeseleted = function () {
         $(".middle_bar_1").removeClass("middle_bar_add");
         $(".middle_bar_2").removeClass("middle_bar_add");
@@ -58,7 +20,6 @@ $(function () {
         }
         $(".middle_bar").animate({ scrollLeft: 410 });
         $(".middle_bar_1").addClass("middle_bar_add");
-
     })
     $(".middle_bar_2").on("click", function () {
         removeseleted();
@@ -161,8 +122,5 @@ $(function () {
         $("#footer_menu_name_2").css({ transform: "scale(0)" });
         $("#footer_menu_name_3").css({ transform: "scale(0)" });
     })
-    var ace = `<a href="chara_top.html" class=listparent><div class=list><div><img class=thumbnail_img src="ACE.png"></div><div style="margin:6px 3px"><div>エース</div><div style="color:#969696">ONE PIECE</div></div></div><div class=arrow><img src="arrow_follow.svg" style="height:36px;margin:15px 0px">`
-    setTimeout(function () {
-        $("#ace").append(ace);
-    }, 700);
+
 });

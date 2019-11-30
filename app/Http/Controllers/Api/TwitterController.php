@@ -23,7 +23,7 @@ class TwitterController extends Controller
     {
         $config = config('twitter');
         $twitter = new TwitterOAuth($config['api_key'], $config['secret_key'], $config['access_token'], $config['access_token_secret']);
-
-        $twitter->post("statuses/update", array("status" => "TEST Tweet."));
+        $tweet = $request->tweet;
+        $twitter->post("statuses/update", array("status" => "$tweet"));
     }
 }

@@ -1,5 +1,7 @@
 $(function () {
-
+    $("#footer_menu_2").on("click", function () {
+        console.log("aaa")
+    })
     // データからhtmlを出力する関数
     function make_dom(data) {
 
@@ -50,10 +52,10 @@ $(function () {
                 'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
-            // dataType: 'json',
+            dataType: 'json',
             url: url,
             type: 'POST',
-            // data: JSON.stringify(data),
+            data: JSON.stringify(data),
             processData: false,
             contentType: false
         })
@@ -63,7 +65,7 @@ $(function () {
                 $('#echo').html(make_dom(data));
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(textStatus);
+                console.log(textStatus + errorThrown);
                 console.log('fail');
             })
             .always(function () {

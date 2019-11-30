@@ -48,15 +48,15 @@
         </a>
         <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
         <div style="padding:4px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>
-        <a href="{{url('/chara_top')}}" class=listparent>
+        <a href="{{url('/chara_top/1')}}" class=listparent>
             <div class=list>
                 <div><img class=thumbnail_img src="img/ワンピースナミ画像.jpeg"></div>
                 <div style="margin:6px;">
-                    <div>ナミ</div>
-                    <div style="color:#969696">ONE PIECE</div>
+                    <div>竈門　炭治郎</div>
+                    <div style="color:#969696">鬼滅の刃</div>
                 </div>
                 <div style="margin:12px">
-                    <div class=label_btn>嫁</div>
+                    <div class=label_btn>お兄ちゃん</div>
                 </div>
             </div>
             <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
@@ -212,6 +212,10 @@
         }
         // 読み込み時に実行
         indexData();
+
+        $(".listparent").on("click", function() {
+
+        })
     });
 </script>
 

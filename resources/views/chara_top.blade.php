@@ -1,13 +1,12 @@
 @extends('layouts.header')
 
 @section('content')
-<div class="main">
+<div class="main" data-id="{{$chara->id}}">
     <div class="content">
         <div class=chara_top>
             <div class=chara>
                 <img id=chara_img src="{{asset('storage/chara_picture/ACE.png')}}">
-
-                <div class="chara_name">エース(ONE PIECE)</div>
+                <div class="chara_name">{{$chara->name}}</div>
             </div>
             <div class=guild_status>
                 <div style="text-align:start;">ギルドランク

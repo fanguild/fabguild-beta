@@ -1,6 +1,7 @@
 @extends('layouts.header')
 @section('content')
 <script src="{{ asset('js/twitter_api_ajax.js') }}" defer></script>
+<script src="{{ asset('js/main.js')}}" defer></script>
 
 
 <div class="main">
@@ -54,11 +55,11 @@
                 <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
             </div>
             <div class=middle_bar_outline>
-                <a href="{{url('timeline')}}" style="text-decoration: none;color:#333333">
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">
-                        タイムライン
-                    </div>
-                </a>
+
+                <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">
+                    タイムライン
+                </div>
+
             </div>
             <div class=middle_bar_outline>
                 <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
@@ -98,7 +99,7 @@
             </div>
         </div>
         <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
-        
+
         {{-- 投稿機能 --}}
         <form class="form-horizontal" id="api_form">
             {{ csrf_field() }}
@@ -115,7 +116,7 @@
                     <button type="button" class="btn btn-default" id="submit">Tweet</button>
                 </div>
             </div>
-         </form>
+        </form>
 
         <div class="container" id=echo>
             <!-- コントローラーで取得した$resultをforeachで回す -->
@@ -125,8 +126,6 @@
 </div>
 
 
-<<<<<<< HEAD
-=======
 <script>
     $(".middle_bar").scrollLeft(410);
     $(".middle_bar_2").addClass("middle_bar_add");
@@ -136,60 +135,7 @@
         });
 
     }, 200);
-    // データからhtmlを出力する関数
-    function make_dom(data) {
-
-        var str = '';
-        if (data != null) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].entities.media) {
-                    str += ` <div class="card mb-2">
-                <div class="card-body">
-                    <div class="media">
-                        <img src="${data[i].user.profile_image_url}" class="rounded-circle mr-4">
-                        <div class="media-body">
-                            <h5 class="d-inline mr-3"><strong>${data[i].user.name}</strong></h5>
-                            <h6 class="d-inline text-secondary">${data[i].created_at}</h6>
-                            <p class="mt-3 mb-0">${data[i].text}</p>`
-
-                    str += `<img src="${data[i].entities.media[0].media_url}" style="width:100%">`
-
-                    str += `</div>
-                            </div>
-                            </div>
-                            <div class="card-footer bg-white border-top-0">
-                                <div class="d-flex flex-row justify-content-end">
-                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
-                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
-                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
-                                </div>
-                            </div>
-                        </div>`;
-                }
-            }
-        }
-        return str;
-    }
-
-    function indexData() {
-        //
-        const url = '/api/twitter';
-        $.ajax(url)
-            .done(function(data, textStatus, jqXHR) {
-                console.log(data);
-                $('#echo').html(make_dom(data));
-            })
-            .fail(function(jqXHR, textStatus, errorThrown) {
-                console.log(errorThrown);
-            })
-            .always(function() {
-                console.log('get:complete');
-            });
-    }
-
-    // 読み込み時に実行
-    indexData();
 </script>
->>>>>>> 517d6f7b953d417947eceb1bb43ae52bec6f27e0
+
 
 @endsection
