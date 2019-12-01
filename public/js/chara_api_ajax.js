@@ -148,6 +148,64 @@ $(function () {
         return str;
     }
 
+    // データからhtmlを出力する関数(画像倉庫)
+    function make_dom_storage(data) {
+
+        var str = `<div class="item_container">
+                    <div class="item_box">
+                        <div class="item_img">
+                            <img src="/storage/img/ill01.jpg" alt="">
+                        </div>
+                        <img class="like" src="/storage/img/like2.svg" style="height:36px;z-index: 5;">
+                    </div>
+                    <div class="item_box">
+                        <div class="item_img">
+                            <img src="/storage/img/ill02.jpg" alt="">
+                        </div>
+                        <img class="like" src="/storage/img/like2.svg" style="height:36px;z-index: 5;">
+                    </div>
+                </div>`;
+        return str;
+    }
+    function make_dom_quest(data) {
+
+        var str = `<div style="background-color: #efefef;display:flex;">
+                <div class=quest>
+                    <div>好きなセリフ<br>投稿を<br>10本以上</div>
+                    <img class=check src="/storage/img/check.svg" style="height:24px;">
+                </div>
+                <div class=quest>
+                    <div>総ファン数<br>100名以上</div>
+                    <img class=check src="/storage/img/check.svg" style="height:24px;">
+                </div>
+            </div>
+            <div style="background-color: #efefef;display:flex;">
+                <div class=quest>
+                    <img src="/storage/img/lock.svg" style="height:56px">
+                    <div>ギルドランク<br>ブロンズ以上で<br>開放</div>
+                </div>
+                <div class=quest>
+                    <img src="/storage/img/unlock.svg" style="height:56px">
+                    <div>イラスト画像<br>投稿を<br>100件以上</div>
+                </div>
+            </div>
+            <div style="background-color: #efefef;display:flex;">
+                <div class=quest>
+                    <div>エヴァンジェリスト<br>人数を<br>100人以上</div>
+                    <img class=check src="/storage/img/check.svg" style="height:24px;">
+                </div>
+                <div class=quest>
+                    <img src="/storage/img/lock.svg" style="height:56px">
+                    <div>総ファン数<br>5000人以上で<br>開放</div>
+                </div>
+            </div>`;
+        return str;
+    }
+    function make_dom_serif(data) {
+        var str = '';
+        return str;
+    }
+
     // 登録する関数
     function storeData() {
         //
@@ -279,5 +337,14 @@ $(function () {
     $(".middle_bar_2").on("click", function () {
         id = $(".main").attr('data-id')
         indexData_tweet(id);
+    })
+    $(".middle_bar_3").on("click", function () {
+        $('#echo').html(make_dom_storage())
+    })
+    $(".middle_bar_4").on("click", function () {
+        $('#echo').html(make_dom_quest())
+    })
+    $(".middle_bar_5").on("click", function () {
+        $('#echo').html(make_dom_serif())
     })
 });
