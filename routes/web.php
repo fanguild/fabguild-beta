@@ -37,7 +37,7 @@ Route::get('/test_user', 'TestsController@test_user');
 Route::get('/uploadtest', 'UploadsController@upload');
 
 //キャラのトップページ
-Route::get('/chara_top/{chara}', function (Chara $chara) {
+Route::get('/chara/{chara}', function (Chara $chara) {
     return view('chara_top', [
         "chara" => $chara
     ]);

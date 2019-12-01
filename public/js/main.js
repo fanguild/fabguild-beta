@@ -14,43 +14,54 @@ $(function () {
         removeseleted();
         var pos = $(".middle_bar").scrollLeft()
         // console.log(pos)
-        var posx = pos - 567
+        var posx = pos - 456
         if (posx > 0) {
             $(".middle_bar").scrollLeft(posx)
         }
-        $(".middle_bar").animate({ scrollLeft: 410 });
+        $(".middle_bar").animate({ scrollLeft: 300 });
         $(".middle_bar_1").addClass("middle_bar_add");
     })
     $(".middle_bar_2").on("click", function () {
         removeseleted();
         var pos = $(".middle_bar").scrollLeft()
         // console.log(pos)
-        var posx = pos - 567
-        if (posx > 0 & posx < 10) {
-            $(".middle_bar").scrollLeft(posx)
-        }
-        $(".middle_bar").animate({ scrollLeft: 500 });
+        // var posx = pos - 567
+        // if (posx > 0 & posx < 10) {
+        //     $(".middle_bar").scrollLeft(posx)
+        // }
+        $(".middle_bar").animate({ scrollLeft: 395 });
         $(".middle_bar_2").addClass("middle_bar_add");
     })
     $(".middle_bar_3").on("click", function () {
         removeseleted();
         var pos = $(".middle_bar").scrollLeft()
+
         // console.log(pos)
-        $(".middle_bar").animate({ scrollLeft: 600 });
+        $(".middle_bar").animate({ scrollLeft: 488 });
         $(".middle_bar_3").addClass("middle_bar_add");
     })
     $(".middle_bar_4").on("click", function () {
         removeseleted();
         var pos = $(".middle_bar").scrollLeft()
+        var posx = pos - 456
+        var posa = pos + 456
+        if (posx < 0) {
+            $(".middle_bar").scrollLeft(posa)
+        }
         // console.log(pos)
-        $(".middle_bar").animate({ scrollLeft: 660 });
+        $(".middle_bar").animate({ scrollLeft: 573 });
         $(".middle_bar_4").addClass("middle_bar_add");
     })
     $(".middle_bar_5").on("click", function () {
         removeseleted();
         var pos = $(".middle_bar").scrollLeft()
+        var posx = pos - 456
+        var posa = pos + 456
+        if (posx < 0) {
+            $(".middle_bar").scrollLeft(posa)
+        }
         // console.log(pos)
-        $(".middle_bar").animate({ scrollLeft: 730 });
+        $(".middle_bar").animate({ scrollLeft: 665 });
         $(".middle_bar_5").addClass("middle_bar_add");
     })
     $(".middle_bar_6").on("click", function () {

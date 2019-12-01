@@ -18,6 +18,7 @@ class CreateCharasTable extends Migration
             $table->string('name');
             $table->string('kana');
             $table->string('alphabet');
+            $table->string('title');
             $table->biginteger('register_id');
             $table->date('birthday');
             $table->integer('guild_rank');

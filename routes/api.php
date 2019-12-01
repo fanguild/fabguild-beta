@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api']], function () {
     //twitter表示のテスト
-    Route::get('/twitter', 'Api\TwitterController@index');
+    Route::get('/twitter/{chara}', 'Api\TwitterController@index');
 });
 
 
@@ -44,6 +44,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Twitterへ投稿する。
         Route::post('/tweet', 'Api\TwitterController@tweet');
+        // 表示
+        Route::get('/guild/{chara}', 'Api\CharasController@index');
     });
 });
 
