@@ -36,6 +36,7 @@ $(function () {
     }
     // データからhtmlを出力する関数(guild)
     function make_dom_guild(data) {
+
         console.log(data)
         var str = `<div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">ギルドLv</div>
 

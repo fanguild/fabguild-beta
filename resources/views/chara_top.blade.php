@@ -16,7 +16,7 @@
                 <div style="color:#FF8500">オレンジ</div>
                 <div class=chara_population>
                     <div class=pop style="color:#969696;">総ファン数</div>
-                    <div class=pop style="font-size:16px;font-weight: 700;">3,767</div>
+                    <div class=pop style="font-size:16px;font-weight: 700;">{{$sum}}</div>
                     <div class=pop style="color:#969696;">人</div>
                 </div>
             </div>

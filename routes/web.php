@@ -12,6 +12,7 @@
 */
 
 use App\Chara;
+use App\Mychara;
 
 Route::get('/', function () {
     return view('top');
@@ -38,8 +39,10 @@ Route::get('/uploadtest', 'UploadsController@upload');
 
 //キャラのトップページ
 Route::get('/chara/{chara}', function (Chara $chara) {
+    $sum = Mychara::where('charaid', $chara->id)->count();
     return view('chara_top', [
-        "chara" => $chara
+        "chara" => $chara,
+        "sum" => $sum
     ]);
 });
 
