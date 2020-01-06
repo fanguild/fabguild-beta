@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
         // 表示
         Route::get('/uploads', 'Api\UploadsController@index');
         // 登録
-        Route::post('/uploadsstore', 'Api\UploadsController@store');
+        Route::post('/uploadsstore', 'Api\MycharasController@store');
         // 削除
         Route::post('/uploadsdelete/{task}', 'Api\UploadsController@destroy');
 
@@ -46,6 +46,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/tweet', 'Api\TwitterController@tweet');
         // 表示
         Route::get('/guild/{chara}', 'Api\CharasController@index');
+        //キャラインポート用
+        Route::get('/import', 'Api\ImportController@index');
     });
 });
 

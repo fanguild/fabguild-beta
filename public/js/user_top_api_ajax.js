@@ -1,9 +1,14 @@
 $(function () {
 
+    //検索結果を表示する関数
+    function make_dom_result(data) {
+
+    }
+
     // データからhtmlを出力する関数(ユーザー情報)
     function make_dom(data) {
         var str = '';
-        str += `<img id=chara_img src="${data[0][0].avatar}">
+        str += `<img class=user_img src="${data[0][0].avatar}">
                 <div class="user_name">${data[0][0].name}</div>`;
         return str;
     }
@@ -11,13 +16,13 @@ $(function () {
     function make_dom_mychara(data) {
         var str = '';
         str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-                <div style="padding:4px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
+                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
         var mychara = data[1];
         if (mychara != null) {
             for (var i = 0; i < mychara.length; i++) {
                 str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
                 <div class=list>
-                    <div><img class=thumbnail_img src=""></div>
+                    <div><img class=thumbnail_img src="${mychara[i].s3url}"></div>
                     <div style="margin:6px;">
                         <div>${mychara[i].name}</div>
                         <div style="color:#969696">${mychara[i].title}</div>
@@ -141,5 +146,13 @@ $(function () {
 
     // 読み込み時に実行
     indexDataUser();
+
+    //マイキャラ検索を押したら実行
+    $("#search").on("click", function () {
+        $(".slider").animate({ left: -375 })
+    })
+    $("#back").on("click", function () {
+        $(".slider").animate({ left: 0 })
+    })
 
 });

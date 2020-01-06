@@ -1,5 +1,6 @@
 $(function () {
 
+
     // データからhtmlを出力する関数(tweet)
     function make_dom_tweet(data) {
 
@@ -209,32 +210,33 @@ $(function () {
 
     // 登録する関数
     function storeData() {
-        //
+
         // 送信先の指定
-        var url = '/api/tasks';
-        // 入力情報の取得
-        var data = {
-            task: $('#task').val(),
-            deadline: $('#deadline').val(),
-            comment: $('#comment').val()
-        };
+        var url = '/api/uploadsstore';
+
+        var form = $('#api_form').get()[0];
+        // FormData オブジェクトを作成
+        var formData = new FormData(form);
+        console.log(formData)
+
         // データ送信
         $.ajax({
             headers: {
-                'Content-Type': 'application/json',
+                //'Content-Type': 'application/json',
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             },
             dataType: 'json',
             url: url,
             type: 'POST',
-            data: JSON.stringify(data),
+            data: formData,
             processData: false,
-            contentType: false
+            contentType: false,
+            cache: false
         })
-            .done(function (data) {
-                console.log(data);
+            .done(function (data_return) {
+                console.log(data_return);
                 console.log('done');
-                $('#echo').html(make_dom(data));
+                // $('#echo').html(make_dom(data_return));
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -305,18 +307,25 @@ $(function () {
             });
     }
 
+    //画像アップロードで画面表示する関数
+    $('#file').on('change', function (e) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#chara_img_modal").attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    });
+
     // 送信ボタンクリック時に登録
     $('#submit').on('click', function () {
         if (
-            $('#task').val() == '' ||
-            $('#deadline').val() == ''
+            $('#label').val() == ''
         ) {
-            alert('taskとdeadlineは入力必須です！')
+            alert('ラベル名は入力必須です！')
         } else {
             storeData();
-            $('#task').val(''),
-                $('#deadline').val(''),
-                $('#comment').val('')
+            $('#file').val('');
+            $("#chara_img_modal").attr('src', "");
         }
     });
 

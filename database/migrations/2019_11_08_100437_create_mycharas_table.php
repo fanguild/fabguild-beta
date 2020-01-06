@@ -18,6 +18,7 @@ class CreateMycharasTable extends Migration
             $table->bigInteger('userid');
             $table->bigInteger('charaid');
             $table->string('labelname');
+            $table->string('s3url')->nullable();
             $table->boolean('deleteflg');
             $table->timestamps();
         });

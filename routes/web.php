@@ -40,9 +40,13 @@ Route::get('/uploadtest', 'UploadsController@upload');
 //キャラのトップページ
 Route::get('/chara/{chara}', function (Chara $chara) {
     $sum = Mychara::where('charaid', $chara->id)->count();
+    $s3url = Mychara::where('userid', Auth::user()->id)
+            ->where('charaid', $chara->id)
+            ->first();
     return view('chara_top', [
         "chara" => $chara,
-        "sum" => $sum
+        "sum" => $sum,
+        "s3url" => $s3url
     ]);
 });
 
@@ -72,9 +76,8 @@ Route::get('/serif', function () {
 //ユーザートップ
 Route::get('user', 'UsersController@index')->name('user');;
 
-// Route::get('user', function () {
-//     return view('user_top');
-// });
+//キャラインポート用
+Route::get('/import', 'ImportController@index');
 
 
 //twitter API表示用（仮）

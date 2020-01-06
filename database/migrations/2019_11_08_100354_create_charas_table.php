@@ -16,14 +16,14 @@ class CreateCharasTable extends Migration
         Schema::create('charas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('kana');
-            $table->string('alphabet');
+            $table->string('kana')->nullable();
+            $table->string('alphabet')->nullable();
             $table->string('title');
-            $table->biginteger('register_id');
-            $table->date('birthday');
-            $table->integer('guild_rank');
-            $table->integer('guild_level');
-            $table->boolean('deleteflg');
+            $table->biginteger('register_id')->nullable();
+            $table->date('birthday')->nullable();
+            $table->integer('guild_rank')->nullable();
+            $table->integer('guild_level')->nullable();
+            $table->boolean('deleteflg')->nullable();
             $table->timestamps();
         });
     }

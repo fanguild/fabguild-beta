@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
 
     <script src="{{ asset('js/menu.js') }}" defer></script>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -50,9 +50,9 @@
                     <nav id="global-navi">
                         <ul class="menu" style='list-style: none;'>
                             <li><a href="{{url('user')}}">マイページ</a></li>
-                            <li><a href="{{url('chara_search')}}">キャラを探す</a></li>
-                            <li><a href="">ギルドを作る</a></li>
-                            <li><a href="">作品一覧</a></li>
+                            <li><a href="{{url('/')}}">プロフィール</a></li>
+                            <li><a href="">ギルドメンバー</a></li>
+                            <li><a href="">投稿一覧</a></li>
                             <li><a href="">問い合わせ</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -68,7 +68,7 @@
                 </div>
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>
                 <div id=footer class=footer><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
-                <div>
+                <div data-toggle="modal" data-target="#modal1">
                     <div id="footer_menu_name_1" class=footer_first>
                         <img src="{{asset('storage/icon/マイキャラリスト.svg')}}" style=" height:36px">
                     </div>
@@ -94,11 +94,13 @@
                 </div>
                 <div id=footer_back></div>
             </div>
+
             @else
             <div class=navbar style="padding:0px">
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>
             </div>
             @endif
         </div>
+
         @yield('content')
     </body>
