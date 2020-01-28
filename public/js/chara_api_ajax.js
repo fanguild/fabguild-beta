@@ -1,6 +1,28 @@
 $(function () {
 
+    // データからhtmlを出力する関数(fanlist)
+    function make_dom_fanlist(data) {
 
+        var str = '';
+        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
+                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">ファンリスト</div>`
+
+        for (var i = 0; i < data.length; i++) {
+            str += `<a href="/user/${data[i].userid}" class=listparent>
+                <div class=list>
+                    <div><img class=thumbnail_img src="${data[i].avatar}"></div>
+                    <div style="margin:6px;">
+                        <div>${data[i].name}</div>
+                        <div style="color:#969696">twitterID</div>
+                    </div>
+                </div>
+                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            </a>`;
+        }
+
+        return str;
+
+    }
     // データからhtmlを出力する関数(tweet)
     function make_dom_tweet(data) {
 
@@ -44,14 +66,14 @@ $(function () {
             <div class=listparent style="border:none">
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">ギルドLv</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data[0].guild_level}</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.charas[0].guild_level}</div>
                 </div>
             </div>
             <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">総ファン数</div>
-            <div class=listparent style="border:none">
+            <div id="fan_gross" class=listparent style="border:none">
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">総ファン数</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">3,767</div>
+                    <div class=sum style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.sum}</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
                 <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
@@ -208,6 +230,7 @@ $(function () {
         return str;
     }
 
+
     // 登録する関数
     function storeData() {
 
@@ -236,7 +259,8 @@ $(function () {
             .done(function (data_return) {
                 console.log(data_return);
                 console.log('done');
-                // $('#echo').html(make_dom(data_return));
+                $('#chara_img').attr('src', data_return.mycharas_return.s3url);
+                $(".sum").text(data_return.sum)
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -271,6 +295,22 @@ $(function () {
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 $('#echo').html(make_dom_guild(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    // 表示する関数(fanlist)
+    function indexData_fanlist(id) {
+        //
+        const url = `/api/fanlist/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_fanlist(data));
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -326,6 +366,27 @@ $(function () {
             storeData();
             $('#file').val('');
             $("#chara_img_modal").attr('src', "");
+            //footerを畳む
+            $("#footer_menu_1").removeClass("footer_first");
+            $("#footer_menu_3").removeClass("footer_third");
+            $("#footer_menu_name_1").removeClass("footer_first");
+            $("#footer_menu_name_3").removeClass("footer_third");
+
+            $("#footer_menu_1").addClass("footer_third");
+            $("#footer_menu_3").addClass("footer_first");
+            $("#footer_menu_name_1").addClass("footer_third");
+            $("#footer_menu_name_3").addClass("footer_first");
+
+            $(".footer").css({ transform: "rotate(0deg)" })
+            $("#footer_back").removeClass("footer_back")
+
+            $("#footer_menu_1").css({ transform: "scale(0)" });
+            $("#footer_menu_2").css({ transform: "scale(0)" });
+            $("#footer_menu_3").css({ transform: "scale(0)" });
+
+            $("#footer_menu_name_1").css({ transform: "scale(0)" });
+            $("#footer_menu_name_2").css({ transform: "scale(0)" });
+            $("#footer_menu_name_3").css({ transform: "scale(0)" });
         }
     });
 
@@ -337,9 +398,15 @@ $(function () {
     });
 
     // 読み込み時に実行
-
+    $(".middle_bar").scrollLeft(300);
+    $(".middle_bar_1").addClass("middle_bar_add");
     var id = $(".main").attr('data-id')
     indexData_guild(id);
+
+    $(document).on("click", "#fan_gross", function () {
+        id = $(".main").attr('data-id')
+        indexData_fanlist(id);
+    })
     $(".middle_bar_1").on("click", function () {
         id = $(".main").attr('data-id')
         indexData_guild(id);
@@ -357,4 +424,5 @@ $(function () {
     $(".middle_bar_5").on("click", function () {
         $('#echo').html(make_dom_serif())
     })
+
 });

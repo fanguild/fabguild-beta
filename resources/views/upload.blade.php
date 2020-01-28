@@ -16,12 +16,10 @@
                 <div class="listparent" id=1>
                     <div class="list">
                         <div><img class="thumbnail_img" src=""></div>
-
                         <div style="margin:6px 3px;">
                             <div class="chara_name" style="color:#333333" value="1">車谷空</div>
                             <div style="color:#969696">あひるの空</div>
                         </div>
-
                     </div>
                     <div id=selectid1 class="arrow" style="width:48px;text-align:center;line-height:62px">選択</div>
                 </div>
@@ -33,7 +31,6 @@
                             <div class="chara_name" style="color:#333333" value="a">車谷</div>
                             <div style="color:#969696">あひるの空</div>
                         </div>
-
                     </div>
                     <div id=selectid2 class="arrow" style="width:48px;text-align:center;line-height:62px">選択</div>
                 </div>

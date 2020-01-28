@@ -42,7 +42,7 @@ Route::get('/chara/{chara}', function (Chara $chara) {
     $sum = Mychara::where('charaid', $chara->id)->count();
     $s3url = Mychara::where('userid', Auth::user()->id)
             ->where('charaid', $chara->id)
-            ->first();
+            ->select('s3url')->first();
     return view('chara_top', [
         "chara" => $chara,
         "sum" => $sum,
@@ -74,10 +74,16 @@ Route::get('/serif', function () {
 });
 
 //ユーザートップ
-Route::get('user', 'UsersController@index')->name('user');;
+Route::get('user', 'UsersController@index')->name('user');
+
+//他ユーザーのページを見れるようにしたい
+Route::get('user/{id}', 'UsersController@other');
 
 //キャラインポート用
 Route::get('/import', 'ImportController@index');
+
+//作品トップ
+Route::get('work/{work}', 'WorksController@index');
 
 
 //twitter API表示用（仮）

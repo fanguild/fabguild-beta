@@ -47,7 +47,15 @@ Route::group(['middleware' => ['auth']], function () {
         // 表示
         Route::get('/guild/{chara}', 'Api\CharasController@index');
         //キャラインポート用
-        Route::get('/import', 'Api\ImportController@index');
+        Route::get('/import1', 'Api\ImportController@index');
+        //作品インポート用
+        Route::get('/import2', 'Api\ImportController@index_');
+
+        //タイトル別検索結果
+        Route::get('/title/{category}', 'Api\TitlesController@index');
+
+        //キャラページのファンリスト
+        Route::get('/fanlist/{id}', 'Api\FanlistController@index');
     });
 });
 
@@ -57,6 +65,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['api']], function () {
         // 表示
         Route::get('/user', 'Api\UsersController@index');
+        // 他ユーザーの表示
+        Route::get('/user/{id}', 'Api\UsersController@other');
         // 登録
         Route::post('/userstore', 'Api\UsersController@store');
         // 削除

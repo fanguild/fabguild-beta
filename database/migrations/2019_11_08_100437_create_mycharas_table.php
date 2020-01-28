@@ -17,6 +17,7 @@ class CreateMycharasTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('userid');
             $table->bigInteger('charaid');
+            $table->string('charaname');
             $table->string('labelname');
             $table->string('s3url')->nullable();
             $table->boolean('deleteflg');

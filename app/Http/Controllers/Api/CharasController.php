@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Chara;
+use App\Mychara;
+
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -39,7 +41,8 @@ class CharasController extends Controller
     {
         $charas = Chara::where('id', $id)
             ->get();
-        return $charas;
+        $sum = Mychara::where('charaid', $id)->count();
+        return ['charas'=>$charas,'sum'=>$sum];
     }
 
 

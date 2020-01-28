@@ -4,6 +4,43 @@ $(function () {
     function make_dom_result(data) {
 
     }
+    //作品名で探す
+    function make_dom_title() {
+        var gojuon = ["あ", "か", "さ", "た", "な", "は", "ま", "や", "ら", "わ"];
+        var str = '<div class=slider1><div style = "padding:6px 12px;margin:0px;background-color: #EFEFEF;">作品名で探す</div>';
+        for (var i = 0; i < gojuon.length - 1; i++) {
+            str += `<li id="titlelist" class="listparent titlelist" style="">
+                    <div class="list">
+                        <div id="upload_chara_select" style="width:60%;color:#969696;margin:6px;">${gojuon[i]}行</div>
+                    </div>
+                    <div class="arrow">
+                        <img src="storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px;">
+                    </div>
+                </li><div id="toggle" style="display:none;width:360px"></div>`;
+        }
+        str += `<div class="listparent" style="border-bottom:0px">
+                    <div class="list">
+                        <div id="upload_chara_select" style="width:60%;color:#969696;margin:6px;">${gojuon[i]}行</div>
+                    </div>
+                    <div class="arrow">
+                        <img src="storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px;">
+                    </div>
+                </div></div>`;
+        return str;
+    }
+    function make_dom_titlelist(data) {
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+            str += `<a href="/work/${data[i].id}" class="listparent" id=${i + 1}>
+                    <div class="list">
+                        <div style="margin:6px 3px;">
+                            <div class="chara_name" style="color:#333333" value="${i + 1}">${data[i].name}</div>
+                        </div>
+                        </div>
+                    </a>`;
+        }
+        return str;
+    }
 
     // データからhtmlを出力する関数(ユーザー情報)
     function make_dom(data) {
@@ -31,7 +68,7 @@ $(function () {
                         <div class=label_btn>${mychara[i].labelname}</div>
                     </div>
                 </div>
-                <div class=arrow><img src="storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
             </a>`;
             }
             return str;
@@ -76,15 +113,50 @@ $(function () {
             });
     }
 
-    // 表示する関数
-    function indexDataUser() {
+    // ユーザー情報を表示する関数
+    function indexDataUser(id) {
         //
-        const url = `/api/user/`;
+        if (id) {
+            const url = `/api/user/${id}`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $('#user_left').html(make_dom(data));
+                    $('#echo').html(make_dom_mychara(data));
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        } else {
+            const url = `/api/user/`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $('#user_left').html(make_dom(data));
+                    $('#echo').html(make_dom_mychara(data));
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        }
+    }
+
+    //作品リストを表示する関数
+    function indexDataWork(id) {
+        //
+        const url = `/api/title/${id}`;
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                $('#user_left').html(make_dom(data));
-                $('#echo').html(make_dom_mychara(data));
+                $('#title').html(make_dom_titlelist(data))
+                // $('#user_left').html(make_dom(data));
+                // $('#echo').html(make_dom_mychara(data));
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -144,8 +216,10 @@ $(function () {
         deleteData(id);
     });
 
+    var userid = $(".main").attr('data-id');
     // 読み込み時に実行
-    indexDataUser();
+    indexDataUser(userid);
+    // $("#title").html(make_dom_title());
 
     //マイキャラ検索を押したら実行
     $("#search").on("click", function () {
@@ -155,4 +229,53 @@ $(function () {
         $(".slider").animate({ left: 0 })
     })
 
-});
+    $(".searchGenretabin li").on("click", function () {
+        $(".searchGenretabin li").removeClass();
+        $(this).addClass("current")
+        $(".searchSubtabin li").removeClass();
+        // $(this).addClass("current")
+        $(".searchtabin li").removeClass();
+        // $(this).addClass("current")
+    })
+
+    $(".searchtabin li").on("click", function () {
+        $(".searchtabin li").removeClass();
+        $(this).addClass("current")
+        var index = $('.searchtabin li').index(this);
+
+        gojuon = [["あ", "い", "う", "え", "お"],
+        ["か", "き", "く", "け", "こ"],
+        ["さ", "し", "す", "せ", "そ"],
+        ["た", "ち", "つ", "て", "と"],
+        ["な", "に", "ぬ", "ね", "の"],
+        ["は", "ひ", "ふ", "へ", "ほ"],
+        ["ま", "み", "む", "め", "も"],
+        ["や", "ゆ", "よ"],
+        ["ら", "り", "る", "れ", "ろ"],
+        ["わ", "を", "ん"]
+        ]
+        str = "";
+
+        str += `<li class="current" data-id=0><a href="javascript:void(0);">${gojuon[index][0]}</a></li>`
+        for (var i = 1; i < gojuon[index].length; i++) {
+            str += `<li data-id=${i}><a href="javascript:void(0);">${gojuon[index][i]}</a></li>`
+        }
+
+        $(".searchSubtabin").html(str);
+        var a = $(".searchtabin .current").data("id");
+        var b = $(".searchSubtabin .current").data("id");
+
+        indexDataWork(5 * (a - 1) + b)
+    })
+
+    $(document).on("click", ".searchSubtabin li", function () {
+        $(".searchSubtabin li").removeClass();
+        $(this).addClass("current");
+        var a = $(".searchtabin .current").data("id");
+        var b = $(".searchSubtabin .current").data("id");
+        console.log(5 * (a - 1) + b)
+        indexDataWork(5 * (a - 1) + b)
+    })
+
+    indexDataWork(0)
+})

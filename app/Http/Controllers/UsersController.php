@@ -12,4 +12,9 @@ class UsersController extends Controller
     {
         return view('user_top');
     }
+    public function other($id)
+    {
+        $otherid = $id;
+        return view('user_top', ['otherid'=>$otherid]);
+    }
 }

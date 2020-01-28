@@ -15,10 +15,11 @@ class CreateCharaTitlesTable extends Migration
     {
         Schema::create('chara_titles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('charaid');
-            $table->string('name');
-            $table->string('kana');
-            $table->string('alphabet');
+            $table->bigInteger('charaid')->nullable();
+            $table->bigInteger('categoryid');
+            $table->string('name')->nullable();
+            $table->string('kana')->nullable();
+            $table->string('alphabet')->nullable();
             $table->boolean('deleteflg');
             $table->timestamps();
         });

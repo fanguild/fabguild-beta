@@ -7,6 +7,7 @@
         <div class="content">
             <div class=chara_top>
                 <div class=chara>
+                    <!-- mychara登録済みであれば登録済みの画像を表示 -->
                     @if($s3url)
                     <img class=chara_img id=chara_img src="{{$s3url->s3url}}">
                     @else
@@ -21,7 +22,7 @@
                     <div style="color:#FF8500">オレンジ</div>
                     <div class=chara_population>
                         <div class=pop style="color:#969696;">総ファン数</div>
-                        <div class=pop style="font-size:16px;font-weight: 700;">{{$sum}}</div>
+                        <div class="pop sum" style="font-size:16px;font-weight: 700;">{{$sum}}</div>
                         <div class=pop style="color:#969696;">人</div>
                     </div>
                 </div>
@@ -97,12 +98,14 @@
                         <div class="list">
                             <div style="width:60%;color:#969696;margin:6px;">キャラ名</div>
                             <div style="font-size:18px;margin:3px 6px 0px 6px;">{{$chara->name}}</div>
+                            <input type="hidden" name="charaid" value="{{$chara->id}}">
                         </div>
                     </div>
                     <div class="listparent" style="border-bottom:#efefef solid 1px;">
                         <div class="list">
                             <div style="width:60%;color:#969696;margin:6px;">作品名</div>
                             <div style="font-size:18px;margin:3px 6px 0px 6px;">{{$chara->title}}</div>
+                            <input type="hidden" name="title" value="{{$chara->title}}">
                         </div>
                     </div>
                     <div class="listparent" style="border-bottom:#efefef solid 1px;">
@@ -118,7 +121,7 @@
                         <div class="list">
                             <div style="width:60%;color:#969696;margin:6px;">マイピクチャ</div>
                             <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                <input type="file" name="file1" id="file" class="form-control">
+                                <input type="file" name="file1" id="file" class="form-control"> 
                             </div>
                         </div>
                     </div>
@@ -133,13 +136,7 @@
         </div>
     </div>
 </div>
-<script>
-    // $('.middle_bar').scroll(function() {
-    //     console.log($(this).scrollLeft());
-    // });
-    $(".middle_bar").scrollLeft(300);
-    $(".middle_bar_1").addClass("middle_bar_add");
-</script>
+
 
 </html>
 

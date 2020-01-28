@@ -70,7 +70,7 @@
                 <div id=footer class=footer><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
                 <div data-toggle="modal" data-target="#modal1">
                     <div id="footer_menu_name_1" class=footer_first>
-                        <img src="{{asset('storage/icon/マイキャラリスト.svg')}}" style=" height:36px">
+                        <img src="{{asset('storage/icon/mychara_add.svg')}}" style=" height:36px">
                     </div>
                     <div id=footer_menu_1 class="footer_menu_mychara footer_first">
                         <img src="{{asset('storage/icon/mycharalist.svg')}}" style="height:24px">
