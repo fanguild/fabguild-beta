@@ -44,7 +44,13 @@ class CharasController extends Controller
         $sum = Mychara::where('charaid', $id)->count();
         return ['charas'=>$charas,'sum'=>$sum];
     }
-
+    //投稿用キャラデータ関数
+    public function postready_index($id)
+    {
+        $charas = Chara::where('id', $id)
+            ->first();
+        return $charas;
+    }
 
     // public function destroy($task_id)
     // {

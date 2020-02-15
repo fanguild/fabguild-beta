@@ -4,7 +4,7 @@
 
 <div class="main" data-id="">
     <div class="content">
-        <div class=chara_top>
+        <div class=chara_top style="width:375px">
             <div class=chara>
                 <img id=chara_img src="{{asset('storage/chara_picture/ACE.png')}}">
                 <div class="chara_name"></div>
@@ -21,8 +21,9 @@
                 </div>
             </div>
         </div>
-        <div class="join_btn">
-
+        <div class="join_btn" style="width:375px">
+            <div id=import1 style="height:64px;border:1px solid #333333">import_chara</div>
+            <div id=import2 style="height:64px;border:1px solid #333333">import_works</div>
         </div>
         <div class="middle_bar">
             <div class=middle_bar_outline>
@@ -73,27 +74,8 @@
         </div>
         <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
         <div id=echo>
-
+            
         </div>
-    </div>
-</div>
-<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h6 class="modal-title" id="label1">参加登録完了しました！</h6>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" id='mychara'>
-                <img src="img/Thankyou.png" style="width:330px">
-
-
-            </div>
-
-        </div>
-
     </div>
 </div>
 

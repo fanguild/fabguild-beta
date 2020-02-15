@@ -25,7 +25,6 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
@@ -68,7 +67,8 @@
                 </div>
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>
                 <div id=footer class=footer><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
-                <div data-toggle="modal" data-target="#modal1">
+                
+                <div class=js-modal__btn data-id=1>
                     <div id="footer_menu_name_1" class=footer_first>
                         <img src="{{asset('storage/icon/mychara_add.svg')}}" style=" height:36px">
                     </div>
@@ -76,7 +76,7 @@
                         <img src="{{asset('storage/icon/mycharalist.svg')}}" style="height:24px">
                     </div>
                 </div>
-                <div>
+                <div class="js-modal__btn" data-id=2>
                     <div id="footer_menu_name_2" class=footer_second>
                         <img src="{{asset('storage/icon/好きなセリフ.svg')}}" style="height:36px">
                     </div>
@@ -84,17 +84,20 @@
                         <img src="{{asset('storage/icon/post.svg')}}" style="height:24px">
                     </div>
                 </div>
-                <div>
+                <div class="js-modal__btn" data-id=3>                
                     <div id="footer_menu_name_3" class=footer_third>
                         <img src="{{asset('storage/icon/画像投稿.svg')}}" style="height:36px">
                     </div>
                     <div id=footer_menu_3 class=footer_third>
-                        <a href="{{url('upload')}}"><img src="{{asset('storage/icon/upload.svg')}}" style="height:24px"></a>
+                        <img src="{{asset('storage/icon/upload.svg')}}" style="height:24px">
                     </div>
-                </div>
+                </div>                
+                <div class="js-modal__bg"></div>
+                <div class="js-modal__main"></div>
+                
                 <div id=footer_back></div>
             </div>
-
+            
             @else
             <div class=navbar style="padding:0px">
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>

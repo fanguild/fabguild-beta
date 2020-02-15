@@ -45,7 +45,18 @@ class UsersController extends Controller
             ->get();
         return [$users, $mychara];
     }
-
+    //表示処理関数
+    public function other($id)
+    {
+        $users = User::where('id', $id)
+            ->get();
+        $mychara = Mychara::where('userid', $id)
+            ->join('charas', 'mycharas.charaid', 'charas.id')
+            ->select('charaid', 'name', 'labelname', 'title')
+            ->get();
+        
+        return [$users, $mychara];
+    }
 
     public function destroy($task_id)
     {

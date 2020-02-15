@@ -3,18 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class UsersController extends Controller
 {
 
-    //api画面表示用関数
+    //表示用関数
     public function index()
     {
-        return view('user_top');
+        $chara = "";
+        return view('user_top', ['chara'=>$chara]);
     }
     public function other($id)
     {
-        $otherid = $id;
-        return view('user_top', ['otherid'=>$otherid]);
+        $chara = "";
+        $authid = Auth::user()->id;
+        if ($authid==$id) {
+            return view('user_top', ['chara'=>$chara]);
+        } else {
+            $userid = $id;
+            return view('other_top', ['userid'=>$userid,'chara'=>$chara]);
+        }
     }
 }

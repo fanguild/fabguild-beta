@@ -39,7 +39,7 @@ class ImportController extends Controller
     public function index()
     {
         $str="";
-        $file = fopen("csv/chara_data/anime_chara_0.csv", "r");
+        $file = fopen("csv/chara_data/anime_chara_1.csv", "r");
         flock($file, LOCK_EX);
         if ($file) {
             while ($line = fgetcsv($file)) {
@@ -58,13 +58,13 @@ class ImportController extends Controller
     public function index_()
     {
         $str="";
-        $file = fopen("csv/works_data/anime_works_o.csv", "r");
+        $file = fopen("csv/works_data/anime_works_ka.csv", "r");
         flock($file, LOCK_EX);
         if ($file) {
             while ($line = fgetcsv($file)) {
                 $chara_title = new Chara_title;
                 $chara_title->name=$line[0];
-                $chara_title->categoryid=1;
+                $chara_title->categoryid=5;
                 $chara_title->deleteflg=0;
                 $chara_title->save();
             };

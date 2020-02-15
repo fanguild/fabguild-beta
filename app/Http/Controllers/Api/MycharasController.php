@@ -27,6 +27,7 @@ class MycharasController extends Controller
         $mycharas = new Mychara;
         $mycharas->userid = Auth::user()->id;
         $mycharas->charaid = $request->charaid;
+        $mycharas->charaname = $request->charaname;
         $mycharas->labelname = $request->label;
         $mycharas->s3url=$url;
         $mycharas->deleteflg = 0;
@@ -44,9 +45,9 @@ class MycharasController extends Controller
     //表示処理関数
     public function index()
     {
-        $uploads = Upload::where('userid', Auth::user()->id)
+        $mycharas =Mychara::where('userid', Auth::user()->id)
             ->get();
-        return $uploads;
+        return $mycharas;
     }
 
 

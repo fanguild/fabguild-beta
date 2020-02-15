@@ -35,10 +35,24 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/task/{task}', 'Api\TasksController@destroy');
 
         // Fileのアップロードテスト
-        // 表示
+        // 表示（）
         Route::get('/uploads', 'Api\UploadsController@index');
-        // 登録
+        // 登録（マイキャラ）
         Route::post('/uploadsstore', 'Api\MycharasController@store');
+        // 表示
+        Route::get('/mychara', 'Api\MycharasController@index');
+
+        // 表示(画像倉庫)
+        Route::get('/upload_pic/{id}', 'Api\UploadController@index');
+        // 表示(マイアルバム)
+        Route::get('/upload_u', 'Api\UploadController@index_u');
+
+        // 登録(画像)
+        Route::post('/upload_pic', 'Api\UploadController@store');
+        // 登録(好きなセリフ)
+        Route::post('/upload_serif', 'Api\UploadserifController@store');
+        // 表示(好きなセリフ)
+        Route::get('/serif/{id}', 'Api\UploadserifController@index');
         // 削除
         Route::post('/uploadsdelete/{task}', 'Api\UploadsController@destroy');
 
@@ -46,6 +60,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/tweet', 'Api\TwitterController@tweet');
         // 表示
         Route::get('/guild/{chara}', 'Api\CharasController@index');
+
+        //投稿用データ取得
+        Route::get('/postready/{id}', 'Api\CharasController@postready_index');
+
         //キャラインポート用
         Route::get('/import1', 'Api\ImportController@index');
         //作品インポート用
@@ -56,6 +74,8 @@ Route::group(['middleware' => ['auth']], function () {
 
         //キャラページのファンリスト
         Route::get('/fanlist/{id}', 'Api\FanlistController@index');
+        //作品別キャラリスト
+        Route::get('/work/{id}', 'Api\WorksController@index');
     });
 });
 

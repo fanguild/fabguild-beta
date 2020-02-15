@@ -1,8 +1,9 @@
 @extends('layouts.header')
 @section('content')
-<script src="{{ asset('js/chara_api_ajax.js') }}" defer></script>
+<!-- <script src="{{ asset('js/chara_api_ajax.js') }}" defer></script> -->
+<script src="{{ asset('js/work_api_ajax.js') }}" defer></script>
 
-<div class="main" data-id="">
+<div class="main" data-id="{{$work->id}}">
     <div class=slider>
         <div class="content">
             <div class=chara_top>
@@ -25,23 +26,7 @@
             
             <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
             <div id=echo>
-                <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">出演キャラ</div>
-                @foreach($charas as $chara)
-                <a href="/chara/{{$chara->id}}" class=listparent>
-                <div class=list>
-                    <div><img class=thumbnail_img src="/storage/icon/nolicense.svg"></div>
-                    <div style="margin:6px;">
-                        <div>{{$chara->name}}</div>
-                        <div style="color:#969696"></div>
-                    </div>
-                    <!-- <div style="margin:12px">
-                        <div class=label_btn></div>
-                    </div> -->
-                </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-                </a>
-                @endforeach
+                
 
             </div>
         </div>

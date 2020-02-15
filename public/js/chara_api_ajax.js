@@ -175,20 +175,15 @@ $(function () {
     // データからhtmlを出力する関数(画像倉庫)
     function make_dom_storage(data) {
 
-        var str = `<div class="item_container">
-                    <div class="item_box">
+        var str = `<div class="item_container">`
+        for (var i = 0; i < data.length; i++) {
+            str += `<div class="item_box">
                         <div class="item_img">
-                            <img src="/storage/img/ill01.jpg" alt="">
+                            <img src="${data[i].s3url}" alt="">
                         </div>
-                        <img class="like" src="/storage/img/like2.svg" style="height:36px;z-index: 5;">
-                    </div>
-                    <div class="item_box">
-                        <div class="item_img">
-                            <img src="/storage/img/ill02.jpg" alt="">
-                        </div>
-                        <img class="like" src="/storage/img/like2.svg" style="height:36px;z-index: 5;">
-                    </div>
-                </div>`;
+                    </div>`
+        }
+        str += `</div>`;
         return str;
     }
     function make_dom_quest(data) {
@@ -225,50 +220,32 @@ $(function () {
             </div>`;
         return str;
     }
+    //好きなセリフデータからhtmlを出力
     function make_dom_serif(data) {
-        var str = '';
+        var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
+        for (var i = 0; i < data.length; i++) {
+            str += `<a href="/serif/${data[i].id}" class=serif_bx>
+                        <div class=listparent style="width:95%">
+                                <div class=list>
+                                    <div><img class=thumbnail_img src="${data[i].avatar}"></div>
+                                    <div style="width:100%;margin:6px;">
+                                        <div style="color:#969696">${data[i].name}</div>
+                                        <div class=serif>${data[i].serif}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=listparent_s style="width:95%">
+                                <div class=thisserif>
+                                    <div style="margin:6px;">
+                                        <div></div>
+                                        <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
+                                    </div>
+                                </div>
+                                <div class=reason>${data[i].reason}</div>
+                            </div>
+                    </a>`;
+        }
         return str;
-    }
-
-
-    // 登録する関数
-    function storeData() {
-
-        // 送信先の指定
-        var url = '/api/uploadsstore';
-
-        var form = $('#api_form').get()[0];
-        // FormData オブジェクトを作成
-        var formData = new FormData(form);
-        console.log(formData)
-
-        // データ送信
-        $.ajax({
-            headers: {
-                //'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-            },
-            dataType: 'json',
-            url: url,
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            cache: false
-        })
-            .done(function (data_return) {
-                console.log(data_return);
-                console.log('done');
-                $('#chara_img').attr('src', data_return.mycharas_return.s3url);
-                $(".sum").text(data_return.sum)
-            })
-            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(textStatus);
-                console.log('fail');
-            })
-            .always(function () {
-                console.log('post:complete');
-            });
     }
 
     // 表示する関数(tweet)
@@ -279,6 +256,22 @@ $(function () {
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 $('#echo').html(make_dom_tweet(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    // 表示する関数(好きなセリフ)
+    function indexData_serif(id) {
+        //
+        const url = `/api/serif/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_serif(data));
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -311,6 +304,22 @@ $(function () {
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 $('#echo').html(make_dom_fanlist(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    // 表示する関数(画像倉庫）
+    function indexData_storage(id) {
+        //
+        const url = `/api/upload_pic/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_storage(data));
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -416,13 +425,15 @@ $(function () {
         indexData_tweet(id);
     })
     $(".middle_bar_3").on("click", function () {
-        $('#echo').html(make_dom_storage())
+        id = $(".main").attr('data-id')
+        indexData_storage(id)
     })
     $(".middle_bar_4").on("click", function () {
         $('#echo').html(make_dom_quest())
     })
     $(".middle_bar_5").on("click", function () {
-        $('#echo').html(make_dom_serif())
+        id = $(".main").attr('data-id')
+        indexData_serif(id)
     })
 
 });

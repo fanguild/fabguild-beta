@@ -2,7 +2,8 @@
 @section('content')
 <script src="{{ asset('js/user_top_api_ajax.js') }}" defer></script>
 
-<div class="main" data-id="{{$otherid}}">
+<div class="main" data-id="">
+
     <div class=slider>
         <div class="content">
             <div class=chara_top>
@@ -21,9 +22,6 @@
                     </div>
                 </div>
             </div>
-            <div class="join_btn">
-                <!-- <div>プロフィール変更</div> -->
-            </div>
             <div class="middle_bar">
                 <div class=middle_bar_outline>
                     <div class=middle_bar_1 style="padding:6px 6px 3px 6px ;">マイキャラ</div>
@@ -31,30 +29,21 @@
                 <div class=middle_bar_outline>
                     <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;">投稿一覧</div>
                 </div>
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 6px 3px 6px ;">ギルドメンバー</div>
-                </div> -->
+                <div class=middle_bar_outline>
+                    <div class=middle_bar_3 style="padding:6px 6px 3px 6px ;">マイアルバム</div>
+                </div>
             </div>
             <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-            <div id=search class=listparent style="border:none;">
-                <div class=list>
-                    <div><img class=thumbnail_img src="storage/icon/mychara.svg"></div>
-                    <div style="margin:6px 3px">
-                        <div>ファンギルドに参加</div>
-                        <div style="color:#969696">マイキャラを追加してみよう</div>
-                    </div>
-                </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-            </div>
+            
             <div id=echo>
             </div>
         </div>
         <div class="content1">
             <div style="width:375px;background-color: #FFFFFF;display:flex;border-bottom: 1px solid;border-color: #c9c9c9;">
-                <img id=back src="storage/icon/arrow_back.svg">
+                <img id=back src="/storage/icon/arrow_back.svg">
                 <div class=searchbox>
                     <input type="text" value="" placeholder="キャラ名で検索" class=search style="margin:0 12px;">
-                    <img id=search src="storage/icon/虫眼鏡.svg" style="height:36px;margin:0 6px 0 0" class="search1">
+                    <img id=search src="/storage/icon/虫眼鏡.svg" style="height:36px;margin:0 6px 0 0" class="search1">
                 </div>
             </div>
             

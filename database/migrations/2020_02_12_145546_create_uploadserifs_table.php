@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMycharasTable extends Migration
+class CreateUploadserifsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateMycharasTable extends Migration
      */
     public function up()
     {
-        Schema::create('mycharas', function (Blueprint $table) {
+        Schema::create('uploadserifs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('userid');
             $table->bigInteger('charaid');
-            $table->string('charaname');
-            $table->string('labelname')->nullable();
-            $table->string('s3url')->nullable();
-            $table->boolean('deleteflg');
+            $table->text('serif');
+            $table->text('reason');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateMycharasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mycharas');
+        Schema::dropIfExists('uploadserifs');
     }
 }

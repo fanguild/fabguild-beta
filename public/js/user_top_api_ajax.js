@@ -1,4 +1,32 @@
 $(function () {
+    //好きなセリフデータからhtmlを出力
+    function make_dom_serif(data) {
+        var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
+        for (var i = 0; i < 3; i++) {
+            str += `<div class=serif_bx>
+                        <div class=listparent style="width:95%">
+                                <div class=list>
+                                    <div><img class=thumbnail_img src=""></div>
+                                    <div style="margin:6px;">
+                                        <div style="color:#969696">twitterID</div>
+                                        <div class=serif>あああああああああああああああああああああああああああ</div>
+                                        <div style="font-size: small;color:#969696;text-allign:right;text-align: right;width: 60%;">22話〜〜のシーン</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=listparent_s style="width:95%">
+                                <div class=thisserif>
+                                    <div style="margin:6px;">
+                                        <div></div>
+                                        <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
+                                    </div>
+                                </div>
+                                <div class=reason>ああああああああああああああああああああああああああああああああああああああ</div>
+                            </div>
+                    </div>`;
+        }
+        return str;
+    }
 
     //検索結果を表示する関数
     function make_dom_result(data) {
@@ -44,32 +72,58 @@ $(function () {
 
     // データからhtmlを出力する関数(ユーザー情報)
     function make_dom(data) {
-        var str = '';
-        str += `<img class=user_img src="${data[0][0].avatar}">
+
+        var str = `<img class=user_img src="${data[0][0].avatar}">
                 <div class="user_name">${data[0][0].name}</div>`;
         return str;
     }
     // データからhtmlを出力する関数（マイキャラ情報）
     function make_dom_mychara(data) {
-        var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
+
+        var str = `<div id="search" class="listparent" style="border:none;">
+                <div class="list">
+                    <div><img class="thumbnail_img" src="/storage/icon/mychara.svg"></div>
+                    <div style="margin:6px 3px">
+                        <div>ファンギルドに参加</div>
+                        <div style="color:#969696">マイキャラを追加してみよう</div>
+                    </div>
+                </div>
+                <div class="arrow"><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            </div>
+            <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
                 <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
         var mychara = data[1];
         if (mychara != null) {
             for (var i = 0; i < mychara.length; i++) {
-                str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
-                <div class=list>
-                    <div><img class=thumbnail_img src="${mychara[i].s3url}"></div>
-                    <div style="margin:6px;">
-                        <div>${mychara[i].name}</div>
-                        <div style="color:#969696">${mychara[i].title}</div>
-                    </div>
-                    <div style="margin:12px">
-                        <div class=label_btn>${mychara[i].labelname}</div>
-                    </div>
-                </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-            </a>`;
+                if (mychara[i].s3url) {
+                    str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
+                            <div class=list>
+                                <div><img class=thumbnail_img src="${mychara[i].s3url}"></div>
+                                <div class="name_bx" style="margin:6px;">
+                                    <div>${mychara[i].name}</div>
+                                    <div style="color:#969696">${mychara[i].title}</div>
+                                </div>
+                                <div class="label_bx" style="margin:12px">
+                                    <div class=label_btn>${mychara[i].labelname}</div>
+                                </div>
+                            </div>
+                            <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+                            </a>`;
+                } else {
+                    str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
+                            <div class=list>
+                                <div><img class=thumbnail_img src="/storage/icon/nolicense.svg"></div>
+                                <div class="name_bx" style="margin:6px;">
+                                    <div>${mychara[i].name}</div>
+                                    <div style="color:#969696">${mychara[i].title}</div>
+                                </div>
+                                <div class="label_bx" style="margin:12px">
+                                    <div class=label_btn>${mychara[i].labelname}</div>
+                                </div>
+                            </div>
+                            <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+                            </a>`;
+                }
             }
             return str;
         }
@@ -123,6 +177,8 @@ $(function () {
                     console.log(data);
                     $('#user_left').html(make_dom(data));
                     $('#echo').html(make_dom_mychara(data));
+                    $("#search").hide();
+                    $(".content1").hide();
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     console.log(jqXHR.status + textStatus + errorThrown);
@@ -219,13 +275,17 @@ $(function () {
     var userid = $(".main").attr('data-id');
     // 読み込み時に実行
     indexDataUser(userid);
+    $(".middle_bar_1").addClass("middle_bar_add");
     // $("#title").html(make_dom_title());
 
     //マイキャラ検索を押したら実行
-    $("#search").on("click", function () {
+    $(document).on("click", "#search", function () {
         $(".slider").animate({ left: -375 })
+        indexDataWork(0)
     })
+    //戻るボタンを押したら消える
     $("#back").on("click", function () {
+        $('#title').empty()
         $(".slider").animate({ left: 0 })
     })
 
@@ -276,6 +336,54 @@ $(function () {
         console.log(5 * (a - 1) + b)
         indexDataWork(5 * (a - 1) + b)
     })
+    // データからhtmlを出力する関数(アルバム)
+    function make_dom_storage(data) {
 
-    indexDataWork(0)
+        var str = `<a href="" class="listparent" style="border: none;">
+                    <div class="list">
+                        <div><img class="thumbnail_img" src="/storage/icon/album.svg"></div>
+                        <div style="margin:6px 3px">
+                            <div>ポスターやアルバムを発注する</div>
+                            <div style="color:#969696">発注画面に飛びます</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="item_container">`
+        for (var i = 0; i < data.length; i++) {
+            str += `<div class="item_box">
+                        <div class="item_img">
+                            <img src="${data[i].s3url}" alt="">
+                        </div>
+                    </div>`
+        }
+        str += `</div>`;
+        return str;
+    }
+    // 表示する関数(アルバム）
+    function indexData_storage() {
+        //
+        const url = `/api/upload_u`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $("#search").hide()
+                $('#echo').html(make_dom_storage(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    $(".middle_bar_1").on("click", function () {
+        indexDataUser(userid);
+    })
+    $(".middle_bar_2").on("click", function () {
+        $('#echo').html(make_dom_serif())
+    })
+    $(".middle_bar_3").on("click", function () {
+        indexData_storage()
+    })
+
 })

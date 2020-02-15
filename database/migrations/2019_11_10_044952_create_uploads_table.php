@@ -16,7 +16,10 @@ class CreateUploadsTable extends Migration
         Schema::create('uploads', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('userid');
+            $table->bigInteger('charaid');
             $table->string('s3url');
+            $table->biginteger('uploadflg');
+            $table->text('comment');
             $table->timestamps();
         });
     }
