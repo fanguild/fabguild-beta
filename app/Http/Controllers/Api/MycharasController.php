@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Mychara;
+use App\Chara;
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -45,7 +46,8 @@ class MycharasController extends Controller
     //表示処理関数
     public function index()
     {
-        $mycharas =Mychara::where('userid', Auth::user()->id)
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+            ->join('charas', 'mycharas.charaid', 'charas.id')
             ->get();
         return $mycharas;
     }

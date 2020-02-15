@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Mychara;
 use App\Upload;
 use App\Uploadserif;
 use Validator;
@@ -32,11 +33,14 @@ class UploadserifController extends Controller
         $uploadserif->save();
 
         // 最新のDB情報を取得して返す
-        $uploadserif_return = Uploadserif::where('userid', Auth::user()->id)
-                ->where('charaid', $request->charaid)
-                ->get();
-        
-        return $uploadserif_return;
+        $uploadserif = Mychara::join('uploadserifs', 'mycharas.charaid', '=', 'uploadserifs.charaid')
+            //Uploadserif::join('users', 'users.id', '=', 'userid')
+            
+            ->where('mycharas.userid', Auth::user()->id)
+            ->orderBy('uploadserifs.id', 'desc')
+            ->get();
+
+        return $uploadserif;
     }
 
     //表示処理関数
@@ -47,16 +51,22 @@ class UploadserifController extends Controller
             //Uploadserif::join('users', 'users.id', '=', 'userid')
             ->where('charaid', $id)
             ->select('uploadserifs.id', 'userid', 'name', 'serif', 'reason', 'charaid', 'avatar')
+            ->orderBy('uploadserifs.id', 'desc')
             ->get();
 
         return $uploadserif;
     }
-    //表示処理関数(マイアルバム)
+    //表示処理関数
     public function index_u()
     {
-        $uploads = Upload::where('userid', Auth::user()->id)
+        $uploadserif = Mychara::join('uploadserifs', 'mycharas.charaid', '=', 'uploadserifs.charaid')
+            //Uploadserif::join('users', 'users.id', '=', 'userid')
+            
+            ->where('mycharas.userid', Auth::user()->id)
+            ->orderBy('uploadserifs.id', 'desc')
             ->get();
-        return $uploads;
+
+        return $uploadserif;
     }
 
     public function destroy($upload_id)

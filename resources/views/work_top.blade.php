@@ -9,7 +9,7 @@
             <div class=chara_top>
                 <div class=chara>
                     <img class=chara_img id=chara_img src="{{asset('storage/icon/nolicense.svg')}}">
-                    <div class="chara_name">{{$work->name}}</div>
+                    
                 </div>
                 <!-- <div class=guild_status>
                     <div style="text-align:start;">ギルドランク
@@ -23,7 +23,7 @@
                     </div>
                 </div> -->
             </div>
-            
+            <div class="chara_name">{{$work->name}}</div>
             <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
             <div id=echo>
                 

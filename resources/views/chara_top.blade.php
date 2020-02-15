@@ -13,7 +13,7 @@
                     @else
                     <img class=chara_img id=chara_img src="{{asset('storage/icon/nolicense.svg')}}">
                     @endif
-                    <div class="chara_name">{{$chara->name}}</div>
+                    
                 </div>
                 <div class=guild_status>
                     <div style="text-align:start;">ギルドランク
@@ -27,6 +27,8 @@
                     </div>
                 </div>
             </div>
+            <div class="chara_name">{{$chara->name}}</div>
+
             <div class="middle_bar">
                 <div class=middle_bar_outline>
                     <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>

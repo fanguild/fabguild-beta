@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>fanguild</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -49,10 +49,7 @@
                     <nav id="global-navi">
                         <ul class="menu" style='list-style: none;'>
                             <li><a href="{{url('user')}}">マイページ</a></li>
-                            <li><a href="{{url('/')}}">プロフィール</a></li>
-                            <li><a href="">ギルドメンバー</a></li>
-                            <li><a href="">投稿一覧</a></li>
-                            <li><a href="">問い合わせ</a></li>
+                            <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

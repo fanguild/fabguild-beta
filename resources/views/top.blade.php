@@ -11,7 +11,7 @@
         <form action=" {{url('auth/twitter')}}">
             <button id=btn><strong>Twitterでログイン</strong><img src=""></button>
         </form>
-        <button id=btn><strong>TwitterIDをお持ちでない方</strong><img src=""></button>
+        
     </div>
 </div>
 </div>

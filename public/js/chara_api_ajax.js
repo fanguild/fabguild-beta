@@ -83,91 +83,80 @@ $(function () {
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">絵師</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">クラフト職人</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">小説家</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">シャーマン</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent style="border:none">
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">エヴァンジェリスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">クエスト情報</div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">開放済みクエスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">32</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent style="border:none">
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">達成済みクエスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">16</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">
                 投稿</div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">画像アップロード</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">好きなセリフ</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent>
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">外部SNSシェア</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>
             <div class=listparent style="border:none">
                 <div class=list>
                     <div style="width:60%;color:#969696;margin:6px;">イベント・宣伝</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">100</div>
+                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
                     <div style="color:#969696;margin:6px;">人</div>
                 </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
             </div>`;
         return str;
     }
@@ -228,7 +217,7 @@ $(function () {
                         <div class=listparent style="width:95%">
                                 <div class=list>
                                     <div><img class=thumbnail_img src="${data[i].avatar}"></div>
-                                    <div style="width:100%;margin:6px;">
+                                    <div class="listbox">
                                         <div style="color:#969696">${data[i].name}</div>
                                         <div class=serif>${data[i].serif}</div>
                                     </div>

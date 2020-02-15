@@ -1,16 +1,21 @@
 $(function () {
+    //データなし
+    function make_dom_nodata() {
+        var str = `<div class=nodata>データはありません</div>`
+        return str;
+    }
+
     //好きなセリフデータからhtmlを出力
     function make_dom_serif(data) {
-        var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
-        for (var i = 0; i < 3; i++) {
+        var str = ``;
+        for (var i = 0; i < data.length; i++) {
             str += `<div class=serif_bx>
                         <div class=listparent style="width:95%">
                                 <div class=list>
-                                    <div><img class=thumbnail_img src=""></div>
-                                    <div style="margin:6px;">
-                                        <div style="color:#969696">twitterID</div>
-                                        <div class=serif>あああああああああああああああああああああああああああ</div>
-                                        <div style="font-size: small;color:#969696;text-allign:right;text-align: right;width: 60%;">22話〜〜のシーン</div>
+                                    <div><img class=thumbnail_img src="${data[i].s3url}"></div>
+                                    <div class="listbox">
+                                        <div style="color:#969696">${data[i].charaname}</div>
+                                        <div class=serif>${data[i].serif}</div>
                                     </div>
                                 </div>
                             </div>
@@ -21,7 +26,7 @@ $(function () {
                                         <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
                                     </div>
                                 </div>
-                                <div class=reason>ああああああああああああああああああああああああああああああああああああああ</div>
+                                <div class=reason>${data[i].reason}</div>
                             </div>
                     </div>`;
         }
@@ -62,7 +67,7 @@ $(function () {
             str += `<a href="/work/${data[i].id}" class="listparent" id=${i + 1}>
                     <div class="list">
                         <div style="margin:6px 3px;">
-                            <div class="chara_name" style="color:#333333" value="${i + 1}">${data[i].name}</div>
+                            <div class="chara_name1" style="color:#333333" value="${i + 1}">${data[i].name}</div>
                         </div>
                         </div>
                     </a>`;
@@ -221,7 +226,22 @@ $(function () {
                 console.log('get:complete');
             });
     }
-
+    // 表示する関数(好きなセリフ)
+    function indexData_serifUser() {
+        //
+        const url = `/api/serif_u`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_serif(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
     // 削除する関数
     function deleteData(id) {
         //
@@ -280,22 +300,37 @@ $(function () {
 
     //マイキャラ検索を押したら実行
     $(document).on("click", "#search", function () {
-        $(".slider").animate({ left: -375 })
+        $(".slider").removeClass("slideRight")
+        $(".slider").addClass("slideLeft")
+        $(".searchGenretabin li").removeClass("current");
+        $(".searchtabin li").removeClass("current")
+        $(".searchSubtabin li").removeClass("current")
+        $(".searchGenretabin li:eq(0)").addClass("current");
+        $(".searchtabin li:eq(0)").addClass("current")
+        $(".searchSubtabin li:eq(0)").addClass("current")
         indexDataWork(0)
     })
     //戻るボタンを押したら消える
     $("#back").on("click", function () {
+        $(".slider").removeClass("slideLeft")
+        $(".slider").addClass("slideRight")
         $('#title').empty()
         $(".slider").animate({ left: 0 })
     })
 
     $(".searchGenretabin li").on("click", function () {
-        $(".searchGenretabin li").removeClass();
-        $(this).addClass("current")
-        $(".searchSubtabin li").removeClass();
-        // $(this).addClass("current")
-        $(".searchtabin li").removeClass();
-        // $(this).addClass("current")
+        var index = $(".searchGenretabin li").index(this);
+        if (index == 0) {
+            $(".searchGenretabin li").removeClass();
+            $(this).addClass("current")
+            $(".searchtabin li:eq(0)").addClass("current")
+            $(".searchSubtabin li:eq(0)").addClass("current")
+            indexDataWork(0)
+        } else {
+            $(".searchGenretabin li").removeClass();
+            $(this).addClass("current")
+            $('#title').html(make_dom_nodata());
+        }
     })
 
     $(".searchtabin li").on("click", function () {
@@ -380,7 +415,7 @@ $(function () {
         indexDataUser(userid);
     })
     $(".middle_bar_2").on("click", function () {
-        $('#echo').html(make_dom_serif())
+        indexData_serifUser()
     })
     $(".middle_bar_3").on("click", function () {
         indexData_storage()

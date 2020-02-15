@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/upload_serif', 'Api\UploadserifController@store');
         // 表示(好きなセリフ)
         Route::get('/serif/{id}', 'Api\UploadserifController@index');
+        // 表示(好きなセリフ/ユーザーhome)
+        Route::get('/serif_u', 'Api\UploadserifController@index_u');
+
         // 削除
         Route::post('/uploadsdelete/{task}', 'Api\UploadsController@destroy');
 

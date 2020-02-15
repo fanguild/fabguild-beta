@@ -1,4 +1,37 @@
 $(function () {
+
+    //データなし
+    function make_dom_nodata() {
+        var str = `<div class=nodata>データはありません</div>`
+        return str;
+    }
+    //好きなセリフデータからhtmlを出力
+    function make_dom_serif(data) {
+        var str = ``;
+        for (var i = 0; i < data.length; i++) {
+            str += `<div class=serif_bx>
+                        <div class=listparent style="width:95%">
+                                <div class=list>
+                                    <div><img class=thumbnail_img src="${data[i].s3url}"></div>
+                                    <div class="listbox">
+                                        <div style="color:#969696">${data[i].charaname}</div>
+                                        <div class=serif>${data[i].serif}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=listparent_s style="width:95%">
+                                <div class=thisserif>
+                                    <div style="margin:6px;">
+                                        <div></div>
+                                        <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
+                                    </div>
+                                </div>
+                                <div class=reason>${data[i].reason}</div>
+                            </div>
+                    </div>`;
+        }
+        return str;
+    }
     // データからhtmlを出力する関数(画像倉庫)
     function make_dom_storage(data) {
 
@@ -26,7 +59,7 @@ $(function () {
                         <form id=api_form>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.name}</div>
                                     <input type="hidden" name="charaid" value="${data.id}">
                                     <input type="hidden" name="charaname" value="${data.name}">
@@ -34,14 +67,14 @@ $(function () {
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.title}</div>
                                     <input type="hidden" name="title" value="${data.title}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">ラベル</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">ラベル</div>
 
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input id=label name=label type="text" value="" placeholder="5文字以内で入力">
@@ -84,8 +117,8 @@ $(function () {
                         <form id=api_form>
                             <div id=mycharaselect class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:50%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:16px;margin:3px 6px 3px 6px;">マイキャラ選択</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="font-size:16px;margin:6px 6px 0px 6px;width:50%">マイキャラ選択</div>
                                     <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 6px"></div>
                                     <input type="hidden" name="charaid" value="">
                                     <input type="hidden" name="charaname" value="">
@@ -93,14 +126,14 @@ $(function () {
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;"></div>
                                     <input type="hidden" name="title" value="">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">ラベル</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">ラベル</div>
 
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input id=label name=label type="text" value="" placeholder="5文字以内で入力">
@@ -149,21 +182,21 @@ $(function () {
                         <form id=api_form>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.name}</div>
                                     <input type="hidden" name="charaid" value="${data.id}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.title}</div>
                                     <input type="hidden" name="title" value="${data.title}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">言葉・シーン</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">言葉・シーン</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input id="summary" name=summary type="text" value="" placeholder="セリフを入力">
                                     </div>
@@ -171,7 +204,7 @@ $(function () {
                             </div>
                             <div class="listparent" style="border:none;margin-bottom:2px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">好きな理由</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">好きな理由</div>
                                 </div>
                             </div>
                             <div class="listparent" style="border:none">
@@ -201,30 +234,30 @@ $(function () {
                         <form id=api_form>
                             <div id=mycharaselect class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:50%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:16px;margin:3px 6px 0px 6px;">マイキャラ選択</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="font-size:16px;margin:6px 6px 0px 6px;width:50%">マイキャラ選択</div>
                                     <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 6px"></div>
                                     <input type="hidden" name="charaid" value="">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;"></div>
                                     <input type="hidden" name="title" value="">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">言葉・シーン</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">言葉・シーン</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <input id=label name=label type="text" value="" placeholder="セリフを入力">
+                                        <input id=summary name=summary type="text" value="" placeholder="セリフを入力">
                                     </div>
                                 </div>
                             </div>
                             <div class="listparent" style="border:none;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">好きな理由</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">好きな理由</div>
                                 </div>
                             </div>
                             <div class="listparent" style="border:none">
@@ -260,7 +293,7 @@ $(function () {
                         <form id=api_form>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">マイピクチャ</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">マイピクチャ</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input type="file" name="file1" id="file" class="form-control"> 
                                     </div>
@@ -271,14 +304,14 @@ $(function () {
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.name}</div>
                                     <input type="hidden" name="charaid" value="${data.id}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.title}</div>
                                     <input type="hidden" name="title" value="${data.title}">
                                 </div>
@@ -332,22 +365,22 @@ $(function () {
                             
                             <div id=mycharaselect class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:50%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:16px;margin:3px 6px 0px 6px;">マイキャラ選択</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
+                                    <div style="font-size:16px;margin:6px 6px 0px 6px;width:50%">マイキャラ選択</div>
                                     <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 6px"></div>
                                     <input type="hidden" name="charaid" value="">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">作品名</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;"></div>
                                     <input type="hidden" name="title" value="">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">マイピクチャ</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">マイピクチャ</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input type="file" name="file1" id="file" class="form-control"> 
                                     </div>
@@ -358,7 +391,7 @@ $(function () {
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">アップロード先</div>
+                                    <div style="width:30%;color:#969696;margin:6px;">アップロード先</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <select name=posttype>
                                             <option value="0">--</option>
@@ -408,7 +441,7 @@ $(function () {
                             <div><img class=thumbnail_img src="${data[i].s3url}"></div>
                             <div class="name_bx" style="margin:6px;">
                                 <div>${data[i].charaname}</div>
-                                <div style="color:#969696">あああ</div>
+                                <div style="color:#969696">${data[i].title}</div>
                             </div>
                             <div class="label_bx" style="margin:12px">
                                 <div class=label_btn>${data[i].labelname}</div>
@@ -427,7 +460,11 @@ $(function () {
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                $("#mycharalist").html(make_dom_mychara(data))
+                if (data[0] != null) {
+                    $("#mycharalist").html(make_dom_mychara(data))
+                } else {
+                    $("#mycharalist").html(make_dom_nodata())
+                }
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -622,11 +659,11 @@ $(function () {
         })
             .done(function (data_return) {
                 console.log(data_return);
-                // $('#echo').html(make_dom_storage(data_return));
+                $('#echo').html(make_dom_serif(data_return));
                 // //画像・マイアルバムへ移動
-                // removeseleted();
-                // $(".middle_bar").animate({ scrollLeft: 488 });
-                // $(".middle_bar_3").addClass("middle_bar_add");
+                removeseleted();
+                // $(".middle_bar").animate({ scrollLeft: 395 });
+                // $(".middle_bar_2").addClass("middle_bar_add");
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -890,18 +927,25 @@ $(function () {
         }
     });
     $(document).on("click", "#mycharaselect", function () {
-        $(".modal_body").children(".slider").animate({ left: -375 })
+        $(".modal_body").children(".slider").addClass("slideLeft")
+        $(".modal_body").children(".slider").removeClass("slideRight")
         indexData_mychara()
     })
     $(document).on("click", "#mycharalist>.listparent", function () {
-        $(".modal_body").children(".slider").animate({ left: 0 })
+        $(".modal_body").children(".slider").removeClass("slideLeft")
+        $(".modal_body").children(".slider").addClass("slideRight")
         var src = $(this).find(".thumbnail_img").attr('src')
         var name = $(this).find(".name_bx>div:first").text()
         var title = $(this).find(".name_bx>div:nth-child(2)").text()
         var label = $(this).find(".label_bx>div").text()
-        console.log(src)
+        var charaid = $(this).attr('data-id')
+        console.log(charaid)
         $("#api_form>div:nth-child(1)").children('div').children('div:nth-child(2)').text(name)
+        $("#api_form>div:nth-child(1)").children('div').children('input').val(charaid)
         $("#api_form>div:nth-child(2)").children('div').children('div:nth-child(2)').text(title)
 
+    })
+    $("#opinion").on("click", function () {
+        alert("fanguildのtwitterへダイレクトメールをお願いします")
     })
 });

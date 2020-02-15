@@ -9,6 +9,8 @@ use App\Chara;
 use App\Chara_title;
 use Validator;
 use Auth;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Controllers\Controller;
 
 class ImportController extends Controller
@@ -39,7 +41,8 @@ class ImportController extends Controller
     public function index()
     {
         $str="";
-        $file = fopen("csv/chara_data/anime_chara_1.csv", "r");
+        
+        $file = fopen("csv/chara_data/anime_chara_13.csv", "r");
         flock($file, LOCK_EX);
         if ($file) {
             while ($line = fgetcsv($file)) {
@@ -53,25 +56,30 @@ class ImportController extends Controller
         }
         flock($file, LOCK_UN);
         fclose($file);
+        
         return $str;
     }
     public function index_()
     {
         $str="";
-        $file = fopen("csv/works_data/anime_works_ka.csv", "r");
+        $file = fopen("csv/works_data/anime_works_.csv", "r");
         flock($file, LOCK_EX);
         if ($file) {
             while ($line = fgetcsv($file)) {
                 $chara_title = new Chara_title;
                 $chara_title->name=$line[0];
-                $chara_title->categoryid=5;
+                $chara_title->categoryid=$line[1];
                 $chara_title->deleteflg=0;
                 $chara_title->save();
+                $str = $line[0];
             };
         }
         flock($file, LOCK_UN);
         fclose($file);
         return $str;
+
+
+        // Excel::import(new UsersImport, 'anime_works_.csv');
     }
 
     // public function destroy($task_id)

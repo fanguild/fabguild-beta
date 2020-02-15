@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="content1">
-            <div style="width:375px;background-color: #FFFFFF;display:flex;border-bottom: 1px solid;border-color: #c9c9c9;">
+            <div style="background-color: #FFFFFF;display:flex;border-bottom: 1px solid;border-color: #c9c9c9;">
                 <img id=back src="/storage/icon/arrow_back.svg">
                 <div class=searchbox>
                     <input type="text" value="" placeholder="キャラ名で検索" class=search style="margin:0 12px;">

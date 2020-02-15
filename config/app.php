@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+        
         /*
          * Package Service Providers...
          */
@@ -178,6 +178,8 @@ return [
         App\Providers\FirebaseServiceProvider::class,
         // TwitterOAuth
         App\Providers\TwitterServiceProvider::class,
+        //Excelを読み書き
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -231,8 +233,8 @@ return [
         // TwitterOAuthAliases
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Twitter' => App\Facades\Twitter::class,
-
-
+        //Excelを読み書き
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
