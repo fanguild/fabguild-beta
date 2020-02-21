@@ -19,26 +19,35 @@ class WorksController extends Controller
     {
         $work = Chara_title::where('id', $id)
                 ->first();
-        // $charas = \DB::table('charas')
-        //         ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
-        //         ->where('title', $work->name)
-        //         ->get();
-        // $charas = \DB::table('charas')
-        //         ->join("mycharas", "charas.id", "=", "mycharas.charaid")
-        //         ->where('title', $work->name)
-        //         ->get();
-        $charas = \DB::table('charas')
-                ->select("charas.id", "mycharas.s3url", "charas.name", 'userid')
-                ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
-                ->where('title', $work->name)
-                ->where(function ($q) {
-                    $q->where('userid', Auth::user()->id)
-                        ->orWhere('userid', null);
-                })
-                ->orderBy('id', 'asc')
+        
+        $mycharas = \DB::table('mycharas')
+                ->where('userid', Auth::user()->id)
+                ->select("charaid", "s3url", "charaname", 'userid')
                 ->get();
 
-
-        return $charas;
+        // if ($mychara==null) {
+        $charas = \DB::table('charas')
+                // ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
+                ->where('title', $work->name)
+                // ->where(function ($q) {
+                //     $q->where('userid', Auth::user()->id)
+                //         ->orWhere('userid', null);
+                // })
+                ->select("id", "charas.name")
+                ->orderBy('id', 'asc')
+                ->get();
+        // } else {
+        //     $mycharas = \DB::table('charas')
+        //         ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
+        //         ->where('title', $work->name)
+        //         ->where(function ($q) {
+        //             $q->where('userid', Auth::user()->id)
+        //                 ->orWhere('userid', null);
+        //         })
+        //         ->select("charas.id", "mycharas.s3url", "charas.name", 'userid')
+        //         ->orderBy('id', 'asc')
+        //         ->get();
+        // }
+        return [$mycharas,$charas];
     }
 }

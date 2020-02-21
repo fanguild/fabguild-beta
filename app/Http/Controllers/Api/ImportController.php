@@ -41,22 +41,22 @@ class ImportController extends Controller
     public function index()
     {
         $str="";
-        
-        $file = fopen("csv/chara_data/anime_chara_13.csv", "r");
-        flock($file, LOCK_EX);
-        if ($file) {
-            while ($line = fgetcsv($file)) {
-                $chara = new Chara;
-                $chara->name=$line[0];
-                $chara->title=$line[1];
-                $chara->guild_rank=1;
-                $chara->guild_level=1;
-                $chara->save();
-            };
+        for ($i=0;$i<14 ;$i++) {
+            $file = fopen("csv/chara_data/anime_chara_".$i.".csv", "r");
+            flock($file, LOCK_EX);
+            if ($file) {
+                while ($line = fgetcsv($file)) {
+                    $chara = new Chara;
+                    $chara->name=$line[0];
+                    $chara->title=$line[1];
+                    $chara->guild_rank=1;
+                    $chara->guild_level=1;
+                    $chara->save();
+                };
+            }
+            flock($file, LOCK_UN);
+            fclose($file);
         }
-        flock($file, LOCK_UN);
-        fclose($file);
-        
         return $str;
     }
     public function index_()

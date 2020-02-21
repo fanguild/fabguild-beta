@@ -1115,7 +1115,7 @@ body {
     }
 @media screen and (max-height: 667px) { 
     .modal_body{
-        height:460px;
+        height:390px;
     }
 }
     #api_form .listparent{
@@ -1221,7 +1221,7 @@ body {
 @media screen and (max-height: 667px) { 
     .formbox{
         width: 375px;
-        height:472px;
+        height:403px;
         padding: 36px 0px 0px 0px;
         overflow-y: scroll;
     }
