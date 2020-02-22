@@ -3,30 +3,25 @@ $(function () {
 
         var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
                     <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">出演キャラ</div>`
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].userid) {
-                str += `<a href="/chara/${data[i].id}" class=listparent>
-                        <div class=list>
-                            <div><img class=thumbnail_img src="${data[i].s3url}"></div>
-                            <div style="margin:6px;">
-                                <div>${data[i].name}</div>
-                                <div style="color:#969696">マイキャラ</div>
-                            </div>
-                        </div>
-                        <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-                        </a>`;
-            } else {
-                str += `<a href="/chara/${data[i].id}" class=listparent>
-                    <div class=list>
-                        <div><img class=thumbnail_img src="/storage/icon/nolicense.svg"></div>
-                        <div style="margin:6px;">
-                            <div>${data[i].name}</div>
-                            <div style="color:#969696"></div>
+        var mycharas = data[0]
+        var charas = data[1]
+        var s3url = "/storage/icon/nolicense.svg"
+
+        for (var i = 0; i < charas.length; i++) {
+            for (var t = 0; t < mycharas.length; t++) {
+                if (mycharas[t].charaid == charas[i].id) {
+                    s3url = mycharas[t].s3url
+                }
+            }
+            str += `<a href="/chara/${charas[i].id}" class=listparent>
+                    <div class=list><div><img class=thumbnail_img src="${s3url}"></div><div style="margin:6px;">
+                            <div>${charas[i].name}</div>
+                            <div>マイキャラ</div>
                         </div>
                     </div>
                     <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
                     </a>`;
-            }
+            s3url = "/storage/icon/nolicense.svg"
         }
         return str;
     }
