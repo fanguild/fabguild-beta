@@ -49,6 +49,7 @@
                     <nav id="global-navi">
                         <ul class="menu" style='list-style: none;'>
                             <li><a href="{{url('user')}}">マイページ</a></li>
+                            <li><a href="{{url('user')}}">マイページ</a></li>
                             <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
