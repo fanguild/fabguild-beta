@@ -374,7 +374,7 @@ $(function () {
     // データからhtmlを出力する関数(アルバム)
     function make_dom_storage(data) {
 
-        var str = `<a href="" class="listparent" style="border: none;">
+        var str = `<a href="https://docs.google.com/forms/d/e/1FAIpQLSesAWdfEhxiGPbJOdwgI873B5UppxHbDUS1xzRHgnUc0SZ0jg/viewform?usp=sf_link" class="listparent" style="border: none;">
                     <div class="list">
                         <div><img class="thumbnail_img" src="/storage/icon/album.svg"></div>
                         <div style="margin:6px 3px">

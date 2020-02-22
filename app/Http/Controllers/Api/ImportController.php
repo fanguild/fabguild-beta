@@ -41,8 +41,8 @@ class ImportController extends Controller
     public function index()
     {
         $str="";
-        
-        $file = fopen("csv/chara_data/anime_chara_13.csv", "r");
+              
+        $file = fopen("csv/chara_data/anime_chara_6.csv", "r");
         flock($file, LOCK_EX);
         if ($file) {
             while ($line = fgetcsv($file)) {
