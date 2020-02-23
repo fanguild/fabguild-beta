@@ -75,11 +75,67 @@ $(function () {
         return str;
     }
 
+    // データからhtmlを出力する関数(tweet)
+    function make_dom_tweet(data) {
+        var mycharas = data[1]
+        var tweet = data[0]
+        var str = '';
+        if (tweet.length != 0) {
+            for (var i = 0; i < tweet.length; i++) {
+                if (tweet[i].entities.media != null) {
+                    str += ` <div class="card mb-2">
+                <div class="card-body">
+                    <div class="media">
+                        <img src="${tweet[i].user.profile_image_url}" class="rounded-circle mr-4">
+                        <div class="media-body">
+                            <h5 class="d-inline mr-3"><strong>${tweet[i].user.name}</strong></h5>
+                            <h6 class="d-inline text-secondary">${tweet[i].created_at}</h6>
+                            <p class="mt-3 mb-0">${tweet[i].text}</p>`
+
+                    str += `<img src="${tweet[i].entities.media[0].media_url}" style="width:100%">`
+
+                    str += `</div>
+                            </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-flex flex-row justify-content-end">
+                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+                                </div>
+                            </div>
+                        </div>`;
+                }
+            }
+        } else {
+            str += make_dom_nodata()
+        }
+
+        return str;
+    }
     // データからhtmlを出力する関数(ユーザー情報)
     function make_dom(data) {
 
-        var str = `<img class=user_img src="${data[0][0].avatar}">
-                <div class="user_name">${data[0][0].name}</div>`;
+        var str = `<div class=chara>
+                <img class=user_img src="${data[0][0].avatar}">
+                <div class="user_name">${data[0][0].name}</div>
+                </div>
+                <div class=user_status>
+                        <div class=quantity>${data[1].length}</div>
+                        <div class=sub style="color:#FF8500">マイキャラ</div>
+                </div>    
+                <div class=user_status>
+                        <div class=quantity>${data[2]}</div>
+                        <div class=sub style="color:#FF8500">マイアルバム</div>
+                </div> `;
+        return str;
+    }
+    //マイキャラ情報（フィルタ用）
+    function make_dom_filter(data) {
+        var str = `<label><input type=radio name=mychara value=0 checked="checked">全員</label>`
+        for (var t = 0; t < data.length; t++) {
+            str += `<label><input type=radio name=mychara value=${data[t].charaid}>${data[t].charaname}</label>`;
+        }
         return str;
     }
     // データからhtmlを出力する関数（マイキャラ情報）
@@ -88,9 +144,9 @@ $(function () {
         var str = `<div id="search" class="listparent" style="border:none;">
                 <div class="list">
                     <div><img class="thumbnail_img" src="/storage/icon/mychara.svg"></div>
-                    <div style="margin:6px 3px">
-                        <div>ファンギルドに参加</div>
-                        <div style="color:#969696">マイキャラを追加してみよう</div>
+                    <div class="name_bx">
+                        <div>好きなキャラクターを探す</div>
+                        <div class=sub style="color:#969696">マイキャラを登録しよう</div>
                     </div>
                 </div>
                 <div class="arrow"><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
@@ -104,12 +160,12 @@ $(function () {
                     str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
                             <div class=list>
                                 <div><img class=thumbnail_img src="${mychara[i].s3url}"></div>
-                                <div class="name_bx" style="margin:6px;">
+                                <div class="name_bx">
                                     <div>${mychara[i].name}</div>
-                                    <div style="color:#969696">${mychara[i].title}</div>
+                                    <div class=sub style="color:#969696">${mychara[i].title}</div>
                                 </div>
-                                <div class="label_bx" style="margin:12px">
-                                    <div class=label_btn>${mychara[i].labelname}</div>
+                                <div class="label_bx">
+                                    <label class=label_btn><div>${mychara[i].labelname}</div></label>
                                 </div>
                             </div>
                             <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
@@ -118,12 +174,12 @@ $(function () {
                     str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
                             <div class=list>
                                 <div><img class=thumbnail_img src="/storage/icon/nolicense.svg"></div>
-                                <div class="name_bx" style="margin:6px;">
+                                <div class="name_bx"">
                                     <div>${mychara[i].name}</div>
                                     <div style="color:#969696">${mychara[i].title}</div>
                                 </div>
-                                <div class="label_bx" style="margin:12px">
-                                    <div class=label_btn>${mychara[i].labelname}</div>
+                                <div class="label_bx">
+                                    <label class=label_btn><div>${mychara[i].labelname}</div></label>
                                 </div>
                             </div>
                             <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
@@ -171,7 +227,56 @@ $(function () {
                 console.log('post:complete');
             });
     }
+    // 表示する関数(tweet)
+    function indexData_tweet(id, callback) {
 
+        //
+        if (id) {
+            const url = `/api/twitter/${id}`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $('#echo').html(make_dom_tweet(data));
+                    callback();
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        } else {
+            const url = `/api/user/twitter`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $('#echo').html(make_dom_tweet(data));
+                    callback();
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        }
+    }
+    // ユーザー情報を表示する関数
+    function indexDataFilter() {
+        //
+        const url = `/api/mychara`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#filter').html(make_dom_filter(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
     // ユーザー情報を表示する関数
     function indexDataUser(id) {
         //
@@ -373,8 +478,7 @@ $(function () {
     })
     // データからhtmlを出力する関数(アルバム)
     function make_dom_storage(data) {
-
-        var str = `<a href="" class="listparent" style="border: none;">
+        var album = `<a href="" class="listparent" style="border: none;">
                     <div class="list">
                         <div><img class="thumbnail_img" src="/storage/icon/album.svg"></div>
                         <div style="margin:6px 3px">
@@ -382,8 +486,8 @@ $(function () {
                             <div style="color:#969696">発注画面に飛びます</div>
                         </div>
                     </div>
-                </a>
-                <div class="item_container">`
+                </a>`
+        var str = `<div class="item_container">`
         for (var i = 0; i < data.length; i++) {
             str += `<div class="item_box">
                         <div class="item_img">
@@ -412,13 +516,26 @@ $(function () {
             });
     }
     $(".middle_bar_1").on("click", function () {
+        $("#filter").empty();
         indexDataUser(userid);
     })
     $(".middle_bar_2").on("click", function () {
-        indexData_serifUser()
+        indexData_tweet("", indexDataFilter)
+
     })
     $(".middle_bar_3").on("click", function () {
+        $("#filter").empty();
+        indexDataFilter()
         indexData_storage()
-    })
 
+    })
+    $(document).on("change", "input[name='mychara']", function () {
+        var val = $(this).val();
+        console.log(val)
+        if (val == 0) {
+            indexData_tweet()
+        } else {
+            indexData_tweet(val)
+        }
+    })
 })

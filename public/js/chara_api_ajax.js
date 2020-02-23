@@ -4,8 +4,7 @@ $(function () {
     function make_dom_fanlist(data) {
 
         var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">ファンリスト</div>`
+        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
 
         for (var i = 0; i < data.length; i++) {
             str += `<a href="/user/${data[i].userid}" class=listparent>
@@ -397,9 +396,11 @@ $(function () {
 
     // 読み込み時に実行
     $(".middle_bar").scrollLeft(300);
-    $(".middle_bar_1").addClass("middle_bar_add");
-    var id = $(".main").attr('data-id')
-    indexData_guild(id);
+    $(".middle_bar_6").addClass("middle_bar_add");
+    // var id = $(".main").attr('data-id')
+    // indexData_guild(id);
+    id = $(".main").attr('data-id')
+    indexData_fanlist(id);
 
     $(document).on("click", "#fan_gross", function () {
         id = $(".main").attr('data-id')
@@ -424,5 +425,12 @@ $(function () {
         id = $(".main").attr('data-id')
         indexData_serif(id)
     })
-
+    $(".middle_bar_6").on("click", function () {
+        id = $(".main").attr('data-id')
+        indexData_fanlist(id)
+    })
+    $(".middle_bar_7").on("click", function () {
+        id = $(".main").attr('data-id')
+        // indexData_serif(id)
+    })
 });

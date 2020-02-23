@@ -90,7 +90,7 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
+                            <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
                             <img class=chara_img id=chara_img_modal style="background-color:#FFFFFF">
                             </div>
                         </form>
@@ -148,7 +148,7 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
+                            <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
                             <img class=chara_img id=chara_img_modal style="background-color:#FFFFFF">
                             </div>
                         </form>
@@ -299,7 +299,7 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="thumbnail" style="border-bottom:#efefef solid 1px;">
                             <img class=post_img id=post_img_modal>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
@@ -316,30 +316,9 @@ $(function () {
                                     <input type="hidden" name="title" value="${data.title}">
                                 </div>
                             </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">アップロード先</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <select name=posttype>
-                                            <option value="0">--</option>
-                                            <option value="1">マイアルバム</option>
-                                            <option value="2">ギルド</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="disclaimer">※ギルドへの投稿の際は著作権・肖像権に十分配慮してください</div>
-                            <div class="disclaimer">※マイアルバムにアップロードした場合もご自身のキャラギルドで画像が表示されますが他のユーザーには公開されません</div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;margin:12px 0px 0px 0px">
-                                <div class="list" style="">
-                                    <div style="color:#969696">コメント</div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <input id="comment" type="text" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
-                                </div>
-                            </div>
+                            <input type="hidden" name="posttype" value="1">
+                            <div class="disclaimer">※マイアルバムにアップロードした画像は他のユーザーには公開されません</div>
+                            <input id="comment" type="hidden" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
                             <input type="hidden" name="post_eria_flg" value="1">
                         </form>
                     </div>
@@ -386,34 +365,13 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="thumbnail" style="border-bottom:#efefef solid 1px;">
                             <img class=post_img id=post_img_modal>
                             </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">アップロード先</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <select name=posttype>
-                                            <option value="0">--</option>
-                                            <option value="1">マイアルバム</option>
-                                            <option value="2">ギルド</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="disclaimer">※ギルドへの投稿の際は著作権・肖像権に十分配慮してください</div>
-                            <div class="disclaimer">※マイアルバムにアップロードした場合もご自身のキャラギルドで画像が表示されますが他のユーザーには公開されません</div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;margin:12px 0px 0px 0px">
-                                <div class="list" style="">
-                                    <div style="color:#969696">コメント</div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <input id="comment" type="text" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
-                                </div>
-                            </div>
-                            <input type="hidden" name="post_eria_flg" value="0">
+                            <input type="hidden" name="posttype" value="1">
+                            <div class="disclaimer">※マイアルバムにアップロードした画像は他のユーザーには公開されません</div>
+                            <input id="comment" type="hidden" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
+                            <input type="hidden" name="post_eria_flg" value="1">
                         </form>
                         </div>
                         <div id="mycharalist">
@@ -768,7 +726,7 @@ $(function () {
         $(".middle_bar_7").addClass("middle_bar_add");
     })
 
-    $("#footer").on("click", function () {
+    $(document).on("click", ".closed", function () {
         $("#footer_menu_1").removeClass("footer_third");
         $("#footer_menu_3").removeClass("footer_first");
         $("#footer_menu_name_1").removeClass("footer_third");
@@ -785,6 +743,8 @@ $(function () {
         $("#footer_menu_name_1").css({ transform: "scale(1)" });
         $("#footer_menu_name_2").css({ transform: "scale(1)" });
         $("#footer_menu_name_3").css({ transform: "scale(1)" });
+        $("#footer").removeClass("closed")
+        $("#footer").addClass("open")
     })
     $("#footer_back").on("click", function () {
         $("#footer_menu_1").removeClass("footer_first");
@@ -807,6 +767,36 @@ $(function () {
         $("#footer_menu_name_1").css({ transform: "scale(0)" });
         $("#footer_menu_name_2").css({ transform: "scale(0)" });
         $("#footer_menu_name_3").css({ transform: "scale(0)" });
+        $("#footer").removeClass("open")
+        $("#footer").addClass("closed")
+    })
+    // $("#footer").on("click", function () {
+    //     console.log("aaa")
+    // })
+
+    $(document).on("click", ".open", function () {
+        $("#footer_menu_1").removeClass("footer_first");
+        $("#footer_menu_3").removeClass("footer_third");
+        $("#footer_menu_name_1").removeClass("footer_first");
+        $("#footer_menu_name_3").removeClass("footer_third");
+
+        $("#footer_menu_1").addClass("footer_third");
+        $("#footer_menu_3").addClass("footer_first");
+        $("#footer_menu_name_1").addClass("footer_third");
+        $("#footer_menu_name_3").addClass("footer_first");
+
+        $(".footer").css({ transform: "rotate(0deg)" })
+        $("#footer_back").removeClass("footer_back")
+
+        $("#footer_menu_1").css({ transform: "scale(0)" });
+        $("#footer_menu_2").css({ transform: "scale(0)" });
+        $("#footer_menu_3").css({ transform: "scale(0)" });
+
+        $("#footer_menu_name_1").css({ transform: "scale(0)" });
+        $("#footer_menu_name_2").css({ transform: "scale(0)" });
+        $("#footer_menu_name_3").css({ transform: "scale(0)" });
+        $("#footer").removeClass("open")
+        $("#footer").addClass("closed")
     })
     //画像アップロードで画面表示する関数
     $(document).on('change', '#file', function (e) {

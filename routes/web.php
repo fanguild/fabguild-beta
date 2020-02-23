@@ -43,7 +43,7 @@ Route::get('/chara/{chara}', function (Chara $chara) {
     $s3url = Mychara::where('userid', Auth::user()->id)
             ->where('charaid', $chara->id)
             ->select('s3url')->first();
-    return view('chara_top', [
+    return view('chara_top_olt', [
         "chara" => $chara,
         "sum" => $sum,
         "s3url" => $s3url

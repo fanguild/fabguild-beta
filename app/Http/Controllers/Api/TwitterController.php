@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Chara;
+use App\Mychara;
+use Auth;
 use App\Http\Controllers\Controller;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -16,8 +18,33 @@ class TwitterController extends Controller
         $chara = Chara::where('id', $id)
                 ->select('name', 'title')
                 ->first();
-        $result = \Twitter::get('search/tweets', ['q' => "{$chara->title} exclude:retweets", 'count' => '100'])->statuses;
-        return $result;
+        $result = \Twitter::get('search/tweets', ['q' => "{$chara->name} exclude:retweets filter:media", 'count' => '100'])->statuses;
+
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+                ->select('charaid', 'charaname')
+                ->get();
+        return [$result,$mycharas];
+    }
+
+    public function index_u()
+    {
+        $charas = Mychara::where('userid', Auth::user()->id)
+                ->select('charaname', 'charaid')
+                ->get();
+        $str = "";
+        $length = count($charas);
+        $no = 0;
+    
+        foreach ($charas as $chara) {
+            $no++;
+            if ($no!==$length) {
+                $str .= $chara->charaname." OR ";
+            } else {
+                $str .= $chara->charaname;
+            }
+        }
+        $result = \Twitter::get('search/tweets', ['q' => "{$str} exclude:retweets filter:media", 'count' => '100'])->statuses;
+        return [$result,$charas];
     }
 
     public function tweet(Request $request)

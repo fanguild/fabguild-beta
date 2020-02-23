@@ -63,7 +63,7 @@
                     </nav>
                 </div>
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>
-                <div id=footer class=footer><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
+                <div id=footer class="footer closed"><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
                 
                 <div class=js-modal__btn data-id=1>
                     <div id="footer_menu_name_1" class=footer_first>
@@ -75,10 +75,10 @@
                 </div>
                 <div class="js-modal__btn" data-id=2>
                     <div id="footer_menu_name_2" class=footer_second>
-                        <img src="{{asset('storage/icon/好きなセリフ.svg')}}" style="height:36px">
+                        <img src="{{asset('storage/icon/share.svg')}}" style="height:36px">
                     </div>
                     <div id=footer_menu_2 class=footer_second>
-                        <img src="{{asset('storage/icon/post.svg')}}" style="height:24px">
+                        <img src="{{asset('storage/icon/TwitterIcon.svg')}}" style="height:24px">
                     </div>
                 </div>
                 <div class="js-modal__btn" data-id=3>                
@@ -93,6 +93,7 @@
                 <div class="js-modal__main"></div>
                 
                 <div id=footer_back></div>
+                <div id=header_back></div>
             </div>
             
             @else

@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
         // 削除
         Route::post('/task/{task}', 'Api\TasksController@destroy');
 
+        //twitter表示のテスト
+        Route::get('/user/twitter', 'Api\TwitterController@index_u');
+
         // Fileのアップロードテスト
         // 表示（）
         Route::get('/uploads', 'Api\UploadsController@index');

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\User;
 use App\Mychara;
+use App\Upload;
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -43,7 +44,11 @@ class UsersController extends Controller
         $mychara = Mychara::where('userid', Auth::user()->id)
             ->join('charas', 'mycharas.charaid', 'charas.id')
             ->get();
-        return [$users, $mychara];
+        $album = Upload::where('userid', Auth::user()->id)
+            ->select('userid')
+            ->get();
+        $count = count($album);
+        return [$users, $mychara,$count];
     }
     //表示処理関数
     public function other($id)
