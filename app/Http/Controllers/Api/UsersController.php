@@ -7,16 +7,21 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\User;
 use App\Mychara;
+use App\Upload;
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
+use Socialite;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Abraham\TwitterOAuth\TwitterOAuth;
+use Illuminate\Support\Facades\Input;
 
 class UsersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     //登録処理関数
     public function store(Request $request)
@@ -43,7 +48,14 @@ class UsersController extends Controller
         $mychara = Mychara::where('userid', Auth::user()->id)
             ->join('charas', 'mycharas.charaid', 'charas.id')
             ->get();
-        return [$users, $mychara];
+        $album = Upload::where('userid', Auth::user()->id)
+            ->select('userid')
+            ->get();
+        $count = count($album);
+        $session =session()->all();
+
+
+        return [$users, $mychara,$count,$session];
     }
     //表示処理関数
     public function other($id)
@@ -52,10 +64,13 @@ class UsersController extends Controller
             ->get();
         $mychara = Mychara::where('userid', $id)
             ->join('charas', 'mycharas.charaid', 'charas.id')
-            ->select('charaid', 'name', 'labelname', 'title')
+            // ->select('charaid', 'name', 'labelname', 'title')
             ->get();
-        
-        return [$users, $mychara];
+        $album = Upload::where('userid', $id)
+            ->select('userid')
+            ->get();
+        $count = count($album);
+        return [$users, $mychara,$count];
     }
 
     public function destroy($task_id)

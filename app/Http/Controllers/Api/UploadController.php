@@ -86,6 +86,14 @@ class UploadController extends Controller
             ->get();
         return $uploads;
     }
+    //表示処理関数(マイアルバム)フィルタ用
+    public function index_f($id)
+    {
+        $uploads = Upload::where('userid', Auth::user()->id)
+            ->where('charaid', $id)
+            ->get();
+        return $uploads;
+    }
 
     public function destroy($upload_id)
     {

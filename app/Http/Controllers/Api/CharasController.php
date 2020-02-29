@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Chara;
 use App\Mychara;
-
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -42,14 +41,26 @@ class CharasController extends Controller
         $charas = Chara::where('id', $id)
             ->get();
         $sum = Mychara::where('charaid', $id)->count();
-        return ['charas'=>$charas,'sum'=>$sum];
+        $mlc = Mychara::where('charaid', $id)
+            ->where('labelname', '推し')
+            ->count();
+        return [$charas,$sum,$mlc];
     }
     //投稿用キャラデータ関数
-    public function postready_index($id)
+    public function footer_ind_index($id)
     {
         $charas = Chara::where('id', $id)
             ->first();
         return $charas;
+    }
+
+    //footer用キャラデータ関数
+    public function footer_index()
+    {
+        $charas = Mychara::where('userid', Auth::user()->id)
+            ->get();
+        $userid = Auth::user()->id;
+        return [$charas,$userid];
     }
 
     // public function destroy($task_id)

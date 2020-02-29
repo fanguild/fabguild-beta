@@ -50,7 +50,7 @@ $(function () {
         if (data) {//data=キャラデータがあれば
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">マイキャラ追加</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -90,7 +90,7 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
+                            <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
                             <img class=chara_img id=chara_img_modal style="background-color:#FFFFFF">
                             </div>
                         </form>
@@ -107,7 +107,7 @@ $(function () {
         } else {//主にユーザートップページではこちら
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">マイキャラ編集</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -148,7 +148,7 @@ $(function () {
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
+                            <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
                             <img class=chara_img id=chara_img_modal style="background-color:#FFFFFF">
                             </div>
                         </form>
@@ -170,99 +170,114 @@ $(function () {
         }
         return str;
     }
-    function make_dom_madal_postlike(data) {
-        if (data) {
-            var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">好きなセリフ</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+    function getLen(str) {
+        var result = 0;
+        for (var i = 0; i < str.length; i++) {
+            var chr = str.charCodeAt(i);
+            if ((chr >= 0x00 && chr < 0x81) ||
+                (chr === 0xf8f0) ||
+                (chr >= 0xff61 && chr < 0xffa0) ||
+                (chr >= 0xf8f1 && chr < 0xf8f4)) {
+                //半角文字の場合は1を加算
+                result += 1;
+            } else {
+                //それ以外の文字の場合は2を加算
+                result += 2;
+            }
+        }
+        //結果を返す
+        return result;
+    };
+
+    $(document).on('keyup', '#tweet_mychara', function () {
+        var str = $(this).val()
+        var count = Math.floor(getLen(str) / 2)
+        $("#text_count").text(count + '/140文字')
+        if (140 - count < 0) {
+            $(".text_alert").show();
+        } else {
+            $(".text_alert").hide();
+        }
+    });
+    function make_dom_madal_share(data) {
+        var mychara = '#自分の推しキャラを晒す\n';
+        for (var i = 0; i < data[0].length; i++) {
+            mychara += `#${data[0][i].charaname}\n`;
+        }
+        mychara += `http://fanguild-6281.lolipop.io/user/${data[1]}`
+        var str = `<div class="modal-header">
+                        <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal_body" id='mychara'>
+                    <div class="modal_body" id='mychara' style="height:400px">
                         <form id=api_form>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.name}</div>
-                                    <input type="hidden" name="charaid" value="${data.id}">
-                                </div>
-                            </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.title}</div>
-                                    <input type="hidden" name="title" value="${data.title}">
-                                </div>
-                            </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">言葉・シーン</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <input id="summary" name=summary type="text" value="" placeholder="セリフを入力">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none;margin-bottom:2px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">好きな理由</div>
-                                </div>
-                            </div>
+                           
                             <div class="listparent" style="border:none">
                                 <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" placeholder="理由を記入（必須）"></textarea>
+                                    <textarea id="tweet_mychara" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder="">${mychara}</textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="listparent" style="border:none">
+                                <div class="list" style="width:100%;justify-content: flex-end;">
+                                <div class=text_alert style="display:none;color:red;width:75%;">文字数が140文字を超えています</div>
+                                <div id=text_count></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="modal-footer">
+                    <div class="listparent center_obj" style="border:none;">
+                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_tweet>
+                            シェア
+                        </button>
+                    </div>
+                    `
+
+        return str;
+    }
+    function make_dom_madal_postlike(data) {
+        if (data) {
+            var str = `<div class="modal-header">
+                        <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal_body" id='mychara' style="height:400px">
+                        <form id=api_form>
+                        
+                            <div class="listparent" style="border:none">
+                                <div class="list" style="width:100%;">
+                                    <textarea id="comment" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                     <div class="listparent center_obj" style="border:none;">
-                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_scene>
-                            投稿
+                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_tweet>
+                            シェア
                         </button>
                     </div>
                     </div><div class="disclaimer center_obj">※画像を投稿すると自動的にマイキャラに登録されます</div>`
         } else {//ユーザートップでのモーダルの動き
             var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">好きなセリフ</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal_body" id='mychara'>
+                    <div class="modal_body" id='mychara' style="height:400px">
                     <div class=slider>
                         <div class=formbox>
                         <form id=api_form>
-                            <div id=mycharaselect class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:16px;margin:6px 6px 0px 6px;width:50%">マイキャラ選択</div>
-                                    <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 6px"></div>
-                                    <input type="hidden" name="charaid" value="">
-                                </div>
-                            </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;"></div>
-                                    <input type="hidden" name="title" value="">
-                                </div>
-                            </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">言葉・シーン</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <input id=summary name=summary type="text" value="" placeholder="セリフを入力">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">好きな理由</div>
-                                </div>
-                            </div>
                             <div class="listparent" style="border:none">
                                 <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" placeholder="理由を記入（必須）"></textarea>
+                                    <textarea id="comment" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
                                 </div>
                             </div>
                         </form>
@@ -273,8 +288,8 @@ $(function () {
                     </div>
                     <div class="modal-footer">
                     <div class="listparent center_obj" style="border:none;">
-                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_scene>
-                            投稿
+                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_tweet>
+                            シェア
                         </button>
                     
                     </div>`
@@ -284,8 +299,8 @@ $(function () {
     function make_dom_madal_postpic(data) {
         if (data) {
             var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">好きな画像保存・画像投稿</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <h6 class="modal-title" id="label1">好きな画像保存</h6>
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -293,13 +308,13 @@ $(function () {
                         <form id=api_form>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">マイピクチャ</div>
+                                    <div style="width:35%;color:#969696;margin:6px;">マイピクチャ</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input type="file" name="file1" id="file" class="form-control"> 
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="thumbnail" style="border-bottom:#efefef solid 1px;">
                             <img class=post_img id=post_img_modal>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
@@ -316,45 +331,24 @@ $(function () {
                                     <input type="hidden" name="title" value="${data.title}">
                                 </div>
                             </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:60%;color:#969696;margin:6px;">アップロード先</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <select name=posttype>
-                                            <option value="0">--</option>
-                                            <option value="1">マイアルバム</option>
-                                            <option value="2">ギルド</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="disclaimer">※ギルドへの投稿の際は著作権・肖像権に十分配慮してください</div>
-                            <div class="disclaimer">※マイアルバムにアップロードした場合もご自身のキャラギルドで画像が表示されますが他のユーザーには公開されません</div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;margin:12px 0px 0px 0px">
-                                <div class="list" style="">
-                                    <div style="color:#969696">コメント</div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <input id="comment" type="text" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
-                                </div>
-                            </div>
+                            <input type="hidden" name="posttype" value="1">
+                            <div class="disclaimer">※マイアルバムにアップロードした画像は他のユーザーには公開されません</div>
+                            <input id="comment" type="hidden" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
                             <input type="hidden" name="post_eria_flg" value="1">
                         </form>
                     </div>
                     <div class="modal-footer">
                     <div class="listparent center_obj" style="border:none;">
                         <button class="button" data-dismiss="modal" aria-label="Close" id=upload_pic>
-                            投稿
+                            保存
                         </button>
                     </div>
                     </div>
                     <div class="disclaimer center_obj">※画像を投稿すると自動的にマイキャラに登録されます</div>`
         } else {
             var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">好きな画像保存・画像投稿</h6>
-                        <button type="button" id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <h6 class="modal-title" id="label1">好きな画像保存</h6>
+                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -380,40 +374,19 @@ $(function () {
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">マイピクチャ</div>
+                                    <div style="width:35%;color:#969696;margin:6px;">マイピクチャ</div>
                                     <div style="font-size:18px;margin:3px 6px 0px 6px;">
                                         <input type="file" name="file1" id="file" class="form-control"> 
                                     </div>
                                 </div>
                             </div>
-                            <div class="thumnail listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="thumbnail" style="border-bottom:#efefef solid 1px;">
                             <img class=post_img id=post_img_modal>
                             </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">アップロード先</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">
-                                        <select name=posttype>
-                                            <option value="0">--</option>
-                                            <option value="1">マイアルバム</option>
-                                            <option value="2">ギルド</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="disclaimer">※ギルドへの投稿の際は著作権・肖像権に十分配慮してください</div>
-                            <div class="disclaimer">※マイアルバムにアップロードした場合もご自身のキャラギルドで画像が表示されますが他のユーザーには公開されません</div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;margin:12px 0px 0px 0px">
-                                <div class="list" style="">
-                                    <div style="color:#969696">コメント</div>
-                                </div>
-                            </div>
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <input id="comment" type="text" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
-                                </div>
-                            </div>
-                            <input type="hidden" name="post_eria_flg" value="0">
+                            <input type="hidden" name="posttype" value="1">
+                            <div class="disclaimer">※マイアルバムにアップロードした画像は他のユーザーには公開されません</div>
+                            <input id="comment" type="hidden" style="color:#969696;margin:6px;height:120px;width:100%" name="comment" value="コメントを記入してみよう">
+                            <input type="hidden" name="post_eria_flg" value="1">
                         </form>
                         </div>
                         <div id="mycharalist">
@@ -423,7 +396,7 @@ $(function () {
                     <div class="modal-footer">
                     <div class="listparent center_obj" style="border:none;">
                         <button class="button" data-dismiss="modal" aria-label="Close" id=upload_pic>
-                            投稿
+                            保存
                         </button
                     </div>
                     `
@@ -444,7 +417,7 @@ $(function () {
                                 <div style="color:#969696">${data[i].title}</div>
                             </div>
                             <div class="label_bx" style="margin:12px">
-                                <div class=label_btn>${data[i].labelname}</div>
+                                <label class=label_btn><div>${data[i].labelname}</div></label>
                             </div>
                         </div>
                     </div>`;
@@ -452,7 +425,44 @@ $(function () {
         return str;
 
     }
+    // データからhtmlを出力する関数(fanlist)
+    function make_dom_fanlist(data) {
 
+        var str = '';
+        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
+
+        for (var i = 0; i < data.length; i++) {
+            str += `<a href="/user/${data[i].userid}" class=listparent>
+                <div class=list>
+                    <div><img class=thumbnail_img src="${data[i].avatar}"></div>
+                    <div style="margin:6px;">
+                        <div>${data[i].name}</div>
+                        <div style="color:#969696">twitterID</div>
+                    </div>
+                </div>
+                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
+            </a>`;
+        }
+
+        return str;
+
+    }
+    // 表示する関数(fanlist)
+    function indexData_fanlist(id) {
+        //
+        const url = `/api/fanlist/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_fanlist(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
     // 表示する関数(マイキャラ)
     function indexData_mychara() {
         //
@@ -477,48 +487,67 @@ $(function () {
     // 表示する関数(modal)
     function indexData_modal(id, charaid) {
         //
-        const url = `/api/postready/${charaid}`;
-        $.ajax(url)
-            .done(function (data, textStatus, jqXHR) {
-                if (id == 0) {
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                    modalMain.html(make_dom_modal_addmychara(data))
-                } else if (id == 1) {
-                    modalMain.html(make_dom_madal_postlike(data));
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                } else {
-                    modalMain.html(make_dom_madal_postpic(data));
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                }
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.status + textStatus + errorThrown);
-                if (id == 0) {
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                    modalMain.html(make_dom_modal_addmychara())
-                } else if (id == 1) {
-                    modalMain.html(make_dom_madal_postlike());
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                } else {
-                    modalMain.html(make_dom_madal_postpic());
-                    modalBg.fadeIn();
-                    modalBg.next(modalMain).removeClass("_slideDown");
-                    modalBg.next(modalMain).addClass("_slideUp");
-                }
-            })
-            .always(function () {
-                console.log('get:complete');
-            });
+        if (charaid) {
+            const url = `/api/footer/${charaid}`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    if (id == 0) {
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                        modalMain.html(make_dom_modal_addmychara(data))
+                    } else if (id == 1) {
+                        modalMain.html(make_dom_madal_share(data));
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                    } else {
+                        modalMain.html(make_dom_madal_postpic(data));
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        } else {
+            const url = `/api/footer`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    if (id == 0) {
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                        modalMain.html(make_dom_modal_addmychara())
+                    } else if (id == 1) {
+                        modalMain.html(make_dom_madal_share(data));
+                        var str = $('#tweet_mychara').val()
+                        var count = Math.floor(getLen(str) / 2)
+                        $("#text_count").text(count + '/140文字')
+                        if (140 - count < 0) {
+                            $(".alert").show();
+                        }
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                    } else {
+                        modalMain.html(make_dom_madal_postpic());
+                        modalBg.fadeIn();
+                        modalBg.next(modalMain).removeClass("_slideDown");
+                        modalBg.next(modalMain).addClass("_slideUp");
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        }
     }
 
     //モーダルの部分
@@ -559,9 +588,9 @@ $(function () {
     });
 
     // 登録する関数
-    function storeData() {
+    function storeData(id, callback) {
         // 送信先の指定
-        var url = '/api/uploadsstore';
+        var url = '/api/mychara/register';
         var form = $('#api_form').get()[0];
         // FormData オブジェクトを作成
         var formData = new FormData(form);
@@ -585,7 +614,11 @@ $(function () {
                 console.log(data_return);
                 console.log('done');
                 $('#chara_img').attr('src', data_return.mycharas_return.s3url);
-                $(".sum").text(data_return.sum)
+                $("#sum").text(data_return.sum)
+                $("#mlc").text(data_return.mlc)
+                removeseleted();
+                $(".middle_bar_6").addClass("middle_bar_add");
+                callback(id);
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
@@ -634,10 +667,10 @@ $(function () {
                 console.log('post:complete');
             });
     }
-    // 登録する関数(好きなセリフ)
-    function storeData_serif() {
+    // 登録する関数(tweet)
+    function storeData_tweet() {
         // 送信先の指定
-        var url = '/api/upload_serif';
+        var url = '/api/tweet';
         var form = $('#api_form').get()[0];
         // FormData オブジェクトを作成
         var formData = new FormData(form);
@@ -659,14 +692,14 @@ $(function () {
         })
             .done(function (data_return) {
                 console.log(data_return);
-                $('#echo').html(make_dom_serif(data_return));
+                // $('#echo').html(make_dom_serif(data_return));
                 // //画像・マイアルバムへ移動
                 removeseleted();
                 // $(".middle_bar").animate({ scrollLeft: 395 });
                 // $(".middle_bar_2").addClass("middle_bar_add");
             })
-            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(textStatus);
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
                 console.log('fail');
             })
             .always(function () {
@@ -768,7 +801,7 @@ $(function () {
         $(".middle_bar_7").addClass("middle_bar_add");
     })
 
-    $("#footer").on("click", function () {
+    $(document).on("click", ".closed", function () {
         $("#footer_menu_1").removeClass("footer_third");
         $("#footer_menu_3").removeClass("footer_first");
         $("#footer_menu_name_1").removeClass("footer_third");
@@ -785,6 +818,8 @@ $(function () {
         $("#footer_menu_name_1").css({ transform: "scale(1)" });
         $("#footer_menu_name_2").css({ transform: "scale(1)" });
         $("#footer_menu_name_3").css({ transform: "scale(1)" });
+        $("#footer").removeClass("closed")
+        $("#footer").addClass("open")
     })
     $("#footer_back").on("click", function () {
         $("#footer_menu_1").removeClass("footer_first");
@@ -807,6 +842,36 @@ $(function () {
         $("#footer_menu_name_1").css({ transform: "scale(0)" });
         $("#footer_menu_name_2").css({ transform: "scale(0)" });
         $("#footer_menu_name_3").css({ transform: "scale(0)" });
+        $("#footer").removeClass("open")
+        $("#footer").addClass("closed")
+    })
+    // $("#footer").on("click", function () {
+    //     console.log("aaa")
+    // })
+
+    $(document).on("click", ".open", function () {
+        $("#footer_menu_1").removeClass("footer_first");
+        $("#footer_menu_3").removeClass("footer_third");
+        $("#footer_menu_name_1").removeClass("footer_first");
+        $("#footer_menu_name_3").removeClass("footer_third");
+
+        $("#footer_menu_1").addClass("footer_third");
+        $("#footer_menu_3").addClass("footer_first");
+        $("#footer_menu_name_1").addClass("footer_third");
+        $("#footer_menu_name_3").addClass("footer_first");
+
+        $(".footer").css({ transform: "rotate(0deg)" })
+        $("#footer_back").removeClass("footer_back")
+
+        $("#footer_menu_1").css({ transform: "scale(0)" });
+        $("#footer_menu_2").css({ transform: "scale(0)" });
+        $("#footer_menu_3").css({ transform: "scale(0)" });
+
+        $("#footer_menu_name_1").css({ transform: "scale(0)" });
+        $("#footer_menu_name_2").css({ transform: "scale(0)" });
+        $("#footer_menu_name_3").css({ transform: "scale(0)" });
+        $("#footer").removeClass("open")
+        $("#footer").addClass("closed")
     })
     //画像アップロードで画面表示する関数
     $(document).on('change', '#file', function (e) {
@@ -825,7 +890,8 @@ $(function () {
         ) {
             alert('ラベル名は入力必須です！')
         } else {
-            storeData();
+            id = $(".main").attr('data-id')
+            storeData(id, indexData_fanlist);
             modalBg.fadeOut();
             modalMain.removeClass("_slideUp");
             modalMain.addClass("_slideDown");
@@ -855,13 +921,13 @@ $(function () {
         }
     });
     // 好きなシーン投稿ボタンクリック時に登録
-    $(document).on('click', '#post_scene', function () {
+    $(document).on('click', '#post_tweet', function () {
         if (
             $('#summary').val() == '' || $('#comment').val() == ''
         ) {
             alert('言葉・シーンと好きな理由は入力必須です！')
         } else {
-            storeData_serif();
+            storeData_tweet();
             modalBg.fadeOut();
             modalMain.removeClass("_slideUp");
             modalMain.addClass("_slideDown");

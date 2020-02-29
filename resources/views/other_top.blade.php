@@ -2,34 +2,21 @@
 @section('content')
 <script src="{{ asset('js/user_top_api_ajax.js') }}" defer></script>
 
-<div class="main" data-id="{{$userid}}">
+<div class="main" other-id="{{$userid}}">
 
     <div class=slider>
         <div class="content">
-            <div class=chara_top>
-                <div class=chara id=user_left>
-                    <!-- <img id=chara_img src="img/Drstone.png">
-                <div class="user_name">Dr.デモ太郎</div> -->
-                </div>
-                <div class=guild_status>
-                    <div style="text-align:start;margin:0 24px;">職業
-                    </div>
-                    <img id=job_icon src="/storage/icon/evan.png" style="height:62px;width:72px;margin:0 48px;">
-                    <div style="color:#FF8500">エバンジェリスト</div>
-                    <div class=chara_population>
-                        <div class=pop style="color:#969696;"><br></div>
-
-                    </div>
-                </div>
+            <div class=chara_top id=user_left>
+                
             </div>
             
             <div class="middle_bar">
                 <div class=middle_bar_outline>
                     <div class=middle_bar_1 style="padding:6px 6px 3px 6px ;">マイキャラ</div>
                 </div>
-                <div class=middle_bar_outline>
+                <!-- <div class=middle_bar_outline>
                     <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;">投稿一覧</div>
-                </div>
+                </div> -->
                 <!-- <div class=middle_bar_outline>
                     <div class=middle_bar_4 style="padding:6px 6px 3px 6px ;">ギルドメンバー</div>
                 </div> -->

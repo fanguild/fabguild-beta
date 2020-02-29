@@ -1,11 +1,30 @@
 $(function () {
 
+    // データからhtmlを出力する関数(labellist)
+    function make_dom_labellist(data) {
+
+        var str = '';
+        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
+
+        for (var i = 0; i < data.length; i++) {
+            str += `<a class=listparent>
+                <div class=list>
+                    <div style="margin:6px;">
+                        <div>${data[i].labelname}</div>
+                    </div>
+                </div>
+                <div style="font-size:large">${data[i].count}</div>
+            </a>`;
+        }
+
+        return str;
+
+    }
     // データからhtmlを出力する関数(fanlist)
     function make_dom_fanlist(data) {
 
         var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">ファンリスト</div>`
+        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
 
         for (var i = 0; i < data.length; i++) {
             str += `<a href="/user/${data[i].userid}" class=listparent>
@@ -236,6 +255,42 @@ $(function () {
         }
         return str;
     }
+    //キャラトップのhtmlを出力
+    function make_dom_charatop(data) {
+        var str = ``
+        str += `<div class=s_bx_c>
+                        <div class=chara_status>
+                            <div class=quantity>1</div>
+                            <div class=sub style="color:#FF8500">総合ランキング</div>
+                        </div>
+                    </div>
+                    <div class=s_bx_c>
+                        <div class=chara_status>
+                            <div class=quantity id=sum>${data[1]}</div>
+                            <div class=sub>総ファン数</div>
+                        </div>
+                        <div class=chara_status>
+                            <div class=quantity id=mlc>${data[2]}</div>
+                            <div class=sub>推しファン数</div>
+                        </div>
+                    </div>`;
+        return str;
+    }
+    //表示する関数（top）
+    function indexDataCharaTop(id) {
+        const url = `/api/chara/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('.status_bx').html(make_dom_charatop(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
 
     // 表示する関数(tweet)
     function indexData_tweet(id) {
@@ -293,6 +348,22 @@ $(function () {
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
                 $('#echo').html(make_dom_fanlist(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    // 表示する関数(fanlist)
+    function indexData_labellist(id) {
+        //
+        const url = `/api/labellist/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#echo').html(make_dom_labellist(data));
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -397,9 +468,12 @@ $(function () {
 
     // 読み込み時に実行
     $(".middle_bar").scrollLeft(300);
-    $(".middle_bar_1").addClass("middle_bar_add");
-    var id = $(".main").attr('data-id')
-    indexData_guild(id);
+    $(".middle_bar_6").addClass("middle_bar_add");
+    // var id = $(".main").attr('data-id')
+    // indexData_guild(id);
+    id = $(".main").attr('data-id')
+    indexData_fanlist(id);
+    indexDataCharaTop(id);
 
     $(document).on("click", "#fan_gross", function () {
         id = $(".main").attr('data-id')
@@ -422,7 +496,14 @@ $(function () {
     })
     $(".middle_bar_5").on("click", function () {
         id = $(".main").attr('data-id')
-        indexData_serif(id)
+        indexData_labellist(id)
     })
-
+    $(".middle_bar_6").on("click", function () {
+        id = $(".main").attr('data-id')
+        indexData_fanlist(id)
+    })
+    $(".middle_bar_7").on("click", function () {
+        id = $(".main").attr('data-id')
+        // indexData_serif(id)
+    })
 });

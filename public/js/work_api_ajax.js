@@ -6,22 +6,24 @@ $(function () {
         var mycharas = data[0]
         var charas = data[1]
         var s3url = "/storage/icon/nolicense.svg"
-
+        var mychara = "";
         for (var i = 0; i < charas.length; i++) {
             for (var t = 0; t < mycharas.length; t++) {
                 if (mycharas[t].charaid == charas[i].id) {
                     s3url = mycharas[t].s3url
+                    mychara = "<div>マイキャラ</div>"
                 }
             }
             str += `<a href="/chara/${charas[i].id}" class=listparent>
                     <div class=list><div><img class=thumbnail_img src="${s3url}"></div><div style="margin:6px;">
                             <div>${charas[i].name}</div>
-                            <div>マイキャラ</div>
+                            ${mychara}
                         </div>
                     </div>
                     <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
                     </a>`;
             s3url = "/storage/icon/nolicense.svg"
+            mychara = "";
         }
         return str;
     }

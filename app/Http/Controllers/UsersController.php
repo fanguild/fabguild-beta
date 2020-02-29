@@ -25,4 +25,11 @@ class UsersController extends Controller
             return view('other_top', ['userid'=>$userid,'chara'=>$chara]);
         }
     }
+
+    public function other_logout($id)
+    {
+        $chara = "";
+        $userid = $id;
+        return view('other_top', ['userid'=>$userid,'chara'=>$chara]);
+    }
 }

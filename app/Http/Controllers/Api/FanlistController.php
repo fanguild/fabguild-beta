@@ -36,10 +36,11 @@ class FanlistController extends Controller
     // }
 
     //表示処理関数
-    public function index($id)
+    public function fanlist($id)
     {
         $fanlist = Mychara::where('charaid', $id)
                 ->join('users', 'mycharas.userid', '=', 'users.id')
+                ->orderBy('id', 'desc')
                 ->get();
         return $fanlist;
     }
