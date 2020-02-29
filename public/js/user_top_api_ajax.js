@@ -499,6 +499,7 @@ $(function () {
         console.log(5 * (a - 1) + b)
         indexDataWork(5 * (a - 1) + b)
     })
+
     // データからhtmlを出力する関数(アルバム)
     function make_dom_storage(data) {
         var str = '';
