@@ -51,7 +51,10 @@ class CharasController extends Controller
     {
         $charas = Chara::where('id', $id)
             ->first();
-        return $charas;
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+            ->get();
+        $userid = Auth::user()->id;
+        return [$mycharas,$userid,$charas];
     }
 
     //footer用キャラデータ関数

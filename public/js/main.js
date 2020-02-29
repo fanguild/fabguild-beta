@@ -60,16 +60,16 @@ $(function () {
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
                                     <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.name}</div>
-                                    <input type="hidden" name="charaid" value="${data.id}">
-                                    <input type="hidden" name="charaname" value="${data.name}">
+                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data[2].name}</div>
+                                    <input type="hidden" name="charaid" value="${data[2].id}">
+                                    <input type="hidden" name="charaname" value="${data[2].name}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
                                     <div style="width:30%;color:#969696;margin:6px;">作品名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data.title}</div>
-                                    <input type="hidden" name="title" value="${data.title}">
+                                    <div style="font-size:18px;margin:3px 6px 0px 6px;">${data[2].title}</div>
+                                    <input type="hidden" name="title" value="${data[2].title}">
                                 </div>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
@@ -216,7 +216,7 @@ $(function () {
                            
                             <div class="listparent" style="border:none">
                                 <div class="list" style="width:100%;">
-                                    <textarea id="tweet_mychara" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder="">${mychara}</textarea>
+                                    <textarea id="tweet_mychara" style="color:#333333;margin:6px;height:240px;width:100%" name="comment" placeholder="">${mychara}</textarea>
                                 </div>
                             </div>
                             
@@ -252,7 +252,7 @@ $(function () {
                         
                             <div class="listparent" style="border:none">
                                 <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
+                                    <textarea id="comment" style="color:#333333;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
                                 </div>
                             </div>
                         </form>
@@ -277,7 +277,7 @@ $(function () {
                         <form id=api_form>
                             <div class="listparent" style="border:none">
                                 <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#969696;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
+                                    <textarea id="comment" style="color:#333333;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
                                 </div>
                             </div>
                         </form>
@@ -497,12 +497,13 @@ $(function () {
                         modalBg.next(modalMain).addClass("_slideUp");
                         modalMain.html(make_dom_modal_addmychara(data))
                     } else if (id == 1) {
+                        console.log(data)
                         modalMain.html(make_dom_madal_share(data));
                         modalBg.fadeIn();
                         modalBg.next(modalMain).removeClass("_slideDown");
                         modalBg.next(modalMain).addClass("_slideUp");
                     } else {
-                        modalMain.html(make_dom_madal_postpic(data));
+                        modalMain.html(make_dom_madal_postpic());
                         modalBg.fadeIn();
                         modalBg.next(modalMain).removeClass("_slideDown");
                         modalBg.next(modalMain).addClass("_slideUp");
@@ -524,6 +525,7 @@ $(function () {
                         modalBg.next(modalMain).addClass("_slideUp");
                         modalMain.html(make_dom_modal_addmychara())
                     } else if (id == 1) {
+                        console.log(data);
                         modalMain.html(make_dom_madal_share(data));
                         var str = $('#tweet_mychara').val()
                         var count = Math.floor(getLen(str) / 2)
