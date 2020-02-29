@@ -18,72 +18,80 @@ Route::get('/', function () {
     return view('top');
 });
 
+
 Route::get('/tasks', function () {
     return view('tasks');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// ログイン中のみ処理を実行する
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
 
-// SNS認証へのページ遷移
-Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
+    // SNS認証へのページ遷移
+    Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
-Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
+    Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
 
-// APIテストページ
-Route::get('/test_user', 'TestsController@test_user');
+    // APIテストページ
+    Route::get('/test_user', 'TestsController@test_user');
 
-// 画像アップロードテストページ
-Route::get('/uploadtest', 'UploadsController@upload');
+    // 画像アップロードテストページ
+    Route::get('/uploadtest', 'UploadsController@upload');
 
-//キャラのトップページ
-Route::get('/chara/{chara}', function (Chara $chara) {
-    $sum = Mychara::where('charaid', $chara->id)->count();
-    $s3url = Mychara::where('userid', Auth::user()->id)
+    //キャラのトップページ
+    Route::get('/chara/{chara}', function (Chara $chara) {
+        $sum = Mychara::where('charaid', $chara->id)->count();
+        $s3url = Mychara::where('userid', Auth::user()->id)
             ->where('charaid', $chara->id)
             ->select('s3url')->first();
-    return view('chara_top_olt', [
+        return view('chara_top_olt', [
         "chara" => $chara,
         "sum" => $sum,
         "s3url" => $s3url
     ]);
-});
+    });
 
-//タイムラインページ
-Route::get('/timeline', function () {
-    return view('chara_timeline');
-});
+    //タイムラインページ
+    Route::get('/timeline', function () {
+        return view('chara_timeline');
+    });
 
-//画像投稿ページ
-Route::get('/upload', function () {
-    return view('upload');
-});
+    //画像投稿ページ
+    Route::get('/upload', function () {
+        return view('upload');
+    });
 
-//検索ページ
-Route::get('/upload/search', function () {
-    return view('search_upload');
-});
-Route::get('/search', function () {
-    return view('search_mychara');
-});
+    //検索ページ
+    Route::get('/upload/search', function () {
+        return view('search_upload');
+    });
+    Route::get('/search', function () {
+        return view('search_mychara');
+    });
 
-//セリフ投稿
-Route::get('/serif', function () {
-    return view('serif');
-});
+    //セリフ投稿
+    Route::get('/serif', function () {
+        return view('serif');
+    });
 
-//ユーザートップ
-Route::get('user', 'UsersController@index')->name('user');
+    //ユーザートップ
+    Route::get('user', 'UsersController@index')->name('user');
+
+
+    //他ユーザーのページを見れるようにしたい
+    Route::get('user/{id}', 'UsersController@other');
+
+    //キャラインポート用
+    Route::get('/import', 'ImportController@index');
+
+    //作品トップ
+    Route::get('work/{work}', 'WorksController@index');
+});
 
 //他ユーザーのページを見れるようにしたい
-Route::get('user/{id}', 'UsersController@other');
-
-//キャラインポート用
-Route::get('/import', 'ImportController@index');
-
-//作品トップ
-Route::get('work/{work}', 'WorksController@index');
+Route::get('user/{id}', 'UsersController@other_logout');
 
 
 //twitter API表示用（仮）

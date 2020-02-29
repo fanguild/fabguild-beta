@@ -90,7 +90,7 @@ $(function () {
                         <div class="media-body">
                             <h5 class="d-inline mr-3"><strong>${tweet[i].user.name}</strong></h5>
                             <h6 class="d-inline text-secondary">${tweet[i].created_at}</h6>
-                            <p class="mt-3 mb-0">${tweet[i].text}</p>`
+                            <p class="mt-3 mb-0">${tweet[i].full_text}</p>`
 
                     str += `<img src="${tweet[i].entities.media[0].media_url}" style="width:100%">`
 
@@ -105,6 +105,27 @@ $(function () {
                                 </div>
                             </div>
                         </div>`;
+                } else {
+                    str += ` <div class="card mb-2">
+                <div class="card-body">
+                    <div class="media">
+                        <img src="${tweet[i].user.profile_image_url}" class="rounded-circle mr-4">
+                        <div class="media-body">
+                            <h5 class="d-inline mr-3"><strong>${tweet[i].user.name}</strong></h5>
+                            <h6 class="d-inline text-secondary">${tweet[i].created_at}</h6>
+                            <p class="mt-3 mb-0">${tweet[i].text}</p>`
+
+                    str += `</div>
+                            </div>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <div class="d-flex flex-row justify-content-end">
+                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+                                </div>
+                            </div>
+                        </div>`
                 }
             }
         } else {
@@ -132,9 +153,12 @@ $(function () {
     }
     //マイキャラ情報（フィルタ用）
     function make_dom_filter(data) {
-        var str = `<label><input type=radio name=mychara value=0 checked="checked">全員</label>`
+        var str = `<input type=radio name=mychara value=0 checked="checked" id=0>
+                    <label for=0>全員</label>`
         for (var t = 0; t < data.length; t++) {
-            str += `<label><input type=radio name=mychara value=${data[t].charaid}>${data[t].charaname}</label>`;
+            str += `<input type=radio name=mychara value=${data[t].charaid} id=no_${data[t].charaid}>
+            <label for=no_${data[t].charaid}>${data[t].charaname}</label>
+                    `;
         }
         return str;
     }
@@ -159,7 +183,7 @@ $(function () {
                 if (mychara[i].s3url) {
                     str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
                             <div class=list>
-                                <div><img class=thumbnail_img src="${mychara[i].s3url}"></div>
+                                <div><img class=thumbnail_img src="${mychara[i].s3url}" oncontextmenu="return false;"></div>
                                 <div class="name_bx">
                                     <div>${mychara[i].name}</div>
                                     <div class=sub style="color:#969696">${mychara[i].title}</div>
@@ -173,7 +197,7 @@ $(function () {
                 } else {
                     str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
                             <div class=list>
-                                <div><img class=thumbnail_img src="/storage/icon/nolicense.svg"></div>
+                                <div><img class=thumbnail_img src="/storage/icon/nolicense.svg" oncontextmenu="return false;"></div>
                                 <div class="name_bx"">
                                     <div>${mychara[i].name}</div>
                                     <div style="color:#969696">${mychara[i].title}</div>
@@ -229,8 +253,7 @@ $(function () {
     }
     // 表示する関数(tweet)
     function indexData_tweet(id, callback) {
-
-        //
+        //選択したキャラのみのタイムライン
         if (id) {
             const url = `/api/twitter/${id}`;
             $.ajax(url)
@@ -245,8 +268,8 @@ $(function () {
                 .always(function () {
                     console.log('get:complete');
                 });
-        } else {
-            const url = `/api/user/twitter`;
+        } else {//マイキャラ全員分のタイムライン表示
+            const url = `/api/twitter`;
             $.ajax(url)
                 .done(function (data, textStatus, jqXHR) {
                     console.log(data);
@@ -397,7 +420,7 @@ $(function () {
         deleteData(id);
     });
 
-    var userid = $(".main").attr('data-id');
+    var userid = $(".main").attr('other-id');
     // 読み込み時に実行
     indexDataUser(userid);
     $(".middle_bar_1").addClass("middle_bar_add");
@@ -478,7 +501,9 @@ $(function () {
     })
     // データからhtmlを出力する関数(アルバム)
     function make_dom_storage(data) {
-        var album = `<a href="" class="listparent" style="border: none;">
+        var str = '';
+        if (data.length > 0) {
+            var album = `<a href="" class="listparent" style="border: none;">
                     <div class="list">
                         <div><img class="thumbnail_img" src="/storage/icon/album.svg"></div>
                         <div style="margin:6px 3px">
@@ -487,34 +512,55 @@ $(function () {
                         </div>
                     </div>
                 </a>`
-        var str = `<div class="item_container">`
-        for (var i = 0; i < data.length; i++) {
-            str += `<div class="item_box">
+            var str = `<div class="item_container">`
+            for (var i = 0; i < data.length; i++) {
+                str += `<div class="item_box">
                         <div class="item_img">
                             <img src="${data[i].s3url}" alt="">
                         </div>
                     </div>`
+            }
+            str += `</div>`;
+        } else {
+            str += make_dom_nodata()
         }
-        str += `</div>`;
         return str;
     }
     // 表示する関数(アルバム）
-    function indexData_storage() {
+    function indexData_storage(id) {
         //
-        const url = `/api/upload_u`;
-        $.ajax(url)
-            .done(function (data, textStatus, jqXHR) {
-                console.log(data);
-                $("#search").hide()
-                $('#echo').html(make_dom_storage(data));
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.status + textStatus + errorThrown);
-            })
-            .always(function () {
-                console.log('get:complete');
-            });
+        if (id) {
+            const url = `/api/upload/user/${id}`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $("#search").hide()
+                    $('#echo').html(make_dom_storage(data));
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        } else {
+            const url = `/api/upload/user`;
+            $.ajax(url)
+                .done(function (data, textStatus, jqXHR) {
+                    console.log(data);
+                    $("#search").hide()
+                    $('#echo').html(make_dom_storage(data));
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR.status + textStatus + errorThrown);
+                })
+                .always(function () {
+                    console.log('get:complete');
+                });
+        }
     }
+
+
     $(".middle_bar_1").on("click", function () {
         $("#filter").empty();
         indexDataUser(userid);
@@ -530,12 +576,24 @@ $(function () {
 
     })
     $(document).on("change", "input[name='mychara']", function () {
+
+        var current = $(".middle_bar_add").attr("data-id")
         var val = $(this).val();
+        console.log(current)
         console.log(val)
-        if (val == 0) {
-            indexData_tweet()
+        if (current == 1) {
+            if (val == 0) {
+                indexData_tweet()
+            } else {
+                indexData_tweet(val)
+            }
         } else {
-            indexData_tweet(val)
+            if (val == 0) {
+                indexData_storage()
+            } else {
+                indexData_storage(val)
+            }
         }
     })
+
 })

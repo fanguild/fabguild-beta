@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Auth;
 use Socialite;
+use Request;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Abraham\TwitterOAuth\TwitterOAuth;
 
 class SocialAuthController extends Controller
 {
     use AuthenticatesUsers;
     protected $redirectTo = '/user';
-
+    
     /**
      * ユーザーをTwitterの認証ページにリダイレクトする
      *
@@ -39,7 +42,10 @@ class SocialAuthController extends Controller
         $authUser = $this->findOrCreateUser("TW", $user);
 
         Auth::login($authUser, true);
+        $token = $user->token;
+        $tokenSecret = $user->tokenSecret;
 
+        session()->put(['token'=>$token,'tokenSecret'=>$tokenSecret]);
         return redirect()->route('user');
     }
 

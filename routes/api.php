@@ -21,7 +21,10 @@ Route::group(['middleware' => ['api']], function () {
     //twitter表示のテスト
     Route::get('/twitter/{chara}', 'Api\TwitterController@index');
 });
-
+Route::group(['middleware' => ['api']], function () {
+    // 他ユーザーの表示
+    Route::get('/user/{id}', 'Api\UsersController@other');
+});
 
 // ログイン中のみ処理を実行する
 Route::group(['middleware' => ['auth']], function () {
@@ -35,20 +38,28 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/task/{task}', 'Api\TasksController@destroy');
 
         //twitter表示のテスト
-        Route::get('/user/twitter', 'Api\TwitterController@index_u');
+        Route::get('/twitter', 'Api\TwitterController@index_u');
 
         // Fileのアップロードテスト
         // 表示（）
         Route::get('/uploads', 'Api\UploadsController@index');
         // 登録（マイキャラ）
-        Route::post('/uploadsstore', 'Api\MycharasController@store');
+        Route::post('/mychara/register', 'Api\MycharasController@store');
         // 表示
         Route::get('/mychara', 'Api\MycharasController@index');
+        //キャラページのファンリスト
+        Route::get('/fanlist/{id}', 'Api\MycharasController@fanlist');
+        //キャラページのラベルリスト
+        Route::get('/labellist/{id}', 'Api\MycharasController@labellist');
+
 
         // 表示(画像倉庫)
         Route::get('/upload_pic/{id}', 'Api\UploadController@index');
         // 表示(マイアルバム)
-        Route::get('/upload_u', 'Api\UploadController@index_u');
+        Route::get('/upload/user', 'Api\UploadController@index_u');
+        // 表示(マイアルバム)フィルタ用
+        Route::get('/upload/user/{id}', 'Api\UploadController@index_f');
+
 
         // 登録(画像)
         Route::post('/upload_pic', 'Api\UploadController@store');
@@ -66,9 +77,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/tweet', 'Api\TwitterController@tweet');
         // 表示
         Route::get('/guild/{chara}', 'Api\CharasController@index');
+        // キャラステータスの表示
+        Route::get('/chara/{id}', 'Api\CharasController@index');
 
-        //投稿用データ取得
-        Route::get('/postready/{id}', 'Api\CharasController@postready_index');
+        //footerデータ取得(個別キャラ)
+        Route::get('/footer/{id}', 'Api\CharasController@footer_ind_index');
+        //footerデータ取得（マイキャラ）
+        Route::get('/footer', 'Api\CharasController@footer_index');
+
 
         //キャラインポート用
         Route::get('/import1', 'Api\ImportController@index');
@@ -78,8 +94,7 @@ Route::group(['middleware' => ['auth']], function () {
         //タイトル別検索結果
         Route::get('/title/{category}', 'Api\TitlesController@index');
 
-        //キャラページのファンリスト
-        Route::get('/fanlist/{id}', 'Api\FanlistController@index');
+       
         //作品別キャラリスト
         Route::get('/work/{id}', 'Api\WorksController@index');
     });
@@ -91,8 +106,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['api']], function () {
         // 表示
         Route::get('/user', 'Api\UsersController@index');
-        // 他ユーザーの表示
-        Route::get('/user/{id}', 'Api\UsersController@other');
+        // // 他ユーザーの表示
+        // Route::get('/user/{id}', 'Api\UsersController@other');
         // 登録
         Route::post('/userstore', 'Api\UsersController@store');
         // 削除

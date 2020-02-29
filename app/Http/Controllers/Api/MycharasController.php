@@ -39,8 +39,10 @@ class MycharasController extends Controller
             ->where('charaid', $request->charaid)
             ->first();
         $sum = Mychara::where('charaid', $request->charaid)->count();
+        $mlc = Mychara::where('charaid', $request->charaid)
+            ->where('labelname', '推し')->count();
 
-        return ['mycharas_return'=>$mycharas_return,'sum'=>$sum];
+        return ['mycharas_return'=>$mycharas_return,'sum'=>$sum,'mlc'=>$mlc];
     }
 
     //表示処理関数
@@ -51,7 +53,28 @@ class MycharasController extends Controller
             ->get();
         return $mycharas;
     }
-
+    //ファンリスト表示関数
+    public function fanlist($id)
+    {
+        $fanlist = Mychara::where('charaid', $id)
+                ->join('users', 'mycharas.userid', '=', 'users.id')
+                ->select('mycharas.id', 'userid', 'name', 'avatar')
+                ->orderBy('id', 'desc')
+                ->get();
+        return $fanlist;
+    }
+    //ラベルリスト表示関数
+    public function labellist($id)
+    {
+        $labellist = Mychara::where('charaid', $id)
+                ->select(
+                    'labelname',
+                    \DB::raw('COUNT(labelname) AS count')
+                )->groupBy('labelname')
+                ->orderBy('count', 'desc')
+                ->get();
+        return $labellist;
+    }
 
     public function destroy($upload_id)
     {

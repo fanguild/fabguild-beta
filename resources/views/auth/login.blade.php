@@ -1,73 +1,84 @@
-@extends('layouts.app')
-
+@extends('layouts.header')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<div class="contents">
+    {{-- ログインページへ遷移 --}}
+    <div style="height:48px"></div>
+    <div><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:192px"></div>
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class=login_board>
+        <h4 style="margin:0 0px 24px 0px;border-bottom:solid 2px #FF8500;padding:0 8px"><strong>LOGIN</strong></h4>
+        <form action=" {{url('auth/twitter')}}">
+            <button id=btn><strong>Twitterでログイン</strong><img src=""></button>
+        </form>
+        
     </div>
 </div>
+</div>
+
+</html>
+
+<style>
+    @charset "UTF-8";
+
+    :root {
+        --top-font-size: calc(3rem + ((1vw - 0.64rem) * 2.1429));
+        --main-font-size: calc(2.4rem + ((1vw - 0.64rem) * 2.1429));
+        --sub-font-size: calc(2.2rem + ((1vw - 0.64rem) * 2.1429));
+        --index-font-size: calc(1.6rem + ((1vw - 0.64rem) * 2.1429));
+        --description-font-size: calc(1.8rem + ((1vw - 0.64rem) * 2.1429));
+        --img-circle-size: calc(12rem + ((1vw - 0.64rem) * 2.1429));
+        --base-padding: 0 3rem 1rem;
+        --main-color: #ff8500;
+        --sub-color: #ffbb00;
+        --third-color: #fff6eb;
+        --sp-button-size: calc(6rem + ((1vw - 0.64rem) * 2.1429));
+    }
+
+    .contents {
+        background: -moz-linear-gradient(bottom, var(--main-color), var(--sub-color));
+        background: -webkit-linear-gradient(bottom, var(--main-color), var(--sub-color));
+        background: linear-gradient(to top, var(--main-color), var(--sub-color));
+        height: 812px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .login_board {
+        height: 240px;
+        width: 300px;
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        appearance: none;
+    }
+
+    #btn {
+        background: #ff8500 0% 0% no-repeat padding-box;
+        border-color: #ff8500;
+        width: 240px;
+        padding: 8px 24px 8px 24px;
+        margin: 4px 20px 4px 20px;
+        color: #ffffff;
+        font-weight: 500;
+    }
+</style>
+<script>
+    $("#header").hide();
+    $("#footer").hide();
+</script>
 @endsection

@@ -1024,7 +1024,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
+    z-index: 13;
     display: none;
     }
     .js-modal__main {
@@ -1133,11 +1133,11 @@ body {
     }
     .js-modal__main._slideUp {
     animation: SlideUp 0.6s ease forwards;
-    z-index: 11;
+    z-index: 13;
     }
     .js-modal__main._slideDown {
     animation: SlideDown 0.6s ease forwards;
-    z-index: 11;
+    z-index: 13;
     }
     .modal_body{
         padding:24px 0px 0px 0px;
@@ -1152,6 +1152,7 @@ body {
 }
     #api_form .listparent{
         margin:0px 0px 24px 0px;
+        padding: 12px;
     }
     .user_name{
         font-size: 14px;
@@ -1409,6 +1410,7 @@ body {
     flex-direction: column;
     justify-content: center;
     padding:0 6px;
+    min-width: 30%;
 }
 
 .quantity{
@@ -1421,5 +1423,32 @@ body {
     color:#969696;
 }
 #filter{
-    height:24px;
+    height:auto;
+}
+input[type=radio] {
+display: none; 
+}
+input:checked+label{
+    background-color: #FFFFFF;
+    color: #ff8500;
+}
+label{
+    background-color: #FF8500;
+    text-align: center;
+    border-radius: 18px;
+    box-shadow: 0px 3px 6px #00000029;
+    padding: 4px 12px 4px 12px;
+    margin: 4px;
+    color: #ffffff;
+}
+.status_bx{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width:50%;
+}
+.s_bx_c{
+    display: flex;
+    justify-content: center;
+    padding: 6px 0px;
 }
