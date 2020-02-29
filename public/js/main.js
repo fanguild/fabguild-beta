@@ -202,7 +202,7 @@ $(function () {
     function make_dom_madal_share(data) {
         var mychara = '#自分の推しキャラを晒す\n';
         for (var i = 0; i < data[0].length; i++) {
-            mychara += `#${data[0][i].charaname}\n`;
+            mychara += `${data[0][i].charaname}\n`;
         }
         mychara += `http://fanguild-6281.lolipop.io/user/${data[1]}`
         var str = `<div class="modal-header">
