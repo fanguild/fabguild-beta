@@ -50,9 +50,9 @@ $(function () {
         if (data) {//data=キャラデータがあれば
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">マイキャラ追加</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <div id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     
                     <div class="modal_body" id='mychara'>
@@ -107,9 +107,9 @@ $(function () {
         } else {//主にユーザートップページではこちら
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">マイキャラ編集</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <div id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal_body" id='mychara'>
                     <div class=slider>
@@ -207,9 +207,9 @@ $(function () {
         mychara += `http://fanguild-6281.lolipop.io/user/${data[1]}`
         var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <div id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal_body" id='mychara' style="height:400px">
                         <form id=api_form>
@@ -300,9 +300,9 @@ $(function () {
         if (data) {
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">好きな画像保存</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <div id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal_body" id='mychara'>
                         <form id=api_form>
@@ -348,9 +348,9 @@ $(function () {
         } else {
             var str = `<div class="modal-header">
                         <h6 class="modal-title" id="label1">好きな画像保存</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
+                        <div id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
-                        </button>
+                        </div>
                     </div>
                     <div class="modal_body" id='mychara'>
                     <div class=slider>
