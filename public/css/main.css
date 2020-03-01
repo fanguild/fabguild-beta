@@ -11,6 +11,7 @@ body {
 }
 
 img {
+    pointer-events: none; 
 -webkit-touch-callout:none;
   -webkit-user-select:none;
   -moz-touch-callout:none;
@@ -19,6 +20,7 @@ img {
   user-select:none;
 }
 .media-body img {
+    pointer-events: all; 
   touch-callout:all;
   user-select:all;
 }
