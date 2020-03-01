@@ -44,7 +44,23 @@ class CharasController extends Controller
         $mlc = Mychara::where('charaid', $id)
             ->where('labelname', '推し')
             ->count();
-        return [$charas,$sum,$mlc];
+
+        $rankinglists = Mychara::select(
+            'charaid',
+            'charaname',
+            \DB::raw('COUNT(charaid) AS count'),
+        )->groupBy('charaid', 'charaname')
+                ->orderBy('count', 'desc')
+                ->get();
+        $no = 0;
+        foreach ($rankinglists as $ranking) {
+            $no ++;
+            if ($ranking->charaid==$id) {
+                $rank = $no;
+            }
+        }
+                
+        return [$charas,$sum,$mlc,$rank];
     }
     //投稿用キャラデータ関数
     public function footer_ind_index($id)

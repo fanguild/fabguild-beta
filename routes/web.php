@@ -52,6 +52,18 @@ Route::group(['middleware' => ['auth']], function () {
         "s3url" => $s3url
     ]);
     });
+    //ランキングページ
+    Route::get('/rank/{chara}', function (Chara $chara) {
+        $sum = Mychara::where('charaid', $chara->id)->count();
+        $s3url = Mychara::where('userid', Auth::user()->id)
+            ->where('charaid', $chara->id)
+            ->select('s3url')->first();
+        return view('ranking', [
+        "chara" => $chara,
+        "sum" => $sum,
+        "s3url" => $s3url
+    ]);
+    });
 
     //タイムラインページ
     Route::get('/timeline', function () {

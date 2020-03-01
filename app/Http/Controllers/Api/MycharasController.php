@@ -73,9 +73,61 @@ class MycharasController extends Controller
                 )->groupBy('labelname')
                 ->orderBy('count', 'desc')
                 ->get();
+        
         return $labellist;
     }
+    //ランキングリスト表示関数
+    public function ranking($id)
+    {
+        $rankinglists = Mychara::join('charas', 'mycharas.charaid', '=', 'charas.id')
+            ->select(
+                'charaid',
+                'charaname',
+                'title',
+                \DB::raw('COUNT(charaid) AS count'),
+            )->groupBy('charaid', 'charaname')
+                ->orderBy('count', 'desc')
+            ->get();
+        
+        return $rankinglists;
+    }
+    //ランキングリスト表示関数(mlc)
+    public function ranking_mlc($id)
+    {
+        $rankinglists = Mychara::join('charas', 'mycharas.charaid', '=', 'charas.id')
+            ->where('labelname', '推し')
+            ->select(
+                'charaid',
+                'charaname',
+                'labelname',
+                'title',
+                \DB::raw('COUNT(labelname) AS count'),
+            )->groupBy('labelname', 'charaid', 'charaname', 'title')
+                ->orderBy('count', 'desc')
+                ->get();
+        
+        return $rankinglists;
+    }
+    //ランキングリスト表示関数(title)
+    public function ranking_title($id)
+    {
+        $title = Chara::where('id', $id)
+            ->select('title')
+            ->first();
 
+        $rankinglists = Mychara::join('charas', 'mycharas.charaid', '=', 'charas.id')
+            ->where('title', $title->title)
+            ->select(
+                'charaid',
+                'charaname',
+                'title',
+                \DB::raw('COUNT(charaid) AS count'),
+            )->groupBy('charaid', 'charaname')
+                ->orderBy('count', 'desc')
+            ->get();
+        
+        return $rankinglists;
+    }
     public function destroy($upload_id)
     {
         $upload = Upload::where('userid', Auth::user()->id)->find($upload_id);

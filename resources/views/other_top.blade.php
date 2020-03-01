@@ -6,7 +6,7 @@
 
     <div class=slider>
         <div class="content">
-            <div class=chara_top id=user_left>
+            <div id=user_left>
                 
             </div>
             

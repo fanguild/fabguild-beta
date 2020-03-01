@@ -51,7 +51,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/fanlist/{id}', 'Api\MycharasController@fanlist');
         //キャラページのラベルリスト
         Route::get('/labellist/{id}', 'Api\MycharasController@labellist');
-
+        // ランキングの表示
+        Route::get('/ranking/{id}', 'Api\MycharasController@ranking');
+        Route::get('/ranking/mlc/{id}', 'Api\MycharasController@ranking_mlc');
+        Route::get('/ranking/title/{id}', 'Api\MycharasController@ranking_title');
 
         // 表示(画像倉庫)
         Route::get('/upload_pic/{id}', 'Api\UploadController@index');
@@ -79,6 +82,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/guild/{chara}', 'Api\CharasController@index');
         // キャラステータスの表示
         Route::get('/chara/{id}', 'Api\CharasController@index');
+
+        
 
         //footerデータ取得(個別キャラ)
         Route::get('/footer/{id}', 'Api\CharasController@footer_ind_index');

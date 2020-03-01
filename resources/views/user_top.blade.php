@@ -7,17 +7,8 @@
 
     <div class=slider>
         <div class="content">
-            <div class=chara_top id=user_left>
-                <!-- <div class=chara>
-                </div>
-                <div class=user_status>
-                        <div class=quantity>0</div>
-                        <div class=sub style="color:#FF8500">マイキャラ</div>
-                </div>    
-                <div class=user_status>
-                        <div class=quantity>0</div>
-                        <div class=sub style="color:#FF8500">マイアルバム</div>
-                </div>                 -->
+            <div id=user_left>
+                
             </div>
             <div class="middle_bar">
                 <div class=middle_bar_outline>

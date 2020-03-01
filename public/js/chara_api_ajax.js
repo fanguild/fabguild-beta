@@ -259,10 +259,10 @@ $(function () {
     function make_dom_charatop(data) {
         var str = ``
         str += `<div class=s_bx_c>
-                        <div class=chara_status>
-                            <div class=quantity>1</div>
+                        <a href="/rank/${data[0][0].id}" class=chara_status>
+                            <div class=quantity>${data[3]}</div>
                             <div class=sub style="color:#FF8500">総合ランキング</div>
-                        </div>
+                        </a>
                     </div>
                     <div class=s_bx_c>
                         <div class=chara_status>

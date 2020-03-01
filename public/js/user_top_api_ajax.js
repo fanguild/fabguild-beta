@@ -137,10 +137,11 @@ $(function () {
     // データからhtmlを出力する関数(ユーザー情報)
     function make_dom(data) {
 
-        var str = `<div class=chara>
+        var str = `<div class=chara_top_olt>
+                <div class=chara_olt>
                 <img class=user_img src="${data[0][0].avatar}">
-                <div class="user_name">${data[0][0].name}</div>
                 </div>
+                
                 <div class=user_status>
                         <div class=quantity>${data[1].length}</div>
                         <div class=sub style="color:#FF8500">マイキャラ</div>
@@ -148,7 +149,8 @@ $(function () {
                 <div class=user_status>
                         <div class=quantity>${data[2]}</div>
                         <div class=sub style="color:#FF8500">マイアルバム</div>
-                </div> `;
+                </div></div>
+                <div class="chara_name_olt">${data[0][0].name}</div>`;
         return str;
     }
     //マイキャラ情報（フィルタ用）

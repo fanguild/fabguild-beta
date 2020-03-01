@@ -655,11 +655,6 @@ $(function () {
         })
             .done(function (data_return) {
                 console.log(data_return);
-                $('#echo').html(make_dom_storage(data_return));
-                //画像・マイアルバムへ移動
-                removeseleted();
-                $(".middle_bar").animate({ scrollLeft: 488 });
-                $(".middle_bar_3").addClass("middle_bar_add");
             })
             .fail(function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(textStatus);
