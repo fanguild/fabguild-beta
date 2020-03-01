@@ -18,6 +18,10 @@ img {
   touch-callout:none;
   user-select:none;
 }
+.mdeia img {
+  touch-callout:all;
+  user-select:all;
+}
     #header {
         position: fixed;
         z-index: 10;
