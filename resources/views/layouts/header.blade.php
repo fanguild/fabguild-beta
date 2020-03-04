@@ -62,7 +62,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:60px;padding-top:6px;"></div>
+                <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:68px;padding-top:8px;"></div>
                 <div id=footer class="footer closed"><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
                 
                 <div class=js-modal__btn data-id=1>
