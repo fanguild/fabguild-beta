@@ -98,7 +98,31 @@
             
             @else
             <div class=navbar style="padding:0px">
+                <div id="wrapper">
+                    <p class="btn-gnavi" style='margin:-6px 0 12px 0;'>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </p>
+                    <nav id="global-navi">
+                        <ul class="menu" style='list-style: none;'>
+                            
+                            <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    ログイン
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:50px"></div>
+            
+                <div id=header_back></div>
             </div>
             @endif
         </div>

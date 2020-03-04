@@ -11,6 +11,7 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Carbon\Carbon;
+use Socialite;
 
 class TwitterController extends Controller
 {
@@ -57,7 +58,7 @@ class TwitterController extends Controller
     public function tweet(Request $request)
     {
         $config = config('twitter');
-
+        
         //セッションからアクセストークン取得
         $accessToken = session()->all();
 

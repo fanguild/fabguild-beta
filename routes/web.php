@@ -24,13 +24,12 @@ Route::get('/tasks', function () {
 });
 
 Auth::routes();
+// SNS認証へのページ遷移
+Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
 // ログイン中のみ処理を実行する
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-
-    // SNS認証へのページ遷移
-    Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 
     Route::get('/tasks_api_ajax', 'TasksController@tasks_api_ajax');
 
