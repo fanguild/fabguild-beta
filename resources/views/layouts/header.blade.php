@@ -1,13 +1,14 @@
 <!doctype html>
 <html lang="ja">
 
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/storage/icon/favicon.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property="og:image" content="{{ asset('storage/img/ogp.png') }}">
+    <meta name="twitter:card" content="summary">
     <title>fanguild</title>
 
     <!-- Scripts -->
