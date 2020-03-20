@@ -14,9 +14,9 @@
                 <div class=middle_bar_outline>
                     <div class=middle_bar_1 style="padding:6px 6px 3px 6px ;">マイキャラ</div>
                 </div>
-                <div class=middle_bar_outline>
+                <!-- <div class=middle_bar_outline>
                     <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;" data-id=1>タイムライン</div>
-                </div>
+                </div> -->
                 <div class=middle_bar_outline>
                     <div class=middle_bar_3 style="padding:6px 6px 3px 6px ;" data-id=2>マイアルバム</div>
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div class="content1">
             <div style="background-color: #FFFFFF;display:flex;border-bottom: 1px solid;border-color: #c9c9c9;">
-                <img id=back src="/storage/icon/arrow_back.svg">
+                <div id=back_><img src="/storage/icon/arrow_back.svg"></div>
                 <div class=searchbox>
                     <input type="text" value="" placeholder="キャラ名で検索" class=search style="margin:0 12px;">
                     <img id=search src="/storage/icon/虫眼鏡.svg" style="height:36px;margin:0 6px 0 0" class="search1">

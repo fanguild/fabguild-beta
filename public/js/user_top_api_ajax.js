@@ -167,18 +167,7 @@ $(function () {
     // データからhtmlを出力する関数（マイキャラ情報）
     function make_dom_mychara(data) {
 
-        var str = `<div id="search" class="listparent" style="border:none;">
-                <div class="list">
-                    <div><img class="thumbnail_img" src="/storage/icon/mychara.svg"></div>
-                    <div class="name_bx">
-                        <div>好きなキャラクターを探す</div>
-                        <div class=sub style="color:#969696">マイキャラを登録しよう</div>
-                    </div>
-                </div>
-                <div class="arrow"><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
-            </div>
-            <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
-                <div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
+        var str = `<div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
         var mychara = data[1];
         if (mychara != null) {
             for (var i = 0; i < mychara.length; i++) {
@@ -441,11 +430,12 @@ $(function () {
         indexDataWork(0)
     })
     //戻るボタンを押したら消える
-    $("#back").on("click", function () {
+    $(document).on("click", "#back_", function () {
         $(".slider").removeClass("slideLeft")
         $(".slider").addClass("slideRight")
         $('#title').empty()
         $(".slider").animate({ left: 0 })
+        console.log("a")
     })
 
     $(".searchGenretabin li").on("click", function () {

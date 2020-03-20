@@ -767,7 +767,8 @@ img {
         border-radius: 5px;
         outline: none;
     }
-    #back{
+    #back_{
+        width:20px;
         height: 36px;
         margin: 8px 12px;
     }

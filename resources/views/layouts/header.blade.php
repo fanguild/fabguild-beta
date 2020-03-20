@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" href="/storage/icon/favicon.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <meta property="og:image" content="{{ asset('storage/img/ogp.png') }}">
     <title>fanguild</title>
 
     <!-- Scripts -->
@@ -48,6 +48,7 @@
                     </p>
                     <nav id="global-navi">
                         <ul class="menu" style='list-style: none;'>
+                            <li><a href="{{url('home')}}">ホーム</a></li>
                             <li><a href="{{url('user')}}">マイページ</a></li>
                             <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
                             <li>

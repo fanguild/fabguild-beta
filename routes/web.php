@@ -86,10 +86,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/serif', function () {
         return view('serif');
     });
+    //home画面
+    Route::get('/home', function () {
+        return view('home');
+    });
+
 
     //ユーザートップ
     Route::get('user', 'UsersController@index')->name('user');
-
 
     //他ユーザーのページを見れるようにしたい
     Route::get('user/{id}', 'UsersController@other');
