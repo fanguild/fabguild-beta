@@ -13,7 +13,7 @@
     <!-- ogp -->
     <meta property="og:title" content="FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{url(/)}}">
+    <meta property="og:url" content="{{url('/')}}">
     <meta property="og:image" content="{{ asset('storage/img/ogp.png') }}">
     <meta property="og:site_name" content="site_name:FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
     <meta property="og:description" content="">
