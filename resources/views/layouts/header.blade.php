@@ -1,16 +1,23 @@
 <!doctype html>
 <html lang="ja">
 
-<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/storage/icon/favicon.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>FAN-GUILD</title>
+    <meta name="keywords" content="マンガ,キャラ,ファン,キャラクター,応援,コミュニティー">
+    <meta name="description" content="FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
+    <!-- ogp -->
+    <meta property="og:title" content="ti:FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fanguild.org/">
     <meta property="og:image" content="{{ asset('storage/img/ogp.png') }}">
-    <meta name="twitter:card" content="summary">
-    <title>fanguild</title>
-
+    <meta property="og:site_name" content="site_name:FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
+    <meta property="og:description" content="de:FAN-GUILDはファンが好きなキャラを応援できるファンコミュニティです。">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
