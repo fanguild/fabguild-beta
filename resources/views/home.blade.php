@@ -10,7 +10,7 @@
             <div id="search" class="listparent" style="border:none;">
                 <div class="list">
                     <div><img class="thumbnail_img" src="/storage/icon/mychara.svg"></div>
-                    <div class="name_bx">
+                    <div class="search_bx">
                         <div>好きなキャラクターを探す</div>
                         <div class="sub" style="color:#969696">マイキャラを登録しよう</div>
                     </div>

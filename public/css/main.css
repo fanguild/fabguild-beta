@@ -1174,8 +1174,21 @@ img {
     .user_name{
         font-size: 14px;
     }
+    .search_bx{
+        width:80%;
+        margin:4px 0px 4px 4px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .search_bx div{
+        width:100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     .name_bx{
-        width:52%;
+        width:50%;
         margin:4px 0px 4px 4px;
         display: flex;
         justify-content: center;
