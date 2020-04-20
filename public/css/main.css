@@ -476,6 +476,14 @@ img {
         border: 2px solid #333333;
         margin:6px;
     }
+    .thumbnail_title{
+        object-fit: contain;
+        box-shadow: 0px 3px 6px #00000029;
+        height:108px;
+        width:164px;
+        background-color: #efefef;
+        margin:6px;
+    }
     
     .chara_top{
         display:flex;
@@ -1460,9 +1468,11 @@ img {
     text-align: center;
 }
 .sub{
-    font-size: 14px;
+    font-size: 12px;
     color:#969696;
+    padding-right: 6px;
 }
+
 #filter{
     height:auto;
 }

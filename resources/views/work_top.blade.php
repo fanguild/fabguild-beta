@@ -8,7 +8,7 @@
         <div class="content">
             <div class=chara_top>
                 <div class=chara>
-                    <img class=chara_img id=chara_img src="{{asset('storage/icon/nolicense.svg')}}">
+                    <img class=chara_img id=chara_img src="{{$work->ogp}}">
                     
                 </div>
                 <!-- <div class=guild_status>
@@ -23,7 +23,7 @@
                     </div>
                 </div> -->
             </div>
-            <div class="chara_name">{{$work->name}}</div>
+            <div class="chara_name">{{$work->titlename}}</div>
             <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
             <div id=echo>
                 

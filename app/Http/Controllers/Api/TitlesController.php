@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Chara;
 use App\Mychara;
 use App\Chara_title;
-
+use App\Title;
 
 use Validator;
 use Auth;
@@ -41,9 +41,8 @@ class TitlesController extends Controller
     //表示処理関数
     public function index($id)
     {
-        $chara_titles = Chara_title::where('categoryid', $id)
-            ->get();
-        return $chara_titles;
+        $titles = Title::get();
+        return $titles;
     }
 
 

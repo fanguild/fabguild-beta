@@ -1,4 +1,5 @@
 $(function () {
+
     //データなし
     function make_dom_nodata() {
         var str = `<div class=nodata>データはありません</div>`
@@ -37,11 +38,23 @@ $(function () {
         var str = '';
         for (var i = 0; i < data.length; i++) {
             str += `<a href="/work/${data[i].id}" class="listparent" id=${i + 1}>
-                    <div class="list">
-                        <div style="margin:6px 3px;">
-                            <div class="chara_name1" style="color:#333333" value="${i + 1}">${data[i].name}</div>
+                    <div class="list" style="width:100%">`
+            if (data[i].ogp != "null") {
+                str += `<div><img class="thumbnail_title" src="${data[i].ogp}"></div>`
+            } else {
+                str += `<div><img class="thumbnail_title" src="storage/icon/nolicense.svg"></div>`
+            }
+            str += `<div style="margin:6px 0px 6px 8px;display: flex;flex-direction: column;justify-content: center;">
+                        <h6 style="color:#333333;font-weight:600;margin:0" value="${i + 1}">${data[i].titlename}</h6>
+                        <div style="display: flex;height: 24px;align-items: center;">
+                        <span class=sub>原作者</span><span class=sub>制作会社</span><span class=sub>製作委員会</span>
                         </div>
+                        <div class=sub style="color:#333333;font-weight:600">主要キャラ</div>
+                        <div style="display: flex;height: 24px;align-items: center;">
+                        <span class=sub>山田太郎/山田太郎/山田太郎</span>
                         </div>
+                    </div>
+                    </div>
                     </a>`;
         }
         return str;

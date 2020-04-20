@@ -92,9 +92,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 
         //キャラインポート用
-        Route::get('/import1', 'Api\ImportController@index');
+        Route::post('/import1', 'Api\ImportController@import_chara');
         //作品インポート用
-        Route::get('/import2', 'Api\ImportController@index_');
+        Route::post('/import2', 'Api\ImportController@import_work');
 
         //タイトル別検索結果
         Route::get('/title/{category}', 'Api\TitlesController@index');

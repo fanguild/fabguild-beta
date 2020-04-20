@@ -637,8 +637,7 @@ $(function () {
         var form = $('#api_form').get()[0];
         // FormData オブジェクトを作成
         var formData = new FormData(form);
-        console.log(form)
-
+        console.log(formData);
         // データ送信
         $.ajax({
             headers: {
@@ -671,7 +670,7 @@ $(function () {
         var form = $('#api_form').get()[0];
         // FormData オブジェクトを作成
         var formData = new FormData(form);
-        console.log(form)
+        console.log(formData)
 
         // データ送信
         $.ajax({

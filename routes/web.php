@@ -91,7 +91,6 @@ Route::group(['middleware' => ['auth']], function () {
         return view('home');
     });
 
-
     //ユーザートップ
     Route::get('user', 'UsersController@index')->name('user');
 

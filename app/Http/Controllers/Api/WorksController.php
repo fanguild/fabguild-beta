@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Chara_title;
+use App\Title;
 use App\Chara;
 use App\Mychara;
 use Auth;
@@ -17,7 +18,7 @@ class WorksController extends Controller
     //api画面表示用関数
     public function index($id)
     {
-        $work = Chara_title::where('id', $id)
+        $work = Title::where('id', $id)
                 ->first();
         
         $mycharas = \DB::table('mycharas')
@@ -28,7 +29,7 @@ class WorksController extends Controller
         // if ($mychara==null) {
         $charas = \DB::table('charas')
                 // ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
-                ->where('title', $work->name)
+                ->where('title', $work->titlename)
                 // ->where(function ($q) {
                 //     $q->where('userid', Auth::user()->id)
                 //         ->orWhere('userid', null);

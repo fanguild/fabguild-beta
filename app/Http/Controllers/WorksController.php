@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Chara_title;
 use App\Chara;
 use App\Mychara;
+use App\Title;
 use Auth;
 
 class WorksController extends Controller
@@ -14,7 +15,7 @@ class WorksController extends Controller
     //api画面表示用関数
     public function index($id)
     {
-        $work = Chara_title::where('id', $id)
+        $work = Title::where('id', $id)
                 ->first();
         $charas = \DB::table('charas')
                 ->select("charas.id", "mycharas.s3url", "charas.name", "charas.title")
