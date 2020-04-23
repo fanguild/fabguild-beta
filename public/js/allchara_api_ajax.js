@@ -1,28 +1,10 @@
 $(function () {
-    function make_dom_detail() {
-        var str = ``;
-        str += `<div style="padding:18px 12px;border-bottom: 1px solid #c9c9c9">
-                    <div style="padding-bottom:12px;">
-                    <h5 class=bold>内容紹介</h5>
-                    <h6 style="color:#707070">あああああああああああああ</h6>
-                    </div>
-                    <div style="padding-bottom:12px;">
-                    <h5 class=bold>原作者</h5>
-                    <h6 style="color:#707070">あああああああああああああ</h6></div>
-                    <div style="padding-bottom:12px;">
-                    <h5 class=bold>制作会社</h5>
-                    <h6 style="color:#707070">あああああああああああああ</h6></div>
-                    <div style="padding-bottom:12px;">
-                    <h5 class=bold>著作権者</h5>
-                    <h6 style="color:#707070">あああああああああああああ</h6></div>`;
-        return str;
-    }
 
     function make_dom_work(data) {
 
         var str = ``;
         var mycharas = data[0]
-        var charas = data[1]
+        var charas = data[1].data
         var s3url = "/storage/icon/nolicense.svg"
         var mychara = "";
         for (var i = 0; i < charas.length; i++) {
@@ -44,15 +26,12 @@ $(function () {
             s3url = "/storage/icon/nolicense.svg"
             mychara = "";
         }
-        str += `<div class="center">
-                    <a class="button" style="color:#ffffff;text-decoration:none" href="/work/all/${data[2].id}">全キャラ一覧へ</a>
-                    </div>`
         return str;
     }
     // 表示する関数(作品内キャラリスト)
     function indexData_work(id) {
         //
-        const url = `/api/work/${id}`;
+        const url = `/api/work/all/${id}`;
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);

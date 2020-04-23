@@ -7,7 +7,7 @@
 
     <div class=slider>
         <div class="content">
-            <div id="search" class="listparent" style="border:none;">
+            <div id="search" class="listparent">
                 <div class="list">
                     <div><img class="thumbnail_img" src="/storage/icon/mychara.svg"></div>
                     <div class="search_bx">

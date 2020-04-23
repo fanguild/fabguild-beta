@@ -47,7 +47,6 @@ $(function () {
             str += `<div style="margin:6px 0px 6px 8px;display: flex;flex-direction: column;justify-content: center;">
                         <h6 style="color:#333333;font-weight:600;margin:0" value="${i + 1}">${data[i].titlename}</h6>
                         <div style="display: flex;height: 24px;align-items: center;">
-                        <span class=sub>原作者</span><span class=sub>制作会社</span><span class=sub>製作委員会</span>
                         </div>
                         <div class=sub style="color:#333333;font-weight:600">主要キャラ</div>
                         <div style="display: flex;height: 24px;align-items: center;">

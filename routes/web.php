@@ -102,6 +102,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     //作品トップ
     Route::get('work/{work}', 'WorksController@index');
+    //作品内キャラ一覧
+    Route::get('work/all/{work}', 'WorksController@index_all');
 });
 
 //他ユーザーのページを見れるようにしたい

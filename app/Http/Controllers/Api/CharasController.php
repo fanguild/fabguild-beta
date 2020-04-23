@@ -57,6 +57,8 @@ class CharasController extends Controller
             $no ++;
             if ($ranking->charaid==$id) {
                 $rank = $no;
+            } else {
+                $rank = "∞";
             }
         }
                 

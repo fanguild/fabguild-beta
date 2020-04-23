@@ -20,63 +20,91 @@
                 </div>
             </div>
             <div class=chara_name_olt>{{$chara->name}}</div>
-
-            <div class="middle_bar">
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_6 style="padding:6px 0 3px 0 ;">ファンリスト</div>
+            <div class=middle>
+            <div class="middle_bar_box">
+                <div class="middle_bar">
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_6 style="padding:6px 0 3px 0 ;">ファンリスト</div>
+                    </div>
+                    <!-- <div class=middle_bar_outline>
+                        <div class=middle_bar_7 style="padding:6px 0 3px 0 ;">ランキング</div>
+                    </div> -->
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">ラベル一覧</div>
+                    </div>
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">キャラwiki</div>
+                    </div>
                 </div>
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_7 style="padding:6px 0 3px 0 ;">ランキング</div>
-                </div> -->
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">ラベル一覧</div>
-                </div>
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">名言集</div>
-                </div> -->
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">タイムライン</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ファンリスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">タイムライン</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div> -->
             </div>
-            <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
+            
             <div id=echo>
 
+            </div>
+            <div class="center">
+                    <a style="color: #ffffff;
+                            font-weight: 600;
+                            background-color: #ff8500;
+                            padding: 8px 48px;
+                            border-radius: 4px;" href="">ファンリスト一覧へ</a>
+            </div>
+            </div>
+            
+            <div class=bottom>
+            <div class="center bold">同じ作品のキャラ</div>
+            <div class=scroll-x>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+            </div>
+            <div class="center bold">おすすめのキャラ</div>
+            <div class=scroll-x>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+                <div class=recomend_box>
+                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
+                    <div class=center>キャラ名</div>
+                </div>
+            </div>
             </div>
         </div>
     </div>

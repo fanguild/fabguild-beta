@@ -10,18 +10,20 @@
             <div id=user_left>
                 
             </div>
-            <div class="middle_bar">
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 6px 3px 6px ;">マイキャラ</div>
-                </div>
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;" data-id=1>タイムライン</div>
-                </div> -->
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 6px 3px 6px ;" data-id=2>マイアルバム</div>
+            <div class="middle_bar_box">
+                <div class="middle_bar">
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_1 style="padding:6px 6px 3px 6px ;">マイキャラ</div>
+                    </div>
+                    <!-- <div class=middle_bar_outline>
+                        <div class=middle_bar_2 style="padding:6px 6px 3px 6px ;" data-id=1>タイムライン</div>
+                    </div> -->
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_3 style="padding:6px 6px 3px 6px ;" data-id=2>マイアルバム</div>
+                    </div>
                 </div>
             </div>
-            <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">
+            
             <div id=filter></div>
             <div id=echo>
             </div>

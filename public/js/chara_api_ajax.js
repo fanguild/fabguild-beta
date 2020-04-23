@@ -4,8 +4,6 @@ $(function () {
     function make_dom_labellist(data) {
 
         var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
-
         for (var i = 0; i < data.length; i++) {
             str += `<a class=listparent>
                 <div class=list>
@@ -24,8 +22,6 @@ $(function () {
     function make_dom_fanlist(data) {
 
         var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
-
         for (var i = 0; i < data.length; i++) {
             str += `<a href="/user/${data[i].userid}" class=listparent>
                 <div class=list>

@@ -167,7 +167,7 @@ $(function () {
     // データからhtmlを出力する関数（マイキャラ情報）
     function make_dom_mychara(data) {
 
-        var str = `<div style="padding:6px 12px;margin:0px;background-color: #EFEFEF;">登録済みマイキャラ</div>`
+        var str = '';
         var mychara = data[1];
         if (mychara != null) {
             for (var i = 0; i < mychara.length; i++) {

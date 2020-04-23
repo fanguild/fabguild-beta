@@ -28,4 +28,11 @@ class WorksController extends Controller
             'work'=>$work,
             'charas'=>$charas]);
     }
+    public function index_all($id)
+    {
+        return view(
+            'allchara',
+            ['id'=>$id]
+        );
+    }
 }

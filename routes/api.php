@@ -100,8 +100,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/title/{category}', 'Api\TitlesController@index');
 
        
-        //作品別キャラリスト
+        //作品別キャラリスト(10件)
         Route::get('/work/{id}', 'Api\WorksController@index');
+        //作品別キャラリスト(all)
+        Route::get('/work/all/{id}', 'Api\WorksController@index_all');
     });
 });
 
