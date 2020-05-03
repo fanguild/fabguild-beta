@@ -38,8 +38,8 @@
             </div>
             <div class="searchtab">
                 <ul class="searchtabin">
-                <li class="current" data-id=2019><a href="javascript:void(0);">2019</a></li>
-                <li data-id=2020><a href="javascript:void(0);">2020</a></li>
+                <li class="current" style="width: 40%;" data-id=2019><a href="javascript:void(0);">2019</a></li>
+                <li style="width: 40%;" data-id=2020><a href="javascript:void(0);">2020</a></li>
                 </ul>
             </div>
             <div class="searchSubtab">
