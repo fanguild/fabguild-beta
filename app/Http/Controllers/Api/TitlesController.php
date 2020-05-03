@@ -39,9 +39,11 @@ class TitlesController extends Controller
     // }
 
     //表示処理関数
-    public function index($id)
+    public function index($year, $season)
     {
-        $titles = Title::get();
+        $titles = Title::where('year', $year)
+                ->where('categoryid', $season)
+                ->get();
         return $titles;
     }
 

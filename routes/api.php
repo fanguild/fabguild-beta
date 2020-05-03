@@ -82,8 +82,14 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/guild/{chara}', 'Api\CharasController@index');
         // キャラステータスの表示
         Route::get('/chara/{id}', 'Api\CharasController@index');
-
         
+        // キャラ情報取得APIテスト
+        Route::post('/standard', 'Api\CharasController@index_');
+
+        //similarData
+        Route::post('/similar/{category}', 'Api\CharasController@index_similar');
+        //recomendData
+        Route::post('/recommend/{category}', 'Api\CharasController@index_recomend');
 
         //footerデータ取得(個別キャラ)
         Route::get('/footer/{id}', 'Api\CharasController@footer_ind_index');
@@ -97,13 +103,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/import2', 'Api\ImportController@import_work');
 
         //タイトル別検索結果
-        Route::get('/title/{category}', 'Api\TitlesController@index');
-
-       
-        //作品別キャラリスト(10件)
-        Route::get('/work/{id}', 'Api\WorksController@index');
-        //作品別キャラリスト(all)
-        Route::get('/work/all/{id}', 'Api\WorksController@index_all');
+        Route::get('/title/year/{year}/season/{season}', 'Api\TitlesController@index');
     });
 });
 

@@ -32,31 +32,22 @@
             <div class="searchGenretab">
                 <ul class="searchGenretabin">
                 <li class=current><a href="javascript:void(0);">アニメ</a></li>
-                <li><a href="javascript:void(0);">漫画</a></li>
-                <li><a href="javascript:void(0);">ゲーム</a></li>
+                <li><a href="javascript:void(0);"></a></li>
+                <li><a href="javascript:void(0);"></a></li>
                 </ul>
             </div>
             <div class="searchtab">
                 <ul class="searchtabin">
-                <li class="current" data-id=1><a href="javascript:void(0);">あ</a></li>
-                <li data-id=2><a href="javascript:void(0);">か</a></li>
-                <li data-id=3><a href="javascript:void(0);">さ</a></li>
-                <li data-id=4><a href="javascript:void(0);">た</a></li>
-                <li data-id=5><a href="javascript:void(0);">な</a></li>
-                <li data-id=6><a href="javascript:void(0);">は</a></li>
-                <li data-id=7><a href="javascript:void(0);">ま</a></li>
-                <li data-id=8><a href="javascript:void(0);">や</a></li>
-                <li data-id=9><a href="javascript:void(0);">ら</a></li>
-                <li data-id=10><a href="javascript:void(0);">わ</a></li>
+                <li class="current" data-id=2019><a href="javascript:void(0);">2019</a></li>
+                <li data-id=2020><a href="javascript:void(0);">2020</a></li>
                 </ul>
             </div>
             <div class="searchSubtab">
                 <ul class="searchSubtabin">
-                <li class="current" data-id=0><a href="javascript:void(0);">あ</a></li>
-                <li data-id=1><a href="javascript:void(0);">い</a></li>
-                <li data-id=2><a href="javascript:void(0);">う</a></li>
-                <li data-id=3><a href="javascript:void(0);">え</a></li>
-                <li data-id=4><a href="javascript:void(0);">お</a></li>
+                <li class="current" data-id=0><a href="javascript:void(0);">春</a></li>
+                <li data-id=1><a href="javascript:void(0);">夏</a></li>
+                <li data-id=2><a href="javascript:void(0);">秋</a></li>
+                <li data-id=3><a href="javascript:void(0);">冬</a></li>
                 </ul>
             </div>
             <hr style="padding:4px;margin:0px;background-color: #EFEFEF;">

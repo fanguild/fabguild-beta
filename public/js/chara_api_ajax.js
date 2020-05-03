@@ -1,5 +1,9 @@
 $(function () {
-
+    //データなし
+    function make_dom_nodata() {
+        var str = `<div class=nodata>データはありません</div>`
+        return str;
+    }
     // データからhtmlを出力する関数(labellist)
     function make_dom_labellist(data) {
 
@@ -272,6 +276,17 @@ $(function () {
                     </div>`;
         return str;
     }
+    //recommnedのhtmlを出力
+    function make_dom_recommend(data) {
+        var str = ``
+        for (var i = 0; i < data.charas.length; i++) {
+            str += `<div class=recomend_box>`
+            str += `<a href="/chara/${data.charas[i].id}"><img class="thumbnail_img" src="/storage/icon/nolicense.svg" style="height:100px;width:100px"></a>
+                    <div class=center>${data.charas[i].name}</div>`
+            str += `</div>`;
+        }
+        return str;
+    }
     //表示する関数（top）
     function indexDataCharaTop(id) {
         const url = `/api/chara/${id}`;
@@ -287,7 +302,41 @@ $(function () {
                 console.log('get:complete');
             });
     }
-
+    // 表示する関数(作品内キャラリスト)
+    function indexData_charas_same(id) {
+        // 送信先の指定
+        var url = '/api/recommend/sametitle';
+        var request = {
+            chara: id,
+            work: 0,
+            number: 10,
+        }
+        // データ送信
+        $.ajax({
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            dataType: 'json',
+            url: url,
+            type: 'POST',
+            data: JSON.stringify(request),
+            processData: false,
+            contentType: false,
+            cache: false
+        })
+            .done(function (data_return) {
+                console.log(data_return);
+                $('#same').html(make_dom_recommend(data_return))
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+                console.log('fail');
+            })
+            .always(function () {
+                console.log('post:complete');
+            });
+    }
     // 表示する関数(tweet)
     function indexData_tweet(id) {
         //
@@ -343,7 +392,11 @@ $(function () {
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                $('#echo').html(make_dom_fanlist(data));
+                if (data[0] != null) {
+                    $('#echo').html(make_dom_fanlist(data));
+                } else {
+                    $('#echo').html(make_dom_nodata());
+                }
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -359,7 +412,12 @@ $(function () {
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                $('#echo').html(make_dom_labellist(data));
+
+                if (data[0] != null) {
+                    $('#echo').html(make_dom_labellist(data));
+                } else {
+                    $('#echo').html(make_dom_nodata());
+                }
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -470,6 +528,7 @@ $(function () {
     id = $(".main").attr('data-id')
     indexData_fanlist(id);
     indexDataCharaTop(id);
+    indexData_charas_same(id)
 
     $(document).on("click", "#fan_gross", function () {
         id = $(".main").attr('data-id')

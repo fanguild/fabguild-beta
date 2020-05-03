@@ -43,36 +43,13 @@
             
             
             <div class=bottom>
-            <div class="center bold">同じ原作者の作品</div>
-            <div class=scroll-x>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
+                <div class="center bold">同じ原作者の作品</div>
+                <div id=outher class=scroll-x>
+                    
                 </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
+                <div class="center bold">同じ制作会社の作品</div>
+                <div id=maker class=scroll-x>
                 </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
-                </div>
-            </div>
-            <div class="center bold">同じ制作会社の作品</div>
-            <div class=scroll-x>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_title"></img>
-                    <div class=center>作品名</div>
-                </div>
-            </div>
             </div>
             
         </div>

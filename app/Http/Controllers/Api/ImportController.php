@@ -75,11 +75,19 @@ class ImportController extends Controller
         foreach ($values as $value) {
             // Eloquentモデル
             $title = new Title;
-            $title->categoryid=0;
+            
             $title->categoryname=$value[0];
-            $title->titlename=$value[1];
-            $title->ogp=$value[2];
-            $title->url=$value[3];
+            $title->titlename=$value[3];
+            $title->year=$value[1];
+            $title->categoryid=$value[2];
+            $title->ogp=$value[4];
+            $title->url=$value[5];
+            $title->outher=$value[6];
+            $title->maker=$value[7];
+            $title->holder=$value[8];
+            $title->mainchara1=$value[9];
+            $title->mainchara2=$value[10];
+            $title->mainchara3=$value[11];
             $title->deleteflg=0;
             $title->save();
         };

@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Chara;
 use App\Mychara;
+use App\Keyword;
 use Auth;
 use App\Http\Controllers\Controller;
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -20,6 +21,7 @@ class TwitterController extends Controller
         $chara = Mychara::where('charaid', $id)
                 ->select('charaname')
                 ->first();
+        
         $result = \Twitter::get('search/tweets', [
             'q' => "$chara->charaname exclude:retweets filter:media", 'count' => '100','tweet_mode'=>'extended'
             //tweet_mode=文字サイズオーバーtweetも表示する
@@ -39,20 +41,30 @@ class TwitterController extends Controller
         $charas = Mychara::where('userid', Auth::user()->id)
                 ->select('charaid', 'charaname')
                 ->get();
+        $keywordsall =[];
+        foreach ($charas as $chara) {
+            $keywords = Keyword::where('charaid', $chara->charaid)
+                ->select('word')
+                ->get();
+            foreach ($keywords as $keyword) {
+                array_push($keywordsall, $keyword);
+            }
+        }
+
         $str = "";
-        $length = count($charas);
+        $length = count($keywordsall);
         $no = 0;
     
-        foreach ($charas as $chara) {
+        foreach ($keywordsall as $keyword) {
             $no++;
             if ($no!==$length) {
-                $str .= $chara->charaname." OR ";
+                $str .= $keyword->word." OR ";
             } else {
-                $str .= $chara->charaname;
+                $str .= $keyword->word;
             }
         }
         $result = \Twitter::get('search/tweets', ['q' => "$str exclude:retweets filter:media", 'count' => '100','tweet_mode'=>'extended'])->statuses;
-        return [$result,$str];
+        return [$result,$str,$keywordsall];
     }
 
     public function tweet(Request $request)

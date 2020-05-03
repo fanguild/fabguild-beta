@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Chara;
+use App\Title;
 use App\Mychara;
 use Validator;
 use Auth;
@@ -63,6 +64,75 @@ class CharasController extends Controller
         }
                 
         return [$charas,$sum,$mlc,$rank];
+    }
+    //apiテスト用表示処理関数
+    public function index_(Request $request)
+    {
+        $title = Title::where('id', $request->work)
+                ->select('titlename')
+                ->first();
+        $titles =Title::where('id', $request->work)
+                ->get();
+        $charas = Chara::where('title', $title->titlename)
+                ->orderBy('id', 'asc')
+                ->take($request->number)
+                ->get();
+        
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+                ->get();
+
+        return ['charas'=>$charas,
+                'titles'=>$titles,
+                'mycharas'=>$mycharas];
+    }
+    //apiテスト用表示処理関数
+    public function index_similar($category, Request $request)
+    {
+        $title = Title::where('id', $request->work)
+            ->first();
+        $charas = Chara::where('title', $title->titlename)
+                ->orderBy('id', 'asc')
+                ->take($request->number)
+                ->get();
+        if ($category=='outher') {
+            $titles =Title::where('outher', $title->outher)
+                ->whereNotIn('id', [$request->work])
+                ->take($request->number)
+                ->get();
+        } elseif ($category=='maker') {
+            $titles =Title::where('maker', $title->maker)
+                ->whereNotIn('id', [$request->work])
+                ->take($request->number)
+                ->get();
+        }
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+                ->get();
+
+        return ['charas'=>$charas,
+                'titles'=>$titles,
+                'mycharas'=>$mycharas];
+    }
+    //apiテスト用表示処理関数
+    public function index_recomend($category, Request $request)
+    {
+        if ($category=='sametitle') {
+            $chara = Chara::where('id', $request->chara)
+            ->first();
+        
+            $charas = Chara::where('title', $chara->title)
+                ->whereNotIn('id', [$request->chara])
+                ->orderBy('id', 'asc')
+                ->take($request->number)
+                ->get();
+        }
+        
+        $titles =Title::take($request->number)
+                ->get();
+        $mycharas = Mychara::where('userid', Auth::user()->id)
+                ->get();
+        return ['charas'=>$charas,
+                'titles'=>$titles,
+                'mycharas'=>$mycharas];
     }
     //投稿用キャラデータ関数
     public function footer_ind_index($id)

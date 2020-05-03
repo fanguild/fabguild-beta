@@ -17,6 +17,7 @@ class CreateTitlesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('categoryid');
             $table->string('categoryname')->nullable();
+            $table->bigInteger('year');
             $table->string('titlename');
             $table->string('kana')->nullable();
             $table->string('alphabet')->nullable();
@@ -28,6 +29,7 @@ class CreateTitlesTable extends Migration
             $table->string('mainchara1')->nullable();
             $table->string('mainchara2')->nullable();
             $table->string('mainchara3')->nullable();
+            $table->text('summary')->nullable();
             $table->boolean('deleteflg');
             $table->timestamps();
         });

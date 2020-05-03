@@ -52,34 +52,10 @@
             
             <div class=bottom>
             <div class="center bold">同じ作品のキャラ</div>
-            <div class=scroll-x>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
+            <div id=same class=scroll-x>
             </div>
             <div class="center bold">おすすめのキャラ</div>
-            <div class=scroll-x>
+            <div id=recomend class=scroll-x>
                 <div class=recomend_box>
                     <img class="thumbnail_img" style="height:100px;width:100px"></img>
                     <div class=center>キャラ名</div>

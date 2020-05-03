@@ -36,25 +36,29 @@ $(function () {
     }
     function make_dom_titlelist(data) {
         var str = '';
-        for (var i = 0; i < data.length; i++) {
-            str += `<a href="/work/${data[i].id}" class="listparent" id=${i + 1}>
+        if (data.length != 0) {
+            for (var i = 0; i < data.length; i++) {
+                str += `<a href="/work/${data[i].id}" class="listparent" id=${i + 1}>
                     <div class="list" style="width:100%">`
-            if (data[i].ogp != "null") {
-                str += `<div><img class="thumbnail_title" src="${data[i].ogp}"></div>`
-            } else {
-                str += `<div><img class="thumbnail_title" src="storage/icon/nolicense.svg"></div>`
-            }
-            str += `<div style="margin:6px 0px 6px 8px;display: flex;flex-direction: column;justify-content: center;">
+                if (data[i].ogp != "null") {
+                    str += `<div><img class="thumbnail_title" src="${data[i].ogp}"></div>`
+                } else {
+                    str += `<div><img class="thumbnail_title" src="storage/icon/nolicense.svg"></div>`
+                }
+                str += `<div style="margin:6px 0px 6px 8px;display: flex;flex-direction: column;justify-content: center;">
                         <h6 style="color:#333333;font-weight:600;margin:0" value="${i + 1}">${data[i].titlename}</h6>
                         <div style="display: flex;height: 24px;align-items: center;">
                         </div>
                         <div class=sub style="color:#333333;font-weight:600">主要キャラ</div>
                         <div style="display: flex;height: 24px;align-items: center;">
-                        <span class=sub>山田太郎/山田太郎/山田太郎</span>
+                        <span class=sub>${data[i].mainchara1}/${data[i].mainchara2}/${data[i].mainchara3}</span>
                         </div>
                     </div>
                     </div>
                     </a>`;
+            }
+        } else {
+            str += make_dom_nodata()
         }
         return str;
     }
@@ -132,9 +136,9 @@ $(function () {
 
 
     //作品リストを表示する関数
-    function indexDataWork(id) {
+    function indexDataWork(year, season) {
         //
-        const url = `/api/title/${id}`;
+        const url = `/api/title/year/${year}/season/${season}`;
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
@@ -201,7 +205,7 @@ $(function () {
         $(".searchGenretabin li:eq(0)").addClass("current");
         $(".searchtabin li:eq(0)").addClass("current")
         $(".searchSubtabin li:eq(0)").addClass("current")
-        indexDataWork(0)
+        indexDataWork(2020, 0)
     })
     //戻るボタンを押したら消える
     $(document).on("click", "#back_", function () {
@@ -213,48 +217,48 @@ $(function () {
     })
 
     $(".searchGenretabin li").on("click", function () {
-        var index = $(".searchGenretabin li").index(this);
-        if (index == 0) {
-            $(".searchGenretabin li").removeClass();
-            $(this).addClass("current")
-            $(".searchtabin li:eq(0)").addClass("current")
-            $(".searchSubtabin li:eq(0)").addClass("current")
-            indexDataWork(0)
-        } else {
-            $(".searchGenretabin li").removeClass();
-            $(this).addClass("current")
-            $('#title').html(make_dom_nodata());
-        }
+        // var index = $(".searchGenretabin li").index(this);
+        // if (index == 0) {
+        //     $(".searchGenretabin li").removeClass();
+        //     $(this).addClass("current")
+        //     $(".searchtabin li:eq(0)").addClass("current")
+        //     $(".searchSubtabin li:eq(0)").addClass("current")
+        //     indexDataWork(0)
+        // } else {
+        //     $(".searchGenretabin li").removeClass();
+        //     $(this).addClass("current")
+        //     $('#title').html(make_dom_nodata());
+        // }
     })
 
     $(".searchtabin li").on("click", function () {
         $(".searchtabin li").removeClass();
         $(this).addClass("current")
-        var index = $('.searchtabin li').index(this);
+        // var index = $('.searchtabin li').index(this);
 
-        gojuon = [["あ", "い", "う", "え", "お"],
-        ["か", "き", "く", "け", "こ"],
-        ["さ", "し", "す", "せ", "そ"],
-        ["た", "ち", "つ", "て", "と"],
-        ["な", "に", "ぬ", "ね", "の"],
-        ["は", "ひ", "ふ", "へ", "ほ"],
-        ["ま", "み", "む", "め", "も"],
-        ["や", "ゆ", "よ"],
-        ["ら", "り", "る", "れ", "ろ"],
-        ["わ", "を", "ん"]
-        ]
-        str = "";
+        // gojuon = [["あ", "い", "う", "え", "お"],
+        // ["か", "き", "く", "け", "こ"],
+        // ["さ", "し", "す", "せ", "そ"],
+        // ["た", "ち", "つ", "て", "と"],
+        // ["な", "に", "ぬ", "ね", "の"],
+        // ["は", "ひ", "ふ", "へ", "ほ"],
+        // ["ま", "み", "む", "め", "も"],
+        // ["や", "ゆ", "よ"],
+        // ["ら", "り", "る", "れ", "ろ"],
+        // ["わ", "を", "ん"]
+        // ]
+        // str = "";
 
-        str += `<li class="current" data-id=0><a href="javascript:void(0);">${gojuon[index][0]}</a></li>`
-        for (var i = 1; i < gojuon[index].length; i++) {
-            str += `<li data-id=${i}><a href="javascript:void(0);">${gojuon[index][i]}</a></li>`
-        }
+        // str += `<li class="current" data-id=0><a href="javascript:void(0);">${gojuon[index][0]}</a></li>`
+        // for (var i = 1; i < gojuon[index].length; i++) {
+        //     str += `<li data-id=${i}><a href="javascript:void(0);">${gojuon[index][i]}</a></li>`
+        // }
 
-        $(".searchSubtabin").html(str);
-        var a = $(".searchtabin .current").data("id");
-        var b = $(".searchSubtabin .current").data("id");
+        // $(".searchSubtabin").html(str);
+        // var a = $(".searchtabin .current").data("id");
+        // var b = $(".searchSubtabin .current").data("id");
 
-        indexDataWork(5 * (a - 1) + b)
+        // indexDataWork(5 * (a - 1) + b)
     })
 
     $(document).on("click", ".searchSubtabin li", function () {
@@ -262,8 +266,8 @@ $(function () {
         $(this).addClass("current");
         var a = $(".searchtabin .current").data("id");
         var b = $(".searchSubtabin .current").data("id");
-        console.log(5 * (a - 1) + b)
-        indexDataWork(5 * (a - 1) + b)
+        console.log(a, b)
+        indexDataWork(a, b)
     })
 
 
