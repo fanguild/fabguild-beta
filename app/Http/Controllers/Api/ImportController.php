@@ -92,9 +92,9 @@ class ImportController extends Controller
         //     $title->save();
         // };
         // // 最新のDB情報を取得して返す
-        // $titles = Title::select('id', 'titlename', 'ogp', 'url')->get();
+        $titles = Title::select('id', 'titlename', 'ogp', 'url')->get();
         
-        // return $titles;
+        return $titles;
     }
 
     // public function destroy($task_id)
