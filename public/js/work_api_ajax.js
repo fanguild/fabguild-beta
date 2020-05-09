@@ -10,9 +10,9 @@ $(function () {
         for (var i = 0; i < data.titles.length; i++) {
             str += `<div class=recomend_box>`
             if (data.titles[i].ogp != "null") {
-                str += `<img class="thumbnail_title" src="${data.titles[i].ogp}"></img>`
+                str += `<a href="/work/${data.titles[i].id}"><img class="thumbnail_title" src="${data.titles[i].ogp}"></a>`
             } else {
-                str += `<img class="thumbnail_title" src="/storage/icon/nolicense.svg"></img>`
+                str += `<a href="/work/${data.titles[i].id}"><img class="thumbnail_title" src="/storage/icon/nolicense.svg"></a>`
             }
             str += `<div class=center>${data.titles[i].titlename}</div>
                     </div>`;

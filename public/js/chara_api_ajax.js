@@ -42,219 +42,220 @@ $(function () {
         return str;
 
     }
-    // データからhtmlを出力する関数(tweet)
-    function make_dom_tweet(data) {
+    // // データからhtmlを出力する関数(tweet)
+    // function make_dom_tweet(data) {
 
-        var str = '';
-        if (data != null) {
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].entities.media) {
-                    str += ` <div class="card mb-2">
-                <div class="card-body">
-                    <div class="media">
-                        <img src="${data[i].user.profile_image_url}" class="rounded-circle mr-4">
-                        <div class="media-body">
-                            <h5 class="d-inline mr-3"><strong>${data[i].user.name}</strong></h5>
-                            <h6 class="d-inline text-secondary">${data[i].created_at}</h6>
-                            <p class="mt-3 mb-0">${data[i].text}</p>`
+    //     var str = '';
+    //     if (data != null) {
+    //         for (var i = 0; i < data.length; i++) {
+    //             if (data[i].entities.media) {
+    //                 str += ` <div class="card mb-2">
+    //             <div class="card-body">
+    //                 <div class="media">
+    //                     <img src="${data[i].user.profile_image_url}" class="rounded-circle mr-4">
+    //                     <div class="media-body">
+    //                         <h5 class="d-inline mr-3"><strong>${data[i].user.name}</strong></h5>
+    //                         <h6 class="d-inline text-secondary">${data[i].created_at}</h6>
+    //                         <p class="mt-3 mb-0">${data[i].text}</p>`
 
-                    str += `<img src="${data[i].entities.media[0].media_url}" style="width:100%">`
+    //                 str += `<img src="${data[i].entities.media[0].media_url}" style="width:100%">`
 
-                    str += `</div>
-                            </div>
-                            </div>
-                            <div class="card-footer bg-white border-top-0">
-                                <div class="d-flex flex-row justify-content-end">
-                                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
-                                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
-                                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
-                                </div>
-                            </div>
-                        </div>`;
-                }
-            }
-        }
-        return str;
-    }
-    // データからhtmlを出力する関数(guild)
-    function make_dom_guild(data) {
+    //                 str += `</div>
+    //                         </div>
+    //                         </div>
+    //                         <div class="card-footer bg-white border-top-0">
+    //                             <div class="d-flex flex-row justify-content-end">
+    //                                 <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+    //                                 <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+    //                                 <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+    //                             </div>
+    //                         </div>
+    //                     </div>`;
+    //             }
+    //         }
+    //     }
+    //     return str;
+    // }
+    // // データからhtmlを出力する関数(guild)
+    // function make_dom_guild(data) {
 
-        console.log(data)
-        var str = `<div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">ギルドLv</div>
+    //     console.log(data)
+    //     var str = `<div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">ギルドLv</div>
 
-            <div class=listparent style="border:none">
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">ギルドLv</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.charas[0].guild_level}</div>
-                </div>
-            </div>
-            <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">総ファン数</div>
-            <div id="fan_gross" class=listparent style="border:none">
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">総ファン数</div>
-                    <div class=sum style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.sum}</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-                <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
-            </div>
-            <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">ジョブ別ファン数
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">絵師</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">クラフト職人</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">小説家</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">シャーマン</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent style="border:none">
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">エヴァンジェリスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">クエスト情報</div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">開放済みクエスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                </div>
-            </div>
-            <div class=listparent style="border:none">
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">達成済みクエスト</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                </div>
-            </div>
-            <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">
-                投稿</div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">画像アップロード</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">好きなセリフ</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent>
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">外部SNSシェア</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>
-            <div class=listparent style="border:none">
-                <div class=list>
-                    <div style="width:60%;color:#969696;margin:6px;">イベント・宣伝</div>
-                    <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
-                    <div style="color:#969696;margin:6px;">人</div>
-                </div>
-            </div>`;
-        return str;
-    }
+    //         <div class=listparent style="border:none">
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">ギルドLv</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.charas[0].guild_level}</div>
+    //             </div>
+    //         </div>
+    //         <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">総ファン数</div>
+    //         <div id="fan_gross" class=listparent style="border:none">
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">総ファン数</div>
+    //                 <div class=sum style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">${data.sum}</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //             <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 0px"></div>
+    //         </div>
+    //         <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">ジョブ別ファン数
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">絵師</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">クラフト職人</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">小説家</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">シャーマン</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent style="border:none">
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">エヴァンジェリスト</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">クエスト情報</div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">開放済みクエスト</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent style="border:none">
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">達成済みクエスト</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //             </div>
+    //         </div>
+    //         <div style="padding:4px;margin:0px;font-size:18px;background-color: #EFEFEF;padding:12px 24px">
+    //             投稿</div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">画像アップロード</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">好きなセリフ</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent>
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">外部SNSシェア</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>
+    //         <div class=listparent style="border:none">
+    //             <div class=list>
+    //                 <div style="width:60%;color:#969696;margin:6px;">イベント・宣伝</div>
+    //                 <div style="font-size:18px;font-weight: 700;margin:3px 6px 0px 6px;">0</div>
+    //                 <div style="color:#969696;margin:6px;">人</div>
+    //             </div>
+    //         </div>`;
+    //     return str;
+    // }
 
-    // データからhtmlを出力する関数(画像倉庫)
-    function make_dom_storage(data) {
+    // // データからhtmlを出力する関数(画像倉庫)
+    // function make_dom_storage(data) {
 
-        var str = `<div class="item_container">`
-        for (var i = 0; i < data.length; i++) {
-            str += `<div class="item_box">
-                        <div class="item_img">
-                            <img src="${data[i].s3url}" alt="">
-                        </div>
-                    </div>`
-        }
-        str += `</div>`;
-        return str;
-    }
-    function make_dom_quest(data) {
+    //     var str = `<div class="item_container">`
+    //     for (var i = 0; i < data.length; i++) {
+    //         str += `<div class="item_box">
+    //                     <div class="item_img">
+    //                         <img src="${data[i].s3url}" alt="">
+    //                     </div>
+    //                 </div>`
+    //     }
+    //     str += `</div>`;
+    //     return str;
+    // }
+    // function make_dom_quest(data) {
 
-        var str = `<div style="background-color: #efefef;display:flex;">
-                <div class=quest>
-                    <div>好きなセリフ<br>投稿を<br>10本以上</div>
-                    <img class=check src="/storage/img/check.svg" style="height:24px;">
-                </div>
-                <div class=quest>
-                    <div>総ファン数<br>100名以上</div>
-                    <img class=check src="/storage/img/check.svg" style="height:24px;">
-                </div>
-            </div>
-            <div style="background-color: #efefef;display:flex;">
-                <div class=quest>
-                    <img src="/storage/img/lock.svg" style="height:56px">
-                    <div>ギルドランク<br>ブロンズ以上で<br>開放</div>
-                </div>
-                <div class=quest>
-                    <img src="/storage/img/unlock.svg" style="height:56px">
-                    <div>イラスト画像<br>投稿を<br>100件以上</div>
-                </div>
-            </div>
-            <div style="background-color: #efefef;display:flex;">
-                <div class=quest>
-                    <div>エヴァンジェリスト<br>人数を<br>100人以上</div>
-                    <img class=check src="/storage/img/check.svg" style="height:24px;">
-                </div>
-                <div class=quest>
-                    <img src="/storage/img/lock.svg" style="height:56px">
-                    <div>総ファン数<br>5000人以上で<br>開放</div>
-                </div>
-            </div>`;
-        return str;
-    }
-    //好きなセリフデータからhtmlを出力
-    function make_dom_serif(data) {
-        var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
-        for (var i = 0; i < data.length; i++) {
-            str += `<a href="/serif/${data[i].id}" class=serif_bx>
-                        <div class=listparent style="width:95%">
-                                <div class=list>
-                                    <div><img class=thumbnail_img src="${data[i].avatar}"></div>
-                                    <div class="listbox">
-                                        <div style="color:#969696">${data[i].name}</div>
-                                        <div class=serif>${data[i].serif}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=listparent_s style="width:95%">
-                                <div class=thisserif>
-                                    <div style="margin:6px;">
-                                        <div></div>
-                                        <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
-                                    </div>
-                                </div>
-                                <div class=reason>${data[i].reason}</div>
-                            </div>
-                    </a>`;
-        }
-        return str;
-    }
+    //     var str = `<div style="background-color: #efefef;display:flex;">
+    //             <div class=quest>
+    //                 <div>好きなセリフ<br>投稿を<br>10本以上</div>
+    //                 <img class=check src="/storage/img/check.svg" style="height:24px;">
+    //             </div>
+    //             <div class=quest>
+    //                 <div>総ファン数<br>100名以上</div>
+    //                 <img class=check src="/storage/img/check.svg" style="height:24px;">
+    //             </div>
+    //         </div>
+    //         <div style="background-color: #efefef;display:flex;">
+    //             <div class=quest>
+    //                 <img src="/storage/img/lock.svg" style="height:56px">
+    //                 <div>ギルドランク<br>ブロンズ以上で<br>開放</div>
+    //             </div>
+    //             <div class=quest>
+    //                 <img src="/storage/img/unlock.svg" style="height:56px">
+    //                 <div>イラスト画像<br>投稿を<br>100件以上</div>
+    //             </div>
+    //         </div>
+    //         <div style="background-color: #efefef;display:flex;">
+    //             <div class=quest>
+    //                 <div>エヴァンジェリスト<br>人数を<br>100人以上</div>
+    //                 <img class=check src="/storage/img/check.svg" style="height:24px;">
+    //             </div>
+    //             <div class=quest>
+    //                 <img src="/storage/img/lock.svg" style="height:56px">
+    //                 <div>総ファン数<br>5000人以上で<br>開放</div>
+    //             </div>
+    //         </div>`;
+    //     return str;
+    // }
+    // //好きなセリフデータからhtmlを出力
+    // function make_dom_serif(data) {
+    //     var str = `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
+    //     for (var i = 0; i < data.length; i++) {
+    //         str += `<a href="/serif/${data[i].id}" class=serif_bx>
+    //                     <div class=listparent style="width:95%">
+    //                             <div class=list>
+    //                                 <div><img class=thumbnail_img src="${data[i].avatar}"></div>
+    //                                 <div class="listbox">
+    //                                     <div style="color:#969696">${data[i].name}</div>
+    //                                     <div class=serif>${data[i].serif}</div>
+    //                                 </div>
+    //                             </div>
+    //                         </div>
+    //                         <div class=listparent_s style="width:95%">
+    //                             <div class=thisserif>
+    //                                 <div style="margin:6px;">
+    //                                     <div></div>
+    //                                     <div style="color:#969696;width: 25%;border-bottom: 1px solid #c9c9c9;text-align: center;padding: 4px 0px;">好きな理由</div>
+    //                                 </div>
+    //                             </div>
+    //                             <div class=reason>${data[i].reason}</div>
+    //                         </div>
+    //                 </a>`;
+    //     }
+    //     return str;
+    // }
+
     //キャラトップのhtmlを出力
     function make_dom_charatop(data) {
         var str = ``
@@ -284,6 +285,14 @@ $(function () {
             str += `<a href="/chara/${data.charas[i].id}"><img class="thumbnail_img" src="/storage/icon/nolicense.svg" style="height:100px;width:100px"></a>
                     <div class=center>${data.charas[i].name}</div>`
             str += `</div>`;
+        }
+        return str;
+    }
+    //adのhtmlを出力
+    function make_dom_ad(data) {
+        var str = ``
+        for (var i = 0; i < data.ads.length; i++) {
+            str += `${data.ads[i].link}`;
         }
         return str;
     }
@@ -337,14 +346,14 @@ $(function () {
                 console.log('post:complete');
             });
     }
-    // 表示する関数(tweet)
-    function indexData_tweet(id) {
+    // 表示する関数(ad)
+    function indexData_ad(id) {
         //
-        const url = `/api/twitter/${id}`;
+        const url = `/api/ad/${id}`;
         $.ajax(url)
             .done(function (data, textStatus, jqXHR) {
                 console.log(data);
-                $('#echo').html(make_dom_tweet(data));
+                $("#echo").html(make_dom_ad(data))
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
@@ -353,38 +362,55 @@ $(function () {
                 console.log('get:complete');
             });
     }
-    // 表示する関数(好きなセリフ)
-    function indexData_serif(id) {
-        //
-        const url = `/api/serif/${id}`;
-        $.ajax(url)
-            .done(function (data, textStatus, jqXHR) {
-                console.log(data);
-                $('#echo').html(make_dom_serif(data));
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.status + textStatus + errorThrown);
-            })
-            .always(function () {
-                console.log('get:complete');
-            });
-    }
-    // 表示する関数(guild)
-    function indexData_guild(id) {
-        //
-        const url = `/api/guild/${id}`;
-        $.ajax(url)
-            .done(function (data, textStatus, jqXHR) {
-                console.log(data);
-                $('#echo').html(make_dom_guild(data));
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.status + textStatus + errorThrown);
-            })
-            .always(function () {
-                console.log('get:complete');
-            });
-    }
+
+    // // 表示する関数(tweet)
+    // function indexData_tweet(id) {
+    //     //
+    //     const url = `/api/twitter/${id}`;
+    //     $.ajax(url)
+    //         .done(function (data, textStatus, jqXHR) {
+    //             console.log(data);
+    //             $('#echo').html(make_dom_tweet(data));
+    //         })
+    //         .fail(function (jqXHR, textStatus, errorThrown) {
+    //             console.log(jqXHR.status + textStatus + errorThrown);
+    //         })
+    //         .always(function () {
+    //             console.log('get:complete');
+    //         });
+    // }
+    // // 表示する関数(好きなセリフ)
+    // function indexData_serif(id) {
+    //     //
+    //     const url = `/api/serif/${id}`;
+    //     $.ajax(url)
+    //         .done(function (data, textStatus, jqXHR) {
+    //             console.log(data);
+    //             $('#echo').html(make_dom_serif(data));
+    //         })
+    //         .fail(function (jqXHR, textStatus, errorThrown) {
+    //             console.log(jqXHR.status + textStatus + errorThrown);
+    //         })
+    //         .always(function () {
+    //             console.log('get:complete');
+    //         });
+    // }
+    // // 表示する関数(guild)
+    // function indexData_guild(id) {
+    //     //
+    //     const url = `/api/guild/${id}`;
+    //     $.ajax(url)
+    //         .done(function (data, textStatus, jqXHR) {
+    //             console.log(data);
+    //             $('#echo').html(make_dom_guild(data));
+    //         })
+    //         .fail(function (jqXHR, textStatus, errorThrown) {
+    //             console.log(jqXHR.status + textStatus + errorThrown);
+    //         })
+    //         .always(function () {
+    //             console.log('get:complete');
+    //         });
+    // }
     // 表示する関数(fanlist)
     function indexData_fanlist(id) {
         //
@@ -528,7 +554,8 @@ $(function () {
     id = $(".main").attr('data-id')
     indexData_fanlist(id);
     indexDataCharaTop(id);
-    indexData_charas_same(id)
+    indexData_charas_same(id);
+    indexData_ad(id)
 
     $(document).on("click", "#fan_gross", function () {
         id = $(".main").attr('data-id')

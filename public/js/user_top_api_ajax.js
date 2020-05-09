@@ -172,7 +172,7 @@ $(function () {
         if (mychara != null) {
             for (var i = 0; i < mychara.length; i++) {
                 if (mychara[i].s3url) {
-                    str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
+                    str += `<a href="/mychara/${mychara[i].id}" class=listparent>
                             <div class=list>
                                 <div><img class=thumbnail_img src="${mychara[i].s3url}" oncontextmenu="return false;"></div>
                                 <div class="name_bx">
@@ -186,7 +186,7 @@ $(function () {
                             <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
                             </a>`;
                 } else {
-                    str += `<a href="/chara/${mychara[i].charaid}" class=listparent>
+                    str += `<a href="/mychara/${mychara[i].id}" class=listparent>
                             <div class=list>
                                 <div><img class=thumbnail_img src="/storage/icon/nolicense.svg" oncontextmenu="return false;"></div>
                                 <div class="name_bx"">

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Chara;
 use App\Title;
 use App\Mychara;
+use App\Ad;
 use Validator;
 use Auth;
 use App\Http\Controllers\Controller;
@@ -134,6 +135,14 @@ class CharasController extends Controller
                 'titles'=>$titles,
                 'mycharas'=>$mycharas];
     }
+    //キャラ別Ads表示用
+    public function index_ad($id)
+    {
+        $ads = Ad::where('charaid', $id)
+            ->get();
+        return ['ads'=>$ads];
+    }
+
     //投稿用キャラデータ関数
     public function footer_ind_index($id)
     {

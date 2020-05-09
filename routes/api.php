@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/uploads', 'Api\UploadsController@index');
         // 登録（マイキャラ）
         Route::post('/mychara/register', 'Api\MycharasController@store');
+        // 更新（マイキャラ）
+        Route::post('/mychara/update/{id}', 'Api\MycharasController@update');
+
         // 表示
         Route::get('/mychara', 'Api\MycharasController@index');
         //キャラページのファンリスト
@@ -90,6 +93,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/similar/{category}', 'Api\CharasController@index_similar');
         //recomendData
         Route::post('/recommend/{category}', 'Api\CharasController@index_recomend');
+        //AdsData
+        Route::get('/ad/{id}', 'Api\CharasController@index_ad');
+
 
         //footerデータ取得(個別キャラ)
         Route::get('/footer/{id}', 'Api\CharasController@footer_ind_index');

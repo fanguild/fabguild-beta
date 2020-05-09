@@ -816,6 +816,7 @@ $(function () {
         $("#footer_menu_name_3").css({ transform: "scale(1)" });
         $("#footer").removeClass("closed")
         $("#footer").addClass("open")
+        $("#footer_add").show();
     })
     $("#footer_back").on("click", function () {
         $("#footer_menu_1").removeClass("footer_first");
@@ -840,6 +841,7 @@ $(function () {
         $("#footer_menu_name_3").css({ transform: "scale(0)" });
         $("#footer").removeClass("open")
         $("#footer").addClass("closed")
+        $("#footer_add").hide();
     })
     // $("#footer").on("click", function () {
     //     console.log("aaa")
@@ -868,6 +870,7 @@ $(function () {
         $("#footer_menu_name_3").css({ transform: "scale(0)" });
         $("#footer").removeClass("open")
         $("#footer").addClass("closed")
+        $("#footer_add").hide();
     })
     //画像アップロードで画面表示する関数
     $(document).on('change', '#file', function (e) {
@@ -1010,4 +1013,5 @@ $(function () {
     $("#opinion").on("click", function () {
         alert("fanguildのtwitterへダイレクトメールをお願いします")
     })
+
 });

@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Chara;
 use App\Mychara;
 use App\Upload;
 use Validator;
@@ -45,8 +46,8 @@ class UsersController extends Controller
     {
         $users = User::where('id', Auth::user()->id)
             ->get();
-        $mychara = Mychara::where('userid', Auth::user()->id)
-            ->join('charas', 'mycharas.charaid', 'charas.id')
+        $mychara = Chara::join('mycharas', 'charas.id', 'mycharas.charaid')
+            ->where('userid', Auth::user()->id)
             ->get();
         $album = Upload::where('userid', Auth::user()->id)
             ->select('userid')

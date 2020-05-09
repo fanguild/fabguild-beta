@@ -44,7 +44,24 @@ class MycharasController extends Controller
 
         return ['mycharas_return'=>$mycharas_return,'sum'=>$sum,'mlc'=>$mlc];
     }
+    //更新処理関数
+    public function update($id, Request $request)
+    {
+        $path = Storage::disk('s3')->putFile('/', $request->file('file1'), 'public');
+        $url = Storage::disk('s3')->url($path);
+        // Eloquentモデル
+        $mycharas =Mychara::find($id);
+        // $mycharas->userid = Auth::user()->id;
+        $mycharas->labelname = $request->label;
+        $mycharas->s3url=$url;
+        $mycharas->save();
 
+        // 最新のDB情報を取得して返す
+        $mycharas_return = Mychara::where('userid', Auth::user()->id)
+            // ->where('charaid', $request->charaid)
+            ->get();
+        return ['mycharas_return'=>$mycharas_return,'request'=>$request->label];
+    }
     //表示処理関数
     public function index()
     {

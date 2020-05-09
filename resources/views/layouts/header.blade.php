@@ -82,7 +82,7 @@
                 </div>
                 <div style="text-align:center;width:100%"><img src="{{asset('storage/icon/fanguild_logo.svg')}}" style="height:68px;padding-top:8px;"></div>
                 <div id=footer class="footer closed"><img src="{{asset('storage/icon/footer.svg')}}" style="height:64px"></div>
-                
+                <!-- <div id=footer_add class="footer_add hide"><a style="font-size: large;">マイキャラ追加</a><a style="color:#FFF">あああ</a></div> -->
                 <div class=js-modal__btn data-id=1>
                     <div id="footer_menu_name_1" class=footer_first>
                         <img src="{{asset('storage/icon/mychara_add.svg')}}" style=" height:36px">

@@ -19,7 +19,13 @@ class CreateMycharasTable extends Migration
             $table->bigInteger('charaid');
             $table->string('charaname');
             $table->string('labelname')->nullable();
+            $table->string('job')->nullable();
             $table->string('s3url')->nullable();
+            $table->date('history')->nullable();
+            $table->text('memory')->nullable();
+            $table->text('reommendation')->nullable();
+            $table->text('secret')->nullable();
+            $table->text('tomember')->nullable();
             $table->boolean('deleteflg');
             $table->timestamps();
         });

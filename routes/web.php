@@ -90,7 +90,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', function () {
         return view('home');
     });
-
+    //マイキャラ編集画面
+    Route::get('/mychara/{id}', function ($id) {
+        return view('mychara', ['id'=>$id]);
+    });
     //ユーザートップ
     Route::get('user', 'UsersController@index')->name('user');
 
