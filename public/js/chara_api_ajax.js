@@ -292,7 +292,8 @@ $(function () {
     function make_dom_ad(data) {
         var str = ``
         for (var i = 0; i < data.ads.length; i++) {
-            str += `${data.ads[i].img_link}`;
+            str += `<div style="display: flex;flex-direction: column;width: 45%;margin: 8px;">`
+            str += `${data.ads[i].img_link}${data.ads[i].text_link}</div>`;
         }
         return str;
     }
