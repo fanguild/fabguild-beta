@@ -292,7 +292,7 @@ $(function () {
     function make_dom_ad(data) {
         var str = ``
         for (var i = 0; i < data.ads.length; i++) {
-            str += `${data.ads[i].link}`;
+            str += `${data.ads[i].img_link}`;
         }
         return str;
     }
