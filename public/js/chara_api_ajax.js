@@ -290,11 +290,12 @@ $(function () {
     }
     //adのhtmlを出力
     function make_dom_ad(data) {
-        var str = ``
+        var str = `<div style="display:flex">`
         for (var i = 0; i < data.ads.length; i++) {
             str += `<div style="display: flex;flex-direction: column;width: 45%;margin: 8px;">`
             str += `${data.ads[i].img_link}${data.ads[i].text_link}</div>`;
         }
+        str += `</div>`
         return str;
     }
     //表示する関数（top）
