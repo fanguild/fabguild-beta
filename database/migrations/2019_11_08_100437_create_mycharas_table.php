@@ -18,6 +18,7 @@ class CreateMycharasTable extends Migration
             $table->bigInteger('userid');
             $table->bigInteger('charaid');
             $table->string('charaname');
+            $table->string('title');
             $table->string('labelname')->nullable();
             $table->string('job')->nullable();
             $table->string('s3url')->nullable();

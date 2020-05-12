@@ -38,6 +38,9 @@ $(function () {
                 <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:15px 0px"></div>
             </a>`;
         }
+        str += `<div class="center">
+                    <a class="button" style="color:#ffffff;text-decoration:none" href="">全ファンメンバー</a>
+                    </div>`
 
         return str;
 
@@ -286,16 +289,20 @@ $(function () {
                     <div class=center>${data.charas[i].name}</div>`
             str += `</div>`;
         }
+
         return str;
     }
     //adのhtmlを出力
     function make_dom_ad(data) {
-        var str = `<div style="display:flex">`
+        var str = `<div style="display:flex;flex-wrap: wrap;">`
         for (var i = 0; i < data.ads.length; i++) {
             str += `<div style="display: flex;flex-direction: column;width: 45%;margin: 8px;">`
             str += `${data.ads[i].img_link}${data.ads[i].text_link}</div>`;
         }
         str += `</div>`
+        str += `<div class="center">
+                    <a class="button" style="color:#ffffff;text-decoration:none" href="">出演作品/グッズ一覧</a>
+                    </div>`
         return str;
     }
     //表示する関数（top）
@@ -557,7 +564,6 @@ $(function () {
     indexData_fanlist(id);
     indexDataCharaTop(id);
     indexData_charas_same(id);
-    indexData_ad(id)
 
     $(document).on("click", "#fan_gross", function () {
         id = $(".main").attr('data-id')
@@ -565,7 +571,7 @@ $(function () {
     })
     $(".middle_bar_1").on("click", function () {
         id = $(".main").attr('data-id')
-        indexData_guild(id);
+        // indexData_guild(id);
     })
     $(".middle_bar_2").on("click", function () {
         id = $(".main").attr('data-id')
@@ -588,6 +594,6 @@ $(function () {
     })
     $(".middle_bar_7").on("click", function () {
         id = $(".main").attr('data-id')
-        // indexData_serif(id)
+        indexData_ad(id)
     })
 });

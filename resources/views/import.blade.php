@@ -53,7 +53,8 @@
         <form id=api_form>
             <div class="join_btn" style="width:375px">
                 <div id=import1 style="border:1px solid #333333">import_chara</div>
-                <div id=import2 style="border:1px solid #333333">import_works</div> 
+                <div id=import2 style="border:1px solid #333333">import_works</div>
+                <div id=import3 style="border:1px solid #333333">import_ads</div> 
             </div>
             <div style="display:flex;flex-direction:column">
             <span>ID<input id=text type="text" name="spreadsheetid" value=""></input></span>

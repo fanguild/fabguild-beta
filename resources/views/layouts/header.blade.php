@@ -68,6 +68,7 @@
                             <li><a href="{{url('home')}}">ホーム</a></li>
                             <li><a href="{{url('user')}}">マイページ</a></li>
                             <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
+                            <li><a href="">プライバシーポリシー</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -126,6 +127,7 @@
                         <ul class="menu" style='list-style: none;'>
                             
                             <li id=opinion><a href="{{url('https://twitter.com/fanguild1')}}">ご意見・問い合わせ</a></li>
+                            <li><a href="">プライバシーポリシー</a></li>
                             <li>
                                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

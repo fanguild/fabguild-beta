@@ -19,6 +19,7 @@ class CreateAdsTable extends Migration
             $table->bigInteger('categoryid')->nullable();
             $table->text('img_link');
             $table->text('text_link');
+            $table->bigInteger('official');
             $table->timestamps();
         });
     }

@@ -17,16 +17,16 @@ class WorksController extends Controller
     {
         $work = Title::where('id', $id)
                 ->first();
-        $charas = \DB::table('charas')
-                ->select("charas.id", "mycharas.s3url", "charas.name", "charas.title")
-                ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
-                ->where('title', $work->name)
-                ->orderBy('id', 'asc')
-                ->get();
+        // $charas = \DB::table('charas')
+        //         ->select("charas.id", "mycharas.s3url", "charas.name", "charas.title")
+        //         ->leftJoin("mycharas", "charas.id", "=", "mycharas.charaid")
+        //         ->where('title', $work->name)
+        //         ->orderBy('id', 'asc')
+        //         ->get();
 
         return view('work_top', [
-            'work'=>$work,
-            'charas'=>$charas]);
+            'work'=>$work]);
+        // 'charas'=>$charas]);
     }
     public function index_all($id)
     {

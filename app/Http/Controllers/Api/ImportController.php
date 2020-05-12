@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Title;
 use App\Chara;
+use App\Ad;
 use Auth;
 use App\Http\Controllers\Controller;
 
@@ -62,6 +63,7 @@ class ImportController extends Controller
                 ->get();
         return $charas;
     }
+    //作品インポート
     public function import_work(Request $request)
     {
         $sheets = \App\GoogleSheet::instance();
@@ -96,7 +98,31 @@ class ImportController extends Controller
         
         return $titles;
     }
+    //Adインポート
+    public function import_ad(Request $request)
+    {
+        $sheets = \App\GoogleSheet::instance();
 
+        $sheet_id = $request->spreadsheetid;
+        $start = $request->start;
+        $end = $request->end;
+        $range = $start.':'.$end;
+        $response = $sheets->spreadsheets_values->get($sheet_id, $range);
+        $values = $response->getValues();
+        foreach ($values as $value) {
+            // Eloquentモデル
+            $ad = new Ad;
+            $ad->charaid=$value[0];
+            $ad->img_link=$value[3];
+            $ad->text_link=$value[4];
+            // $ad->bigInteger('official');
+            $ad->save();
+        };
+        // // 最新のDB情報を取得して返す
+        $ads = Ad::get();
+        
+        return $ads;
+    }
     // public function destroy($task_id)
     // {
     //     $task = Task::where('user_id', Auth::user()->id)->find($task_id);

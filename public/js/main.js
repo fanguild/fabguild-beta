@@ -114,7 +114,7 @@ $(function () {
                     <div class="modal_body" id='mychara'>
                     <div class=slider>
                         <div class=formbox>
-                        <form id=api_form>
+                        <form id=api_form_modal>
                             <div id=mycharaselect class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
                                     <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
@@ -124,12 +124,13 @@ $(function () {
                                     <input type="hidden" name="charaname" value="">
                                 </div>
                             </div>
-                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
-                                <div class="list">
-                                    <div style="width:30%;color:#969696;margin:6px;">作品名</div>
-                                    <div style="font-size:18px;margin:3px 6px 0px 6px;"></div>
-                                    <input type="hidden" name="title" value="">
-                                </div>
+                            <div class="center" style="margin-bottom:6px;">
+                                <a style="color: #ffffff;
+                                    font-weight: 600;
+                                    background-color: #ff8500;
+                                    padding: 8px 48px;
+                                    border-radius: 4px;
+                                    text-decoration:none" href="/chara/">キャラページへ</a>
                             </div>
                             <div class="listparent" style="border-bottom:#efefef solid 1px;">
                                 <div class="list">
@@ -151,22 +152,62 @@ $(function () {
                             <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
                             <img class=chara_img id=chara_img_modal style="background-color:#FFFFFF">
                             </div>
+                            <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="list">
+                                <div style="width:30%;color:#969696;margin:6px;">ファンhist.</div>
+
+                                <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                                    <input name="" type="date" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="list">
+                                <div style="width:30%;color:#969696;margin:6px;">ファンAct.</div>
+
+                                <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                                    <input name="" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="list">
+                                <div style="width:30%;color:#969696;margin:6px;">キャラの紹介</div>
+                                <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                                    <input name="" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="list">
+                                <div style="width:30%;color:#969696;margin:6px;">キャラの秘密</div>
+                                <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                                    <input name="" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                            <div class="list">
+                                <div style="width:30%;color:#969696;margin:6px;">同じファンメンバーへ一言</div>
+                                <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                                    <input name="" type="text" value="">
+                                </div>
+                            </div>
+                        </div>
                         </form>
-                        <div class="disclaimer">※マイサムネに使用した画像は非公開となりますので著作権侵害等の違法なアップロードには当たりません</div>
-                        <div class="disclaimer">※fanguildが用意する著作権フリーの画像を利用の場合はマイサムネは自動で公開となります</div>
                         </div>
                         <div id="mycharalist">
                         </div>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="listparent center_obj" style="border:none;">
-                            <button class="button" data-dismiss="modal" aria-label="Close" id=add_mychara>
-                                マイキャラを編集
-                            </button>
                         </div>
-                    </div>`
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="listparent center_obj" style="border:none;">
+                                <button class="button" data-dismiss="modal" aria-label="Close" id=update_mychara>
+                                    マイキャラを編集
+                                </button>
+                            </div>
+                        </div>`
         }
         return str;
     }
@@ -239,63 +280,7 @@ $(function () {
 
         return str;
     }
-    function make_dom_madal_postlike(data) {
-        if (data) {
-            var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal_body" id='mychara' style="height:400px">
-                        <form id=api_form>
-                        
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#333333;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                    <div class="listparent center_obj" style="border:none;">
-                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_tweet>
-                            シェア
-                        </button>
-                    </div>
-                    </div><div class="disclaimer center_obj">※画像を投稿すると自動的にマイキャラに登録されます</div>`
-        } else {//ユーザートップでのモーダルの動き
-            var str = `<div class="modal-header">
-                        <h6 class="modal-title" id="label1">マイキャラ一覧をシェア</h6>
-                        <button id="modal__close" class="js-modal__btn--close--fix" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal_body" id='mychara' style="height:400px">
-                    <div class=slider>
-                        <div class=formbox>
-                        <form id=api_form>
-                            <div class="listparent" style="border:none">
-                                <div class="list" style="width:100%;">
-                                    <textarea id="comment" style="color:#333333;margin:6px;height:240px;width:100%" name="comment" placeholder=""></textarea>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div id="mycharalist">
-                        </div>
-                    </div>
-                    </div>
-                    <div class="modal-footer">
-                    <div class="listparent center_obj" style="border:none;">
-                        <button class="button" data-dismiss="modal" aria-label="Close" id=post_tweet>
-                            シェア
-                        </button>
-                    
-                    </div>`
-        }
-        return str;
-    }
+
     function make_dom_madal_postpic(data) {
         if (data) {
             var str = `<div class="modal-header">
@@ -408,7 +393,7 @@ $(function () {
 
         var str = ``;
         for (var i = 0; i < data.length; i++) {
-            str += `<div class=listparent data-id=${data[i].charaid}>
+            str += `<div class=listparent data-id=${data[i].id}>
                         <div class=list>
                             
                             <div><img class=thumbnail_img src="${data[i].s3url}"></div>
@@ -999,19 +984,157 @@ $(function () {
     $(document).on("click", "#mycharalist>.listparent", function () {
         $(".modal_body").children(".slider").removeClass("slideLeft")
         $(".modal_body").children(".slider").addClass("slideRight")
-        var src = $(this).find(".thumbnail_img").attr('src')
-        var name = $(this).find(".name_bx>div:first").text()
-        var title = $(this).find(".name_bx>div:nth-child(2)").text()
-        var label = $(this).find(".label_bx>div").text()
+        // var src = $(this).find(".thumbnail_img").attr('src')
+        // var name = $(this).find(".name_bx>div:first").text()
+        // var title = $(this).find(".name_bx>div:nth-child(2)").text()
+        // var label = $(this).find(".label_bx>div").text()
         var charaid = $(this).attr('data-id')
-        console.log(charaid)
-        $("#api_form>div:nth-child(1)").children('div').children('div:nth-child(2)').text(name)
-        $("#api_form>div:nth-child(1)").children('div').children('input').val(charaid)
-        $("#api_form>div:nth-child(2)").children('div').children('div:nth-child(2)').text(title)
+        indexDataMychara(charaid)
+        // console.log(charaid)
+        // $("#api_form>div:nth-child(1)").children('div').children('div:nth-child(2)').text(name)
+        // $("#api_form>div:nth-child(1)").children('div').children('input').val(charaid)
+        // $("#api_form>div:nth-child(2)").children('div').children('div:nth-child(2)').text(title)
 
     })
     $("#opinion").on("click", function () {
         alert("fanguildのtwitterへダイレクトメールをお願いします")
     })
+    //表示する関数（マイキャラ）
+    function indexDataMychara(id) {
+        const url = `/api/mychara/${id}`;
+        $.ajax(url)
+            .done(function (data, textStatus, jqXHR) {
+                console.log(data);
+                $('#api_form_modal').html(make_dom_mychara_one(data));
+            })
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.status + textStatus + errorThrown);
+            })
+            .always(function () {
+                console.log('get:complete');
+            });
+    }
+    function make_dom_mychara_one(data) {
+        var str = '';
+        str += `<div id="mycharaselect" class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">キャラ名</div>
+                        <div style="font-size:16px;margin:6px 6px 0px 6px;width:50%">${data.mychara.charaname}</div>
+                        <input type="hidden" name="charaid" value="${data.mychara.charaid}">
+                    </div>
+                    <div class=arrow><img src="/storage/icon/arrow_follow.svg" style="height:36px;margin:0px 6px"></div>
+                </div>
+                <div class="center" style="margin-bottom:6px;">
+                    <a style="color: #ffffff;
+                            font-weight: 600;
+                            background-color: #ff8500;
+                            padding: 8px 48px;
+                            border-radius: 4px;
+                            text-decoration:none" href="/chara/${data.mychara.charaid}">キャラページへ</a>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">ラベル</div>
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="label" type="text" value="${data.mychara.labelname}" placeholder="">
+                        </div>
+                    </div>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:60%;color:#969696;margin:6px;">マイサムネ</div>
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input type="file" name="file1" id="file" class="form-control" value=""> 
+                        </div>
+                    </div>
+                </div>
+                <div class="thumbnail listparent" style="border-bottom:#efefef solid 1px;background-color:#efefef">
+                <img class="chara_img" id="chara_img_modal" style="background-color:#FFFFFF" src="${data.mychara.s3url}">
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">ファンhist.</div>
 
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="" type="date" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">ファンAct.</div>
+
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="" type="text" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">キャラの紹介</div>
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="" type="text" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">キャラの秘密</div>
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="" type="text" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="listparent" style="border-bottom:#efefef solid 1px;">
+                    <div class="list">
+                        <div style="width:30%;color:#969696;margin:6px;">同じファンメンバーへ一言</div>
+                        <div style="font-size:18px;margin:3px 6px 0px 6px;">
+                            <input id="label" name="" type="text" value="">
+                        </div>
+                    </div>
+                </div>`;
+        return str;
+
+    }
+
+    // 登録する関数
+    function storeData_update(id) {
+        // 送信先の指定
+        var url = `/api/mychara/update/${id}`;
+        var form = $('#api_form_modal').get()[0];
+        // FormData オブジェクトを作成
+        var formData = new FormData(form);
+        console.log(form)
+
+        // データ送信
+        $.ajax({
+            headers: {
+                //'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            dataType: 'json',
+            url: url,
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            cache: false
+        })
+            .done(function (data_return) {
+                console.log(data_return);
+                console.log('done');
+            })
+            .fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log('fail');
+            })
+            .always(function () {
+                console.log('post:complete');
+            });
+    }
+    // マイキャラ追加ボタンクリック時に登録
+    $(document).on('click', '#update_mychara', function () {
+        id = $(".main").attr('data-id')
+        storeData_update(id);
+    });
 });

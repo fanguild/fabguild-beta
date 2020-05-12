@@ -30,6 +30,7 @@ class MycharasController extends Controller
         $mycharas->charaid = $request->charaid;
         $mycharas->charaname = $request->charaname;
         $mycharas->labelname = $request->label;
+        $mycharas->title = $request->title;
         $mycharas->s3url=$url;
         $mycharas->deleteflg = 0;
         $mycharas->save();
@@ -62,11 +63,18 @@ class MycharasController extends Controller
             ->get();
         return ['mycharas_return'=>$mycharas_return,'request'=>$request->label];
     }
+    //表示処理関数(1つだけ)
+    public function index_one($id)
+    {
+        $mychara = Mychara::where('id', $id)
+            ->first();
+        return ['mychara'=>$mychara];
+    }
     //表示処理関数
     public function index()
     {
         $mycharas = Mychara::where('userid', Auth::user()->id)
-            ->join('charas', 'mycharas.charaid', 'charas.id')
+            // ->join('charas', 'mycharas.charaid', 'charas.id')
             ->get();
         return $mycharas;
     }

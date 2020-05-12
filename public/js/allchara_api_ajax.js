@@ -3,8 +3,8 @@ $(function () {
     function make_dom_work(data) {
 
         var str = ``;
-        var mycharas = data[0]
-        var charas = data[1].data
+        var mycharas = data.mycharas
+        var charas = data.charas
         var s3url = "/storage/icon/nolicense.svg"
         var mychara = "";
         for (var i = 0; i < charas.length; i++) {
@@ -30,18 +30,37 @@ $(function () {
     }
     // 表示する関数(作品内キャラリスト)
     function indexData_work(id) {
-        //
-        const url = `/api/work/all/${id}`;
-        $.ajax(url)
-            .done(function (data, textStatus, jqXHR) {
-                console.log(data);
-                $('#echo').html(make_dom_work(data));
+        // 送信先の指定
+        var url = '/api/standard';
+        var request = {
+            chara: 0,
+            work: id,
+            number: 1000,
+        }
+        // データ送信
+        $.ajax({
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            },
+            dataType: 'json',
+            url: url,
+            type: 'POST',
+            data: JSON.stringify(request),
+            processData: false,
+            contentType: false,
+            cache: false
+        })
+            .done(function (data_return) {
+                console.log(data_return);
+                $('#echo').html(make_dom_work(data_return))
             })
             .fail(function (jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR.status + textStatus + errorThrown);
+                console.log('fail');
             })
             .always(function () {
-                console.log('get:complete');
+                console.log('post:complete');
             });
     }
 

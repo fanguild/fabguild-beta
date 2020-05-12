@@ -24,16 +24,19 @@
             <div class="middle_bar_box">
                 <div class="middle_bar">
                     <div class=middle_bar_outline>
-                        <div class=middle_bar_6 style="padding:6px 0 3px 0 ;">ファンリスト</div>
+                        <div class=middle_bar_6 style="padding:6px 0 3px 0 ;">ファンメンバー</div>
                     </div>
                     <!-- <div class=middle_bar_outline>
                         <div class=middle_bar_7 style="padding:6px 0 3px 0 ;">ランキング</div>
                     </div> -->
-                    <div class=middle_bar_outline>
+                    <!-- <div class=middle_bar_outline>
                         <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">ラベル一覧</div>
+                    </div> -->
+                    <div class=middle_bar_outline>
+                        <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">みんなの愛</div>
                     </div>
                     <div class=middle_bar_outline>
-                        <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">キャラwiki</div>
+                        <div class=middle_bar_7 style="padding:6px 0 3px 0 ;">出演作品/グッズ</div>
                     </div>
                 </div>
             </div>
@@ -41,13 +44,7 @@
             <div id=echo>
 
             </div>
-            <div class="center">
-                    <a style="color: #ffffff;
-                            font-weight: 600;
-                            background-color: #ff8500;
-                            padding: 8px 48px;
-                            border-radius: 4px;" href="">ファンリスト一覧へ</a>
-            </div>
+            
             </div>
             
             <div class=bottom>
@@ -56,30 +53,7 @@
             </div>
             <div class="center bold">おすすめのキャラ</div>
             <div id=recomend class=scroll-x>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
-                <div class=recomend_box>
-                    <img class="thumbnail_img" style="height:100px;width:100px"></img>
-                    <div class=center>キャラ名</div>
-                </div>
+                <div class=nodata>データはありません</div>
             </div>
             </div>
         </div>

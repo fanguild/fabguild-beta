@@ -47,7 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/mychara/register', 'Api\MycharasController@store');
         // 更新（マイキャラ）
         Route::post('/mychara/update/{id}', 'Api\MycharasController@update');
-
+        // 表示(マイキャラ）
+        Route::get('/mychara/{id}', 'Api\MycharasController@index_one');
         // 表示
         Route::get('/mychara', 'Api\MycharasController@index');
         //キャラページのファンリスト
@@ -91,7 +92,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         //similarData
         Route::post('/similar/{category}', 'Api\CharasController@index_similar');
-        //recomendData
+        //recommendData
         Route::post('/recommend/{category}', 'Api\CharasController@index_recomend');
         //AdsData
         Route::get('/ad/{id}', 'Api\CharasController@index_ad');
@@ -107,7 +108,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/import1', 'Api\ImportController@import_chara');
         //作品インポート用
         Route::post('/import2', 'Api\ImportController@import_work');
-
+        //Adインポート用
+        Route::post('/import3', 'Api\ImportController@import_ad');
         //タイトル別検索結果
         Route::get('/title/year/{year}/season/{season}', 'Api\TitlesController@index');
     });

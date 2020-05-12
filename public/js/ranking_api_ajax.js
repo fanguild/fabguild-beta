@@ -4,8 +4,6 @@ $(function () {
     function make_dom_rankinglist(data) {
 
         var str = '';
-        str += `<hr style="padding:4px;margin:0px;background-color: #EFEFEF;">`
-
         for (var i = 0; i < data.length; i++) {
             str += `<a href="/chara/${data[i].charaid}" class=listparent>
                 <div class=list>

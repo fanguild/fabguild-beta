@@ -18,11 +18,6 @@ Route::get('/', function () {
     return view('top');
 });
 
-
-Route::get('/tasks', function () {
-    return view('tasks');
-});
-
 Auth::routes();
 // SNS認証へのページ遷移
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');

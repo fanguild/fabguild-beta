@@ -20,63 +20,24 @@
                 </div>
             </div>
             <div class=chara_name_olt>{{$chara->name}}</div>
+            <div class=middle>
+            <div class="middle_bar_box">
             <div class="middle_bar">
                 <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">総合ランキング</div>
+                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">総合</div>
                 </div>
                 <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">推し数ランキング</div>
+                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">推し数</div>
                 </div>
                 <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">作品内ランキング</div>
+                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">同作品</div>
                 </div>
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">名言集</div>
-                </div> -->
-                <!-- <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ギルド</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">タイムライン</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_1 style="padding:6px 0 3px 0 ;">ファンリスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_2 style="padding:6px 0 3px 0 ;">タイムライン</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_3 style="padding:6px 0 3px 0 ;">画像倉庫</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_4 style="padding:6px 0 3px 0 ;">クエスト</div>
-                </div>
-                <div class=middle_bar_outline>
-                    <div class=middle_bar_5 style="padding:6px 0 3px 0 ;">好きなセリフ</div>
-                </div> -->
             </div>
-            <hr style="padding:0px;margin:0px;background-color: #EFEFEF;">
+            </div>
             <div id=echo>
 
             </div>
+        </div>
         </div>
     </div>
 </div>

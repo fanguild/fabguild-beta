@@ -68,7 +68,7 @@ $(function () {
             mychara = "";
         }
         str += `<div class="center">
-                    <a class="button" style="color:#ffffff;text-decoration:none" href="/work/all/${data.titles.id}">全キャラ一覧へ</a>
+                    <a class="button" style="color:#ffffff;text-decoration:none" href="/work/all/${data.titles[0].id}">全キャラ一覧へ</a>
                     </div>`
         return str;
     }
